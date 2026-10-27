@@ -140,8 +140,16 @@ $('#dialogOverlay').onclick=e=>{if(e.target===$('#dialogOverlay'))closeDialog()}
 $('#getOtpBtn').onclick=()=>{const m=$('#mobileInput').value.replace(/\D/g,'');if(m.length!==10)return toast('Enter a valid mobile number');$('#otpMobile').textContent=m;showScreen('loginOtpScreen');const boxes=$$('.otpBox');boxes.forEach((b,i)=>{b.value='';b.oninput=()=>{b.value=b.value.replace(/\D/g,'').slice(0,1);if(b.value&&boxes[i+1])boxes[i+1].focus()};b.onkeydown=e=>{if(e.key==='Backspace'&&!b.value&&boxes[i-1])boxes[i-1].focus()}});boxes[0].focus()};
 $('#otpBack').onclick=()=>showScreen('loginPhoneScreen');
 $('#verifyOtpBtn').onclick=()=>{app.authed=true;persist();showScreen('notifyScreen');hydrateIcons()};
-$('#enableAlertsBtn').onclick=()=>{app.notifySeen=true;persist();enablePush();setTab('duty')};
-$('#skipAlertsBtn').onclick=()=>{app.notifySeen=true;persist();setTab('duty')};
+function completeOnboarding(){
+  app.notifySeen=true;app.tab='duty';persist();
+  try{renderDuty()}catch(e){console.error('Duty render failed',e)}
+  showScreen('dutyScreen');
+  $('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav==='duty'));
+  hydrateIcons();
+  try{syncLanguageUI()}catch(e){console.error('Language sync failed',e)}
+}
+$('#enableAlertsBtn').onclick=()=>{completeOnboarding();enablePush()};
+$('#skipAlertsBtn').onclick=()=>completeOnboarding();
 
 const trips={
  tomorrow:[
