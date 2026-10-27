@@ -223,26 +223,28 @@ $('#skipAlertsBtn').onclick=()=>completeOnboarding();
 
 const trips={
  tomorrow:[
-  {time:'06:40',route:'Taloja → BKC',bus:'Bus MH01 EV 1402',busNo:'MH01 EV 1402',detail:'06:40 → 07:55 AM · 1h 15m'},
-  {time:'09:35',route:'BKC → Taloja',bus:'Bus MH01 EV 1402 · till 10:50',busNo:'MH01 EV 1402'},
-  {kind:'charging',route:'Charging halt',location:'Marol Depot',busNo:'MH01 EV 1402'},
-  {time:'14:15',route:'Marol → BKC',bus:'Bus MH01 EV 1402 · till 15:30',busNo:'MH01 EV 1402'},
-  {time:'17:35',route:'BKC → Marol',bus:'Bus MH01 EV 1402 · till 18:50',busNo:'MH01 EV 1402'},
-  {kind:'final',route:'Final halt',location:'Marol Depot',busNo:'MH01 EV 1402'}],
+  {time:'06:40',route:'Navi Mumbai → BKC',bus:'Bus MH01 EV 1402',busNo:'MH01 EV 1402',detail:'06:40 → 07:55 AM · 1h 15m'},
+  {time:'09:35',route:'Bandra → BKC',bus:'Bus MH01 EV 1402 · till 10:20',busNo:'MH01 EV 1402'},
+  {time:'11:05',route:'Bandra → BKC',bus:'Bus MH01 EV 1402 · till 11:50',busNo:'MH01 EV 1402'},
+  {kind:'charging',route:'Charging halt',location:'Anik Depot',busNo:'MH01 EV 1402'},
+  {time:'14:15',route:'Bandra → BKC',bus:'Bus MH01 EV 1402 · till 15:00',busNo:'MH01 EV 1402'},
+  {time:'17:35',route:'BKC → Navi Mumbai',bus:'Bus MH01 EV 1402 · till 18:50',busNo:'MH01 EV 1402'},
+  {kind:'final',route:'Night halt',location:'Taloja Depot',busNo:'MH01 EV 1402'}],
  today:[
-  {time:'06:55',route:'Marol → BKC',bus:'Bus MH01 EV 1245 · till 08:10',busNo:'MH01 EV 1245'},
-  {time:'09:20',route:'BKC → Thane',bus:'Bus MH01 EV 1245 · till 10:40',busNo:'MH01 EV 1245'},
+  {time:'06:55',route:'Navi Mumbai → BKC',bus:'Bus MH01 EV 1245 · till 08:10',busNo:'MH01 EV 1245'},
+  {time:'09:20',route:'Bandra → BKC',bus:'Bus MH01 EV 1245 · till 10:05',busNo:'MH01 EV 1245'},
+  {time:'11:00',route:'Bandra → BKC',bus:'Bus MH01 EV 1245 · till 11:45',busNo:'MH01 EV 1245'},
   {kind:'charging',route:'Charging halt',location:'Anik Depot',busNo:'MH01 EV 1245'},
-  {time:'13:10',route:'Thane → BKC',bus:'Bus MH01 EV 1245 · till 14:30',busNo:'MH01 EV 1245'},
-  {time:'16:05',route:'BKC → Marol',bus:'Bus MH01 EV 1245 · till 17:20',busNo:'MH01 EV 1245'},
-  {kind:'final',route:'Final halt',location:'Marol Depot',busNo:'MH01 EV 1245'}]
+  {time:'13:10',route:'Bandra → BKC',bus:'Bus MH01 EV 1245 · till 13:55',busNo:'MH01 EV 1245'},
+  {time:'16:05',route:'BKC → Navi Mumbai',bus:'Bus MH01 EV 1245 · till 17:20',busNo:'MH01 EV 1245'},
+  {kind:'final',route:'Night halt',location:'Taloja Depot',busNo:'MH01 EV 1245'}]
 };
 const HI_DUTY={
  'Duty':'ड्यूटी','Report':'रिपोर्ट','Performance':'परफॉर्मेंस','More':'और',
  'Today, 24 Sept':'आज, 24 सितम्बर','Tomorrow, 25 Sept':'कल, 25 सितम्बर',
  'Response needed':'जवाब दें','Confirmed':'पुष्टि हुई','Declined':'मना किया','Running late':'देरी होगी','No response':'जवाब नहीं','On duty':'ड्यूटी पर',
  'Report at':'रिपोर्टिंग समय','Depot':'डिपो','Bus':'बस','Buses':'बसें','Trips':'ट्रिप्स',
- 'Charging halt':'चार्जिंग हॉल्ट','Final halt':'अंतिम हॉल्ट','EV charging stop':'EV चार्जिंग स्टॉप','End-of-duty bus halt':'ड्यूटी के बाद बस हॉल्ट',
+ 'Charging halt':'चार्जिंग हॉल्ट','Night halt':'नाइट हॉल्ट','EV charging stop':'EV चार्जिंग स्टॉप','End-of-duty bus halt':'ड्यूटी के बाद बस हॉल्ट',
  'Can you do this duty?':'क्या आप यह ड्यूटी कर सकते हैं?','I can do this duty':'मैं यह ड्यूटी कर सकता हूँ','I can’t do this duty':'मैं यह ड्यूटी नहीं कर सकता',
  'You’re confirmed':'आपकी ड्यूटी कन्फर्म है','You’re confirmed for today':'आज की ड्यूटी कन्फर्म है','Change response':'जवाब बदलें','Running late':'देरी होगी',
  'You have declined this duty':'आपने यह ड्यूटी मना की है','Call duty manager':'ड्यूटी मैनेजर को कॉल करें',
@@ -261,7 +263,7 @@ function tripList(day){
  const list=trips[day],tripCount=list.filter(x=>!x.kind).length,buses=dutyBuses(day);
  return `<div class="card tripCard"><div class="tripHeader"><b>${tDuty('Trips')}</b><span>${tripCount} ${app.lang==='hi'?'ट्रिप':'trips'} · ${buses.length} ${app.lang==='hi'?'बस':(buses.length===1?'bus':'buses')}</span></div>${list.map((x,i)=>{
    if(x.kind==='charging')return `<div class="opsRow"><div class="opsIcon">⚡</div><div><div class="opsTitle">${tDuty('Charging halt')}</div><div class="opsMeta">${x.location} · ${x.busNo}</div></div></div>`;
-   if(x.kind==='final')return `<div class="opsRow final"><div class="opsIcon">■</div><div><div class="opsTitle">${tDuty('Final halt')}</div><div class="opsMeta">${x.location} · ${x.busNo}</div></div></div>`;
+   if(x.kind==='final')return `<div class="opsRow final"><div class="opsIcon">■</div><div><div class="opsTitle">${tDuty('Night halt')}</div><div class="opsMeta">${x.location} · ${x.busNo}</div></div></div>`;
    return `<div class="tripRow" data-trip="${i}"><div class="tripTime">${x.time}</div><div><div class="tripRoute">${x.route}</div><div class="tripMeta">${x.bus}</div></div><button class="routeAction" data-open-route="${i}" aria-label="Open route">${svg('route',20)}</button></div>`;
  }).join('')}</div>`}
 function renderDuty(){const day=app.day,state=getDutyState(day);let html=`<div class="dateTabs"><button class="dateTab ${day==='today'?'on':''}" data-day="today">${tDuty('Today, 24 Sept')}</button><button class="dateTab ${day==='tomorrow'?'on':''}" data-day="tomorrow">${tDuty('Tomorrow, 25 Sept')}</button></div>`;
@@ -346,7 +348,7 @@ const HI_TEXT={
   'Duty':'ड्यूटी','Report':'रिपोर्ट','Performance':'प्रदर्शन','More':'अन्य',
   'Response needed':'जवाब दें','Confirmed':'पुष्टि हुई','Declined':'मना किया','Running late':'देरी होगी','No response':'जवाब नहीं','On duty':'ड्यूटी पर',
   'Report at':'रिपोर्टिंग समय','Depot':'डिपो','Bus':'बस','Buses':'बसें','Trips':'ट्रिप्स',
-  'Charging halt':'चार्जिंग हॉल्ट','Final halt':'अंतिम हॉल्ट',
+  'Charging halt':'चार्जिंग हॉल्ट','Night halt':'नाइट हॉल्ट',
   'Can you do this duty?':'क्या आप यह ड्यूटी कर सकते हैं?','I can do this duty':'मैं यह ड्यूटी कर सकता हूँ','I can’t do this duty':'मैं यह ड्यूटी नहीं कर सकता',
   'You’re confirmed':'आपकी ड्यूटी कन्फर्म है','You’re confirmed for today':'आज की ड्यूटी कन्फर्म है','Change response':'जवाब बदलें',
   'You have declined this duty':'आपने यह ड्यूटी मना की है','Call duty manager':'ड्यूटी मैनेजर को कॉल करें',
