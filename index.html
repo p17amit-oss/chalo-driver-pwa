@@ -42,6 +42,72 @@ button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}.a
 .scoreCard{padding:13px;margin-bottom:10px}.scorePeriod{font-size:9px;color:#7d756f;text-transform:uppercase}.scoreLine{display:flex;align-items:flex-end;gap:4px;margin:8px 0}.scoreNum{font-size:34px;font-weight:800;line-height:1}.scoreDen{font-size:14px;color:#8d857f;padding-bottom:3px}.scoreTrend{display:flex;align-items:center;gap:7px}.scoreTrend .up{font-size:10px;color:#4ba45e;font-weight:700}.scoreHow{border:0;background:transparent;padding:10px 0 0;color:var(--orange);font-size:10px;font-weight:700}.metricCard{margin-bottom:9px;overflow:hidden}.metricHead{width:100%;border:0;background:#fff;padding:11px;display:grid;grid-template-columns:32px 1fr auto 18px;gap:8px;align-items:center;text-align:left}.metricHead b{font-size:12px}.metricHead p{font-size:9px;color:#857d77;margin:2px 0 5px}.metricDetail{display:none;padding:0 11px 11px}.metricCard.open .metricDetail{display:block}.metricCard.open .metricHead .arrow{transform:rotate(180deg)}.metricNote{background:#fff4df;padding:9px 10px;font-size:10px;line-height:1.4;margin-top:4px}.kv{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-top:1px solid #f0ece8;font-size:10px}.kv:first-child{border-top:0}.complaintItem{padding:7px 0;border-top:1px solid #f0ece8}.complaintItem:first-child{border-top:0}.complaintItem b{font-size:10px}.complaintItem p{font-size:9px;color:#827a74;margin:2px 0}.disputeBtn{width:100%;height:35px;border:1px solid #ded8d2;background:#fff;border-radius:5px;font-size:10px;font-weight:700;margin-top:5px}
 /* more */
 .profileCard{padding:11px;margin-bottom:10px;display:flex;gap:9px;align-items:center}.profileCard b{font-size:12px}.profileCard p{font-size:9px;color:#837b75;margin:2px 0 0}.expiryCard{padding:11px;margin-bottom:10px;border-color:#e99b4f}.expiryCard b{font-size:11px}.expiryCard p{font-size:10px;color:#786f69;margin:5px 0 0;line-height:1.4}.expiryCard button{border:0;background:transparent;color:var(--orange);font-size:9px;font-weight:700;padding:7px 0 0}.settingsBlock{padding:10px;margin-bottom:10px}.settingsBlock h3{font-size:12px;margin:0 0 4px}.settingRow{display:grid;grid-template-columns:32px 1fr auto;gap:8px;align-items:center;padding:9px 0;border-top:1px solid #f0ece8}.settingRow:first-of-type{border-top:0}.settingRow b{font-size:10px}.settingRow span{display:block;font-size:9px;color:#877f78;margin-top:2px}.callCircle{width:29px;height:29px;border-radius:50%;background:#e8f7ec;color:#38a657;border:0;display:flex;align-items:center;justify-content:center}.logoutBtn{width:100%;height:38px;border:1px solid #dfd9d3;background:#fff;border-radius:6px;font-size:10px;font-weight:700}.versionText{font-size:9px;color:#817973;margin:11px 0 0}.licenceStep{padding:10px 10px 90px}.stepLabel{font-size:9px;color:var(--orange);font-weight:700;margin:5px 0 11px}.licenceCard{padding:11px}.licenceCard h3{font-size:13px;margin:0 0 5px}.licenceCard p{font-size:10px;color:#817972;line-height:1.45;margin:0 0 10px}.photoSlots{display:grid;grid-template-columns:1fr 1fr;gap:9px}.photoSlot{height:95px;border:1px dashed #dc9d5f;border-radius:6px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;font-size:10px;color:var(--orange);font-weight:700}.photoSlot.added{border:0;background:#efefef;color:#363331}.photoSlot .check{width:20px;height:20px;border-radius:50%;background:#38aa57;color:#fff;display:flex;align-items:center;justify-content:center}.retake{border:0;background:transparent;color:var(--orange);font-size:9px;font-weight:700;padding:8px 0 0}.privacy{font-size:9px;color:#8d857f;line-height:1.4;margin:18px 4px}.licenceStatusCard{padding:14px 11px}.licenceStatusCard h3{font-size:14px;margin:18px 0 5px}.licenceStatusCard p{font-size:10px;color:#817a73;line-height:1.45}.licenceKV{margin-top:16px}.errorCard{border:1px solid #e86c6c;border-radius:7px;padding:10px;margin-top:13px;display:flex;gap:8px}.errorCard b{font-size:10px}.errorCard p{font-size:9px;color:#6e6761;margin:2px 0 0;line-height:1.4}
+/* visual scale alignment: Report / Performance / More */
+#reportScreen .pagePad,#performanceScreen .pagePad,#moreScreen .pagePad{padding:16px 14px 24px}
+#reportScreen .pageTitle,#performanceScreen .pageTitle,#moreScreen .pageTitle{font-size:21px}
+#reportScreen .driverName,#performanceScreen .driverName,#moreScreen .driverName{font-size:12px}
+#reportScreen .langBtn,#performanceScreen .langBtn,#moreScreen .langBtn{height:34px;padding:0 12px;font-size:12px}
+#reportScreen .btn,#performanceScreen .btn,#moreScreen .btn{font-size:13px}
+#reportScreen .reportList,#reportScreen .recentCard,#reportScreen .formCard,#performanceScreen .scoreCard,#moreScreen .profileCard,#moreScreen .expiryCard,#moreScreen .settingsBlock{padding:14px}
+#reportScreen .reportListTitle{font-size:15px;margin-bottom:7px}
+#reportScreen .reportChoice{grid-template-columns:38px 1fr 22px;gap:10px;padding:12px 0}
+#reportScreen .reportChoice b{font-size:14px}
+#reportScreen .reportChoice span{font-size:11px;line-height:1.4;margin-top:3px}
+#reportScreen .recentHead b{font-size:14px}
+#reportScreen .recentHead button{font-size:11px}
+#reportScreen .recentRow{padding:12px 0}
+#reportScreen .recentRow b{font-size:12px}
+#reportScreen .recentRow span{font-size:11px;line-height:1.35}
+#reportScreen .backTitle{font-size:19px}
+#reportScreen .formLabel{font-size:12px;margin:11px 0 6px}
+#reportScreen .selectBox,#reportScreen .fieldBox{height:44px;font-size:13px}
+#reportScreen .helper{font-size:11px}
+#reportScreen .radioLine{min-height:44px;font-size:13px}
+#reportScreen .radioLine input{width:17px;height:17px}
+#reportScreen .errorText{font-size:11px}
+#reportScreen .attachTitle{font-size:14px}
+#reportScreen .attachHelper,#reportScreen .attachStatus,#reportScreen .requiredNote{font-size:11px}
+#reportScreen .attachBtn{min-height:62px;font-size:12px}
+#reportScreen .reportSent h2{font-size:19px}
+#reportScreen .reportSent p{font-size:12px;max-width:320px}
+#reportScreen .reference{font-size:11px}
+#reportScreen .nextCard h3{font-size:14px}
+#reportScreen .nextStep b{font-size:12px}
+#reportScreen .nextStep p{font-size:11px}
+#reportScreen .reportDetailTitle{font-size:18px}
+#reportScreen .reportMeta{font-size:11px}
+
+#performanceScreen .scorePeriod{font-size:11px}
+#performanceScreen .scoreNum{font-size:40px}
+#performanceScreen .scoreDen{font-size:16px}
+#performanceScreen .scoreTrend .up{font-size:12px}
+#performanceScreen .scoreHow{font-size:12px}
+#performanceScreen .metricHead{padding:14px;grid-template-columns:36px 1fr auto 20px;gap:10px}
+#performanceScreen .metricHead b{font-size:14px}
+#performanceScreen .metricHead p{font-size:11px;line-height:1.4;margin:3px 0 6px}
+#performanceScreen .metricNote{padding:11px 12px;font-size:12px;line-height:1.45}
+#performanceScreen .metricDetail{padding:0 14px 14px}
+#performanceScreen .kv{padding:10px 0;font-size:12px}
+#performanceScreen .complaintItem{padding:10px 0}
+#performanceScreen .complaintItem b{font-size:12px}
+#performanceScreen .complaintItem p{font-size:11px;line-height:1.4}
+#performanceScreen .disputeBtn{height:42px;font-size:12px}
+
+#moreScreen .profileCard{gap:11px}
+#moreScreen .profileCard b{font-size:14px}
+#moreScreen .profileCard p{font-size:11px}
+#moreScreen .expiryCard b{font-size:13px}
+#moreScreen .expiryCard p{font-size:12px;line-height:1.45}
+#moreScreen .expiryCard button{font-size:11px}
+#moreScreen .settingsBlock h3{font-size:15px;margin-bottom:6px}
+#moreScreen .settingRow{grid-template-columns:36px 1fr auto;gap:10px;padding:12px 0}
+#moreScreen .settingRow b{font-size:13px}
+#moreScreen .settingRow span{font-size:11px;line-height:1.35}
+#moreScreen .callCircle{width:34px;height:34px}
+#moreScreen .logoutBtn{height:44px;font-size:13px}
+#moreScreen .versionText{font-size:11px;line-height:1.4}
+.nav button{font-size:10px}
+
 /* sheets & dialogs */
 .overlay{position:fixed;z-index:70;inset:0;background:rgba(31,27,24,.55);display:none;align-items:flex-end;justify-content:center}.overlay.on{display:flex}.sheet{width:min(100%,430px);background:#fff;border-radius:14px 14px 0 0;padding:7px 11px calc(12px + env(safe-area-inset-bottom));max-height:88vh;overflow:auto}.grab{width:38px;height:3px;border-radius:3px;background:#dedbd8;margin:0 auto 12px}.sheet h2{font-size:14px;margin:0 0 4px}.sheet p{font-size:10px;color:#827b75;line-height:1.4;margin:0 0 9px}.sheetChoice{height:39px;border-top:1px solid #efebe7;display:flex;align-items:center;gap:8px;font-size:11px}.sheetChoice:first-of-type{border-top:0}.sheetChoice input{accent-color:var(--orange)}.delayGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:8px 0 10px}.delayOpt{height:48px;border:1px solid #ded9d4;background:#fff;border-radius:5px;font-size:10px}.delayOpt.on{border-color:var(--orange);background:#fff9f2}.delayOpt span{display:block;font-size:8px;color:#8e8680;margin-top:2px}.dialogWrap{width:min(calc(100% - 32px),330px);margin:auto;background:#fff;border-radius:11px;padding:18px 14px;text-align:center}.dialogWrap h2{font-size:16px;margin:4px 0 5px}.dialogWrap p{font-size:10px;color:#827b75;line-height:1.5}.dialogActions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:14px}.scoreSheet .weightRow{display:grid;grid-template-columns:35px 1fr;gap:8px;padding:7px 0}.weight{height:25px;border-radius:6px;background:#fff1df;color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800}.weightRow b{font-size:10px}.weightRow span{display:block;font-size:9px;color:#827a74;margin-top:1px}.toast{position:fixed;z-index:100;left:50%;bottom:84px;transform:translate(-50%,20px);background:#2f2b28;color:#fff;padding:9px 12px;border-radius:7px;font-size:10px;opacity:0;pointer-events:none;transition:.2s}.toast.on{opacity:1;transform:translate(-50%,0)}
 @media(min-width:431px){body{padding:18px 0}.appShell{min-height:calc(100vh - 36px);border-radius:16px;overflow:hidden}.nav{bottom:18px;border-radius:0 0 16px 16px}.overlay{padding-bottom:18px}.sheet{border-radius:14px}.screen,.loginWrap,.notifyWrap{min-height:calc(100vh - 36px)}}
