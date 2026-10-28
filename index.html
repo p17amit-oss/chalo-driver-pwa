@@ -142,19 +142,19 @@ button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}.a
   <section class="screen plain" id="notifyScreen">
     <div class="notifyWrap">
       <div class="notifyBell">🔔</div>
-      <div class="notifyTitle">Turn on notifications</div>
-      <div class="notifySub">Get alerted even when the app is closed, so you never miss a duty update.</div>
+      <div class="notifyTitle">Stay updated about your duty</div>
+      <div class="notifySub">Turn on push alerts for duty assignments, reminders and important changes.</div>
       <div class="card notifyReasons">
-        <div class="notifyReason"><div class="iconCircle" data-icon="calendar"></div><div><b>New duty assigned</b><span>Know your next duty as soon as it’s set</span></div></div>
-        <div class="notifyReason"><div class="iconCircle" data-icon="refresh"></div><div><b>Duty changes</b><span>Trips, buses or timing updates</span></div></div>
-        <div class="notifyReason"><div class="iconCircle" data-icon="clock"></div><div><b>Response reminders</b><span>Before your response time runs out</span></div></div>
+        <div class="notifyReason"><div class="iconCircle" data-icon="calendar"></div><div><b>Duty assigned</b><span>Review and confirm your duty when it is allocated</span></div></div>
+        <div class="notifyReason"><div class="iconCircle" data-icon="refresh"></div><div><b>Duty changes</b><span>Get alerted when trips, buses or timings change</span></div></div>
+        <div class="notifyReason"><div class="iconCircle" data-icon="phone"></div><div><b>IVR reminders</b><span>You may also receive an automated call in your preferred language</span></div></div>
       </div>
-      <div class="notifyActions"><button class="btn primary full" id="enableAlertsBtn">Turn on alerts</button><button class="btn secondary full" id="skipAlertsBtn">Not now</button></div>
+      <div class="notifyActions"><button class="btn primary full" id="enableAlertsBtn">Turn on push alerts</button><button class="btn secondary full" id="skipAlertsBtn">Not now</button></div>
     </div>
   </section>
 
-  <section class="screen" id="dutyScreen"><div class="pageHeader"><div><div class="pageTitle">Duty</div><div class="driverName">Ramesh Patil</div></div><div class="headerActions"><button class="supportCall" data-call-dm><span data-icon="phone"></span><span>DM</span></button><button class="langBtn" data-lang>文 EN</button></div></div><div class="pagePad" id="dutyRoot"></div></section>
-  <section class="screen" id="reportScreen"><div class="pageHeader"><div><div class="pageTitle">Report</div><div class="driverName">Ramesh Patil</div></div><div class="headerActions"><button class="supportCall" data-call-dm><span data-icon="phone"></span><span>DM</span></button><button class="langBtn" data-lang>文 EN</button></div></div><div class="pagePad" id="reportRoot"></div></section>
+  <section class="screen" id="dutyScreen"><div class="pageHeader"><div><div class="pageTitle">Duty</div><div class="driverName">Ramesh Patil</div></div><div class="headerActions"><button class="supportCall" data-call-dm><span data-icon="phone"></span><span>Call DM</span></button><button class="langBtn" data-lang>文 EN</button></div></div><div class="pagePad" id="dutyRoot"></div></section>
+  <section class="screen" id="reportScreen"><div class="pageHeader"><div><div class="pageTitle">Report</div><div class="driverName">Ramesh Patil</div></div><div class="headerActions"><button class="supportCall" data-call-dm><span data-icon="phone"></span><span>Call DM</span></button><button class="langBtn" data-lang>文 EN</button></div></div><div class="pagePad" id="reportRoot"></div></section>
   <section class="screen" id="subScreen"><div id="subRoot"></div></section>
 
   <nav class="nav" id="nav">
@@ -185,6 +185,7 @@ const ICONS={
  warning:'<circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16h.01"/>',
  ticket:'<rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 13h5"/>',
  complaint:'<path d="M4 5h16v11H9l-5 4V5Z"/>',
+ mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M9 21h6"/>',
  camera:'<rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7l1-2h6l1 2"/><circle cx="12" cy="13" r="3"/>',
  logout:'<path d="M10 4H5v16h5M14 8l4 4-4 4M8 12h10"/>'
 };
@@ -197,10 +198,10 @@ delete app.dutyState;
 function persist(){localStorage.setItem('chaloDriverV7State',JSON.stringify(app))}
 function getDutyState(day=app.day){return app.dutyStates[day]||(day==='today'?'confirmed':'pending')}
 function setDutyState(state,day=app.day){app.dutyStates={...app.dutyStates,[day]:state};persist()}
-function showScreen(id){$('.screen').forEach(x=>x.classList.remove('on'));const target=$('#'+id);if(target)target.classList.add('on');$('#nav').style.display=['dutyScreen','reportScreen'].includes(id)?'grid':'none';window.scrollTo(0,0)}
+function showScreen(id){$$('.screen').forEach(x=>x.classList.remove('on'));const target=$('#'+id);if(target)target.classList.add('on');$('#nav').style.display=['dutyScreen','reportScreen'].includes(id)?'grid':'none';window.scrollTo(0,0)}
 function toast(msg){const x=$('#toast');x.textContent=msg;x.classList.add('on');clearTimeout(window.__t);window.__t=setTimeout(()=>x.classList.remove('on'),1800)}
-function setTab(tab){if(!['duty','report'].includes(tab))tab='duty';app.tab=tab;persist();$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav===tab));if(tab==='duty'){renderDuty();showScreen('dutyScreen')}if(tab==='report'){app.reportMode='home';renderReport();showScreen('reportScreen')}hydrateIcons();syncLanguageUI();bindCommonActions()}
-$('#nav button').forEach(b=>b.onclick=()=>setTab(b.dataset.nav));
+function setTab(tab){if(!['duty','report'].includes(tab))tab='duty';app.tab=tab;persist();$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav===tab));if(tab==='duty'){renderDuty();showScreen('dutyScreen')}if(tab==='report'){app.reportMode='home';renderReport();showScreen('reportScreen')}hydrateIcons();syncLanguageUI();bindCommonActions()}
+$$('#nav button').forEach(b=>b.onclick=()=>setTab(b.dataset.nav));
 function openSheet(html){$('#sheetContent').innerHTML=html;$('#sheetOverlay').classList.add('on');hydrateIcons();applyLanguageToRoot($('#sheetContent'))}
 function closeSheet(){$('#sheetOverlay').classList.remove('on')}
 $('#sheetOverlay').onclick=e=>{if(e.target===$('#sheetOverlay'))closeSheet()}
@@ -216,7 +217,7 @@ function completeOnboarding(){
   app.notifySeen=true;app.tab='duty';persist();
   try{renderDuty()}catch(e){console.error('Duty render failed',e)}
   showScreen('dutyScreen');
-  $$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav==='duty'));
+  $$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav==='duty'));
   hydrateIcons();
   try{syncLanguageUI()}catch(e){console.error('Language sync failed',e)}
   bindCommonActions();
@@ -269,7 +270,7 @@ function openBusLocation(){
  );
 }
 function callDm(){location.href='tel:'+DM_SUPPORT_NUMBER}
-function bindCommonActions(){$('[data-call-dm]').forEach(b=>b.onclick=callDm)}
+function bindCommonActions(){$$('[data-call-dm]').forEach(b=>b.onclick=callDm)}
 const trips={
  tomorrow:[
   {time:'06:40',route:'Navi Mumbai → BKC',bus:'Bus MH01 EV 1402',busNo:'MH01 EV 1402',detail:'06:40 → 07:55 AM · 1h 15m'},
@@ -332,8 +333,8 @@ function renderDuty(){
  if(state==='changed')html+=`<div class="card noticeCard change"><div class="icon">${svg('refresh',20)}</div><div><b>${tDuty('Your duty has changed')}</b><p>${tUI('Review the updated trips and confirm again.')}</p></div></div>`;
  html+=dutySummary(day,state);
  if(state==='pending')html+=`<div class="card responseCard"><h3>${tDuty('Can you do this duty?')}</h3><p>${tUI('Please confirm after reviewing all trips.')}</p><div class="stack" style="gap:8px"><button class="btn primary full" id="acceptDuty">${tDuty('I can do this duty')}</button><button class="btn secondary full" id="declineDuty">${tDuty('I can’t do this duty')}</button></div></div>`;
- if(state==='confirmed')html+=`<div class="card responseCard"><h3>${tDuty(day==='today'?'You’re confirmed for today':'You’re confirmed')}</h3><button class="btn secondary full" id="changeResponse">${tDuty('Change response')}</button>${day==='today'?`<div class="voiceLateBox"><b>${tUI('Running late?')}</b><p>${tUI('Tell us by voice or choose the delay.')}</p><button class="btn primary full voicePrimary" id="voiceLateBtn">${svg('complaint',18)}<span>${tUI('Tell by voice')}</span></button><button class="btn secondary full singleAction" id="runningLate">${tUI('Choose delay')}</button></div>`:''}</div>`;
- if(state==='delay'){const arrival=expectedArrival(app.delay);html+=`<div class="card responseCard"><h3>${tUI('Expected arrival')}: ${arrival}</h3><div class="lateInfo">${app.delay} ${tUI('min delay shared with DM team')}. ${tUI('We will notify you if your duty changes.')}</div><div class="stack" style="gap:7px;margin-top:10px"><button class="btn primary full voicePrimary" id="voiceLateBtn">${svg('complaint',18)}<span>${tUI('Update by voice')}</span></button><button class="btn secondary full" id="changeDelay">${tUI('Choose delay')}</button><button class="btn secondary full" id="onTimeNow">${tDuty('I’m on time now')}</button></div></div>`}
+ if(state==='confirmed')html+=`<div class="card responseCard"><h3>${tDuty(day==='today'?'You’re confirmed for today':'You’re confirmed')}</h3><button class="btn secondary full" id="changeResponse">${tDuty('Change response')}</button>${day==='today'?`<div class="voiceLateBox"><b>${tUI('Running late?')}</b><p>${tUI('Tell us by voice or choose the delay.')}</p><button class="btn primary full voicePrimary" id="voiceLateBtn">${svg('mic',18)}<span>${tUI('Tell by voice')}</span></button><button class="btn secondary full singleAction" id="runningLate">${tUI('Choose delay')}</button></div>`:''}</div>`;
+ if(state==='delay'){const arrival=expectedArrival(app.delay);html+=`<div class="card responseCard"><h3>${tUI('Expected arrival')}: ${arrival}</h3><div class="lateInfo">${app.delay} ${tUI('min delay shared with DM team')}. ${tUI('We will notify you if your duty changes.')}</div><div class="stack" style="gap:7px;margin-top:10px"><button class="btn primary full voicePrimary" id="voiceLateBtn">${svg('mic',18)}<span>${tUI('Update by voice')}</span></button><button class="btn secondary full" id="changeDelay">${tUI('Choose delay')}</button><button class="btn secondary full" id="onTimeNow">${tDuty('I’m on time now')}</button></div></div>`}
  if(state==='declined')html+=`<div class="card responseCard"><h3>${tDuty('You have declined this duty')}</h3><p>${tUI('The DM team has been informed.')}</p><button class="btn secondary full" data-call-dm>${tUI('Call DM team')}</button><button class="btn secondary full singleAction" id="changeResponse">${tDuty('Change response')}</button></div>`;
  if(state==='changed')html+=`<div class="card responseCard"><h3>${tDuty('Can you do the updated duty?')}</h3><div class="stack" style="gap:8px"><button class="btn primary full" id="acceptDuty">${tDuty('I can do this duty')}</button><button class="btn secondary full" id="declineDuty">${tDuty('I can’t do this duty')}</button></div></div>`;
  if(state==='over')html+=`<div class="card responseCard"><h3>${tDuty('Response time is over')}</h3><p>${tUI('Call the DM team to confirm your availability.')}</p><button class="btn primary full" data-call-dm>${tUI('Call DM team')}</button></div>`;
@@ -372,8 +373,8 @@ function openDelaySheet(){
  const arrival=n=>expectedArrival(n);
  openSheet(`<h2>How late will you be?</h2><div class="delayGrid">${opts.map(n=>`<button class="delayOpt ${selected===n?'on':''}" data-delay="${n}">+${n} min<span>${arrival(n)}</span></button>`).join('')}<button class="delayOpt ${otherSelected?'on':''}" id="otherDelay">Other<span>Enter minutes</span></button></div><div id="customDelayWrap" style="display:${otherSelected?'block':'none'};margin:8px 0 10px"><div class="formLabel">Delay in minutes</div><input class="fieldBox" id="customDelayInput" type="number" inputmode="numeric" min="1" max="180" placeholder="${app.lang==='hi'?'मिनट दर्ज करें':'Enter minutes'}" value="${otherSelected?app.delay:''}"><div class="errorText" id="delayError" style="display:none"></div></div><button class="btn primary full" id="submitDelay" ${selected===null?'disabled':''}>Submit</button><button class="btn secondary full" style="margin-top:7px" id="cancelDelay">Cancel</button>`);
  const submit=$('#submitDelay'),wrap=$('#customDelayWrap'),input=$('#customDelayInput'),err=$('#delayError');
- const clearSelection=()=>$('.delayOpt').forEach(x=>x.classList.remove('on'));
- $('[data-delay]').forEach(b=>b.onclick=()=>{clearSelection();b.classList.add('on');selected=Number(b.dataset.delay);otherSelected=false;wrap.style.display='none';err.style.display='none';submit.disabled=false});
+ const clearSelection=()=>$$('.delayOpt').forEach(x=>x.classList.remove('on'));
+ $$('[data-delay]').forEach(b=>b.onclick=()=>{clearSelection();b.classList.add('on');selected=Number(b.dataset.delay);otherSelected=false;wrap.style.display='none';err.style.display='none';submit.disabled=false});
  $('#otherDelay').onclick=()=>{clearSelection();$('#otherDelay').classList.add('on');otherSelected=true;selected=null;wrap.style.display='block';submit.disabled=false;setTimeout(()=>input.focus(),0)};
  input.oninput=()=>{err.style.display='none'};
  submit.onclick=()=>{if(otherSelected){const n=Number(input.value);if(!Number.isFinite(n)||n<1||n>180){err.textContent=app.lang==='hi'?'1 से 180 मिनट के बीच दर्ज करें':'Enter a value between 1 and 180 minutes';err.style.display='block';return}selected=Math.round(n)}if(selected===null)return;app.delay=selected;persist();setDutyState('delay');closeSheet();renderDuty()};
@@ -396,7 +397,7 @@ function classifyBusIssue(text){
 function renderReport(){if(app.reportMode==='sent')renderReportSent();else if(app.reportMode==='detail')renderReportDetail();else renderReportHome();applyLanguageToRoot($('#reportRoot'));hydrateIcons();bindCommonActions()}
 function renderReportHome(){
  let selectedIssue=null,attachments=[],recorder=null,chunks=[];
- $('#reportRoot').innerHTML=`<div class="card voiceHero"><div class="micCircle">${svg('complaint',25)}</div><h3>${tUI('Report a bus issue')}</h3><p>${tUI('Speak naturally. We will identify the issue category for you.')}</p><button class="btn primary full voicePrimary" id="reportVoiceBtn">${svg('complaint',18)}<span>${tUI('Describe issue by voice')}</span></button><div id="voiceTranscript" class="voiceTranscript" style="display:none"></div></div>
+ $('#reportRoot').innerHTML=`<div class="card voiceHero"><div class="micCircle">${svg('mic',25)}</div><h3>${tUI('Report a bus issue')}</h3><p>${tUI('Speak naturally. We will identify the issue category for you.')}</p><button class="btn primary full voicePrimary" id="reportVoiceBtn">${svg('mic',18)}<span>${tUI('Describe issue by voice')}</span></button><div id="voiceTranscript" class="voiceTranscript" style="display:none"></div></div>
  <div class="card issuePicker"><h3>${tUI('Or choose the issue')}</h3><div class="helperText">${tUI('Use this if you prefer tapping.')}</div><div class="issueGrid">${BUS_ISSUES.map(x=>`<button class="issueChip" data-issue="${x}">${x}</button>`).join('')}</div></div>
  <div class="card mediaCard"><h3>${tUI('Add photo')}</h3><div class="helperText">${tUI('Optional. Add a useful photo from gallery or camera.')}</div><div class="mediaActions"><button class="mediaBtn" id="galleryBtn">▧ ${tUI('Gallery')}</button><button class="mediaBtn" id="cameraBtn">▣ ${tUI('Camera')}</button></div><input id="galleryInput" type="file" accept="image/*" multiple hidden><input id="cameraInput" type="file" accept="image/*" capture="environment" hidden><div class="attachStatus" id="attachStatus">${tUI('No photo attached')}</div></div>
  <button class="btn primary full" style="height:48px;font-size:14px" id="submitBusIssue" disabled>${tUI('Submit issue')}</button>
@@ -415,7 +416,7 @@ function renderReportHome(){
   if(recorder&&recorder.state==='recording'){recorder.stop();return}
   try{
    const stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};
-   recorder.onstop=()=>{stream.getTracks().forEach(t=>t.stop());voiceBtn.classList.remove('recording');voiceBtn.innerHTML=`${svg('complaint',18)}<span>${tUI('Describe issue by voice')}</span>`;const text=app.lang==='hi'?'बस का एसी ठंडा नहीं कर रहा है':app.lang==='mr'?'बसचा एसी थंड हवा देत नाही':'The bus AC is not cooling';const issue=classifyBusIssue(text)||'AC';selectIssue(issue);transcript.style.display='block';transcript.innerHTML=`<b>${tUI('Heard')}</b><div style="font-size:12px;margin-top:4px">${text}</div><span class="tag">${tUI('Categorized as')}: ${issue}</span>`};
+   recorder.onstop=()=>{stream.getTracks().forEach(t=>t.stop());voiceBtn.classList.remove('recording');voiceBtn.innerHTML=`${svg('mic',18)}<span>${tUI('Describe issue by voice')}</span>`;const text=app.lang==='hi'?'बस का एसी ठंडा नहीं कर रहा है':app.lang==='mr'?'बसचा एसी थंड हवा देत नाही':'The bus AC is not cooling';const issue=classifyBusIssue(text)||'AC';selectIssue(issue);transcript.style.display='block';transcript.innerHTML=`<b>${tUI('Heard')}</b><div style="font-size:12px;margin-top:4px">${text}</div><span class="tag">${tUI('Categorized as')}: ${issue}</span>`};
    recorder.start();voiceBtn.classList.add('recording');voiceBtn.innerHTML='■ '+tUI('Stop recording')
   }catch(e){toast(tUI('Microphone access is needed'))}
  };
@@ -447,7 +448,7 @@ function openLicence(state){app.licenceState=state;persist();let body='';if(stat
  $('#subRoot').innerHTML=body;showScreen('subScreen');hydrateIcons();applyLanguageToRoot($('#subRoot'));$('#licBack').onclick=()=>setTab('more');if(state==='add'){let backAdded=false;$('#backPhoto').onclick=()=>{backAdded=true;$('#backPhoto').classList.add('added');$('#backPhoto').innerHTML='<span class="check">✓</span>Back added';$('#licContinue').disabled=false};$('#licContinue').onclick=()=>openLicence('details')}if(state==='details')$('#licSubmit').onclick=()=>{app.licenceState='verification';persist();openLicence('verification')};if(state==='rejected')$('#licAgain').onclick=()=>openLicence('add')}
 
 const HI_TEXT={
- 'Duty':'ड्यूटी','Report':'रिपोर्ट','Report issue':'समस्या रिपोर्ट करें','DM':'डीएम','Find my bus':'मेरी बस खोजें','Navigate':'नेविगेट',
+ 'Duty':'ड्यूटी','Report':'रिपोर्ट','Report issue':'समस्या रिपोर्ट करें','DM':'डीएम','Call DM':'डीएम को कॉल करें','Find my bus':'मेरी बस खोजें','Navigate':'नेविगेट',
  'Your duty will appear here once it is allocated.':'ड्यूटी अलॉट होते ही यहां दिखाई देगी।','Review the updated trips and confirm again.':'बदली हुई ट्रिप देखें और फिर से पुष्टि करें।','Please confirm after reviewing all trips.':'सभी ट्रिप देखने के बाद पुष्टि करें।',
  'Running late?':'देर से पहुंचेंगे?','Tell us by voice or choose the delay.':'आवाज़ से बताएं या देरी चुनें।','Tell by voice':'आवाज़ से बताएं','Choose delay':'देरी चुनें','Update by voice':'आवाज़ से अपडेट करें','Expected arrival':'पहुंचने का समय','min delay shared with DM team':'मिनट की देरी डीएम टीम को बताई गई','We will notify you if your duty changes.':'ड्यूटी बदलने पर हम आपको बताएंगे।',
  'The DM team has been informed.':'डीएम टीम को बता दिया गया है।','Call DM team':'डीएम टीम को कॉल करें','Call the DM team to confirm your availability.':'अपनी उपलब्धता की पुष्टि के लिए डीएम टीम को कॉल करें।','Duty refreshed':'ड्यूटी रिफ्रेश हुई',
@@ -458,7 +459,7 @@ const HI_TEXT={
  'Bus location is unavailable':'बस की लोकेशन उपलब्ध नहीं है','Bus location is old':'बस की लोकेशन पुरानी है','The last GPS update is too old to navigate reliably. Call the DM team for help.':'आखिरी GPS अपडेट बहुत पुराना है। मदद के लिए डीएम टीम को कॉल करें।','Location access is off. HERE will ask for your location.':'लोकेशन एक्सेस बंद है। HERE आपसे लोकेशन की अनुमति मांगेगा।','Cancel':'रद्द करें','Choose the language you want to use.':'ऐप की भाषा चुनें।'
 };
 const MR_TEXT={
- 'Duty':'ड्युटी','Report':'रिपोर्ट','Report issue':'समस्या रिपोर्ट करा','DM':'डीएम','Find my bus':'माझी बस शोधा','Navigate':'नेव्हिगेट',
+ 'Duty':'ड्युटी','Report':'रिपोर्ट','Report issue':'समस्या रिपोर्ट करा','DM':'डीएम','Call DM':'डीएमला कॉल करा','Find my bus':'माझी बस शोधा','Navigate':'नेव्हिगेट',
  'Your duty will appear here once it is allocated.':'ड्युटी अलॉट झाल्यावर ती इथे दिसेल.','Review the updated trips and confirm again.':'अपडेट केलेल्या ट्रिप पाहून पुन्हा पुष्टी करा.','Please confirm after reviewing all trips.':'सर्व ट्रिप पाहिल्यानंतर पुष्टी करा.',
  'Running late?':'उशीर होणार आहे?','Tell us by voice or choose the delay.':'आवाजाने सांगा किंवा उशीर निवडा.','Tell by voice':'आवाजाने सांगा','Choose delay':'उशीर निवडा','Update by voice':'आवाजाने अपडेट करा','Expected arrival':'अपेक्षित पोहोचण्याची वेळ','min delay shared with DM team':'मिनिटांचा उशीर डीएम टीमला कळवला','We will notify you if your duty changes.':'ड्युटी बदलल्यास आम्ही कळवू.',
  'The DM team has been informed.':'डीएम टीमला कळवले आहे.','Call DM team':'डीएम टीमला कॉल करा','Call the DM team to confirm your availability.':'उपलब्धता पुष्टी करण्यासाठी डीएम टीमला कॉल करा.','Duty refreshed':'ड्युटी रिफ्रेश झाली',
@@ -480,9 +481,9 @@ function syncLanguageUI(){
  const screens={dutyScreen:'duty',reportScreen:'report'};
  Object.entries(screens).forEach(([id,key])=>{const el=$('#'+id+' .pageTitle');if(el)el.textContent=titles[key]});
  const navLabels={duty:titles.duty,report:app.lang==='hi'?'समस्या':app.lang==='mr'?'समस्या':'Report issue'};
- $$('#nav button').forEach(b=>{const span=b.querySelector('span:last-child');if(span)span.textContent=navLabels[b.dataset.nav]});
+ $$$('#nav button').forEach(b=>{const span=b.querySelector('span:last-child');if(span)span.textContent=navLabels[b.dataset.nav]});
  $$('[data-lang]').forEach(b=>b.textContent=app.lang==='hi'?'हिं':app.lang==='mr'?'मरा':'EN');
- $$('[data-call-dm] span:last-child').forEach(s=>s.textContent='DM');
+ $$('[data-call-dm] span:last-child').forEach(s=>s.textContent=tUI('Call DM'));
  ['dutyRoot','reportRoot','subRoot','sheetContent','dialogContent'].forEach(id=>applyLanguageToRoot($('#'+id)))
 }
 function openLanguageSheet(){
