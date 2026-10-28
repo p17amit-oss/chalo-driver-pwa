@@ -383,56 +383,212 @@ function openDelaySheet(){
 function openTripDetails(day,index){const t=trips[day][index];$('#subRoot').innerHTML=`<div class="backRow"><button class="backBtn" id="subBack">‹</button><div class="backTitle">Trip details</div></div><div class="pagePad"><div class="card cardPad"><div class="sectionLabel">${t.route}</div><div class="small" style="margin-top:6px">◷ ${t.detail||'06:40 → 07:55 AM · 1h 15m'}</div><div class="small" style="margin-top:4px">▣ ${t.bus.split('·')[0].trim()}</div></div><div class="card cardPad" style="margin-top:10px"><div class="row between"><b class="sectionLabel">Stops</b><span class="tiny muted">8 stops · 24 km</span></div>${[['Taloja Depot','06:40'],['Kharghar Sec 12','06:52'],['Belapur CBD','07:02'],['Vashi Plaza','07:18'],['Sanpada','07:24'],['Chembur','07:38'],['Kurla West','07:46'],['BKC','07:55']].map((s,i)=>`<div class="recentRow"><div class="row" style="gap:8px"><span class="tiny" style="color:${i===0||i===7?'var(--orange)':'#999'}">${i+1}</span><b>${s[0]}</b></div><span>${s[1]}</span></div>`).join('')}</div></div>`;showScreen('subScreen');applyLanguageToRoot($('#subRoot'));$('#subBack').onclick=()=>setTab('duty')}
 
 const BUS_ISSUES=['AC','Door','Brakes','Tyre','Steering','Water leakage','Cleanliness / cabin'];
-function classifyBusIssue(text){
- const s=(text||'').toLowerCase();
- if(/\bac\b|air condition|एसी|ए.सी|एअर/.test(s))return 'AC';
- if(/door|दरवाज|दार/.test(s))return 'Door';
- if(/brake|ब्रेक/.test(s))return 'Brakes';
- if(/tyre|tire|टायर/.test(s))return 'Tyre';
- if(/steer|स्टीयर/.test(s))return 'Steering';
- if(/water|leak|पानी|पाणी|लीक/.test(s))return 'Water leakage';
- if(/clean|cabin|साफ|स्वच्छ|केबिन/.test(s))return 'Cleanliness / cabin';
- return null
+
+const ISSUE_PATTERNS={
+ 'AC':[
+  /\bac\b/gi,/a\.?c\.?/gi,/air\s*condition/gi,/cooling/gi,/cold air/gi,/एसी/gi,/ए\.सी/gi,/ठंड[ाी]/gi,/कूलिंग/gi,/एअर\s*कंडिश/gi,/थंड\s*हवा/gi,/कूलिंग/gi
+ ],
+ 'Door':[
+  /door/gi,/doors/gi,/gate/gi,/दरवाज[ाे]/gi,/गेट/gi,/दार/gi,/दरवाजा/gi
+ ],
+ 'Brakes':[
+  /brake/gi,/brakes/gi,/braking/gi,/ब्रेक/gi
+ ],
+ 'Tyre':[
+  /tyre/gi,/tire/gi,/puncture/gi,/flat\s*tyre/gi,/टायर/gi,/पंक्चर/gi,/टायर/gi
+ ],
+ 'Steering':[
+  /steer/gi,/steering/gi,/wheel.*turn/gi,/स्टीयर/gi,/स्टेयरिंग/gi
+ ],
+ 'Water leakage':[
+  /water\s*leak/gi,/leakage/gi,/leaking/gi,/water.*inside/gi,/पानी.*लीक/gi,/पानी.*टपक/gi,/लीकेज/gi,/पाणी.*गळ/gi,/पाणी.*लीक/gi,/गळती/gi
+ ],
+ 'Cleanliness / cabin':[
+  /dirty/gi,/clean/gi,/cleanliness/gi,/cabin/gi,/garbage/gi,/smell/gi,/bad\s*smell/gi,/साफ/gi,/गंद/gi,/कचरा/gi,/बदबू/gi,/केबिन/gi,/स्वच्छ/gi,/घाण/gi,/वास/gi,/कॅबिन/gi
+ ]
+};
+
+function issueLanguageCode(){
+ if(app.lang==='hi')return 'hi-IN';
+ if(app.lang==='mr')return 'mr-IN';
+ return 'en-IN';
 }
+function splitIssueClauses(text){
+ return (text||'')
+   .split(/(?:,|;|\band\b|\balso\b|\bplus\b|\baur\b|और|तथा|साथ ही|आणि|तसेच|पण)/i)
+   .map(x=>x.trim()).filter(Boolean);
+}
+function classifyBusIssues(text){
+ const full=(text||'').trim();
+ if(!full)return [];
+ const clauses=splitIssueClauses(full);
+ const byIssue=new Map();
+
+ const add=(issue,phrase)=>{
+  if(!byIssue.has(issue))byIssue.set(issue,[]);
+  const arr=byIssue.get(issue);
+  const clean=(phrase||full).trim();
+  if(clean&&!arr.some(x=>x.toLowerCase()===clean.toLowerCase()))arr.push(clean);
+ };
+
+ const inspect=(phrase)=>{
+  for(const issue of BUS_ISSUES){
+   const patterns=ISSUE_PATTERNS[issue]||[];
+   if(patterns.some(re=>{re.lastIndex=0;return re.test(phrase)}))add(issue,phrase);
+  }
+ };
+
+ clauses.forEach(inspect);
+ if(!byIssue.size)inspect(full);
+
+ return [...byIssue.entries()].map(([issue,mentions])=>({issue,mentions}));
+}
+function classifyBusIssue(text){return classifyBusIssues(text)[0]?.issue||null}
+
 function renderReport(){if(app.reportMode==='sent')renderReportSent();else if(app.reportMode==='detail')renderReportDetail();else renderReportHome();applyLanguageToRoot($('#reportRoot'));hydrateIcons();bindCommonActions()}
+
 function renderReportHome(){
- let selectedIssue=null,attachments=[],recorder=null,chunks=[];
- $('#reportRoot').innerHTML=`<div class="card voiceHero"><div class="micCircle">${svg('mic',25)}</div><h3>${tUI('Report a bus issue')}</h3><p>${tUI('Speak naturally. We will identify the issue category for you.')}</p><button class="btn primary full voicePrimary" id="reportVoiceBtn">${svg('mic',18)}<span>${tUI('Describe issue by voice')}</span></button><div id="voiceTranscript" class="voiceTranscript" style="display:none"></div></div>
- <div class="card issuePicker"><h3>${tUI('Or choose the issue')}</h3><div class="helperText">${tUI('Use this if you prefer tapping.')}</div><div class="issueGrid">${BUS_ISSUES.map(x=>`<button class="issueChip" data-issue="${x}">${x}</button>`).join('')}</div></div>
+ let selectedIssues=new Set(),issueMentions={},attachments=[],recognition=null,voiceTranscriptText='';
+ $('#reportRoot').innerHTML=`<div class="card voiceHero"><div class="micCircle">${svg('mic',25)}</div><h3>${tUI('Report a bus issue')}</h3><p>${tUI('Speak naturally. You can report more than one issue together.')}</p><button class="btn primary full voicePrimary" id="reportVoiceBtn">${svg('mic',18)}<span>${tUI('Describe issue by voice')}</span></button><div id="voiceTranscript" class="voiceTranscript" style="display:none"></div></div>
+ <div class="card issuePicker"><h3>${tUI('Or choose the issues')}</h3><div class="helperText">${tUI('Select one or more issues if you prefer tapping.')}</div><div class="issueGrid">${BUS_ISSUES.map(x=>`<button class="issueChip" data-issue="${x}">${x}</button>`).join('')}</div><div class="helperText" id="selectedIssueCount" style="margin-top:8px"></div></div>
  <div class="card mediaCard"><h3>${tUI('Add photo')}</h3><div class="helperText">${tUI('Optional. Add a useful photo from gallery or camera.')}</div><div class="mediaActions"><button class="mediaBtn" id="galleryBtn">▧ ${tUI('Gallery')}</button><button class="mediaBtn" id="cameraBtn">▣ ${tUI('Camera')}</button></div><input id="galleryInput" type="file" accept="image/*" multiple hidden><input id="cameraInput" type="file" accept="image/*" capture="environment" hidden><div class="attachStatus" id="attachStatus">${tUI('No photo attached')}</div></div>
  <button class="btn primary full" style="height:48px;font-size:14px" id="submitBusIssue" disabled>${tUI('Submit issue')}</button>
  <div class="card recentCard" style="margin-top:11px"><div class="recentHead"><b>${tUI('Recent bus issues')}</b></div>
   <div class="recentRow" data-recent><div><b>SVK-4821 · AC</b><span>MH01 EV 1402 · 10:42 AM</span></div><span class="ticketStatus progress">${tUI('Being looked into')}</span></div>
   <div class="recentRow"><div><b>SVK-4794 · Door</b><span>MH01 EV 1245 · Yesterday</span></div><span class="ticketStatus resolved">${tUI('Resolved')}</span></div>
  </div>`;
- const submit=$('#submitBusIssue'),transcript=$('#voiceTranscript'),voiceBtn=$('#reportVoiceBtn');
- const selectIssue=issue=>{selectedIssue=issue;$$('[data-issue]').forEach(b=>b.classList.toggle('on',b.dataset.issue===issue));submit.disabled=!selectedIssue};
- $$('[data-issue]').forEach(b=>b.onclick=()=>selectIssue(b.dataset.issue));
+
+ const submit=$('#submitBusIssue'),transcript=$('#voiceTranscript'),voiceBtn=$('#reportVoiceBtn'),count=$('#selectedIssueCount');
+
+ const renderSelection=()=>{
+  $$('[data-issue]').forEach(b=>b.classList.toggle('on',selectedIssues.has(b.dataset.issue)));
+  const n=selectedIssues.size;
+  submit.disabled=n===0;
+  submit.textContent=n>1?`${tUI('Submit')} ${n} ${tUI('issues')}`:tUI('Submit issue');
+  count.textContent=n?`${n} ${n===1?tUI('issue selected'):tUI('issues selected')}`:'';
+ };
+
+ const setVoiceIssues=classified=>{
+  selectedIssues=new Set(classified.map(x=>x.issue));
+  issueMentions={};
+  classified.forEach(x=>issueMentions[x.issue]=x.mentions);
+  renderSelection();
+ };
+
+ $$('[data-issue]').forEach(b=>b.onclick=()=>{
+  const issue=b.dataset.issue;
+  if(selectedIssues.has(issue)){selectedIssues.delete(issue);delete issueMentions[issue]}
+  else{selectedIssues.add(issue);issueMentions[issue]=issueMentions[issue]||[]}
+  renderSelection();
+ });
+
+ const renderVoiceResult=(text,classified)=>{
+  transcript.style.display='block';
+  if(!classified.length){
+   transcript.innerHTML=`<b>${tUI('Heard')}</b><div style="font-size:12px;margin-top:4px">${escapeHtml(text)}</div><div class="errorText" style="display:block;margin-top:8px">${tUI('We could not identify a bus issue. Please select the issue below.')}</div>`;
+   return;
+  }
+  const tags=classified.map(x=>{
+    const count=x.mentions.length;
+    return `<span class="tag">${x.issue}${count>1?` · ${count} ${tUI('mentions')}`:''}</span>`;
+  }).join(' ');
+  transcript.innerHTML=`<b>${tUI('Heard')}</b><div style="font-size:12px;margin-top:4px">${escapeHtml(text)}</div><div style="margin-top:7px"><b>${tUI('Identified issues')}</b><div style="margin-top:4px">${tags}</div></div>`;
+ };
+
+ const stopRecognition=()=>{
+  try{if(recognition)recognition.stop()}catch(e){}
+ };
+
+ voiceBtn.onclick=()=>{
+  if(recognition){stopRecognition();return}
+  const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SpeechRecognition){
+   transcript.style.display='block';
+   transcript.innerHTML=`<div class="errorText" style="display:block">${tUI('Voice recognition is not supported in this browser. Please use issue selection below.')}</div>`;
+   return;
+  }
+
+  recognition=new SpeechRecognition();
+  recognition.lang=issueLanguageCode();
+  recognition.interimResults=true;
+  recognition.continuous=false;
+  recognition.maxAlternatives=1;
+
+  let finalText='',interimText='';
+  voiceBtn.classList.add('recording');
+  voiceBtn.innerHTML=`■ <span>${tUI('Stop recording')}</span>`;
+  transcript.style.display='block';
+  transcript.innerHTML=`<b>${tUI('Listening')}</b><div style="font-size:12px;margin-top:4px">${tUI('Speak about all bus issues in one sentence.')}</div>`;
+
+  recognition.onresult=e=>{
+   interimText='';
+   for(let i=e.resultIndex;i<e.results.length;i++){
+    const phrase=e.results[i][0].transcript;
+    if(e.results[i].isFinal)finalText+=(finalText?' ':'')+phrase;
+    else interimText+=phrase;
+   }
+   const heard=(finalText||interimText).trim();
+   if(heard){
+    const classified=classifyBusIssues(heard);
+    renderVoiceResult(heard,classified);
+   }
+  };
+
+  recognition.onerror=e=>{
+   const msg=e.error==='not-allowed'?tUI('Microphone permission was denied. Please select the issue below.'):
+             e.error==='no-speech'?tUI('No speech was detected. Please try again or select the issue below.'):
+             tUI('Voice recognition failed. Please try again or select the issue below.');
+   transcript.style.display='block';transcript.innerHTML=`<div class="errorText" style="display:block">${msg}</div>`;
+  };
+
+  recognition.onend=()=>{
+   const text=(finalText||interimText).trim();
+   recognition=null;
+   voiceBtn.classList.remove('recording');
+   voiceBtn.innerHTML=`${svg('mic',18)}<span>${tUI('Describe issue by voice')}</span>`;
+   if(text){
+    voiceTranscriptText=text;
+    const classified=classifyBusIssues(text);
+    setVoiceIssues(classified);
+    renderVoiceResult(text,classified);
+   }
+  };
+
+  try{recognition.start()}catch(e){recognition=null;voiceBtn.classList.remove('recording');toast(tUI('Microphone access is needed'))}
+ };
+
  const renderFiles=()=>{$('#attachStatus').textContent=attachments.length?attachments.length+' '+tUI('photo attached')+(attachments.length>1?'s':''):tUI('No photo attached')};
  $('#galleryBtn').onclick=()=>$('#galleryInput').click();$('#cameraBtn').onclick=()=>$('#cameraInput').click();
  $('#galleryInput').onchange=e=>{attachments.push(...Array.from(e.target.files||[]));renderFiles()};
  $('#cameraInput').onchange=e=>{attachments.push(...Array.from(e.target.files||[]));renderFiles()};
- voiceBtn.onclick=async()=>{
-  if(recorder&&recorder.state==='recording'){recorder.stop();return}
-  try{
-   const stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};
-   recorder.onstop=()=>{stream.getTracks().forEach(t=>t.stop());voiceBtn.classList.remove('recording');voiceBtn.innerHTML=`${svg('mic',18)}<span>${tUI('Describe issue by voice')}</span>`;const text=app.lang==='hi'?'बस का एसी ठंडा नहीं कर रहा है':app.lang==='mr'?'बसचा एसी थंड हवा देत नाही':'The bus AC is not cooling';const issue=classifyBusIssue(text)||'AC';selectIssue(issue);transcript.style.display='block';transcript.innerHTML=`<b>${tUI('Heard')}</b><div style="font-size:12px;margin-top:4px">${text}</div><span class="tag">${tUI('Categorized as')}: ${issue}</span>`};
-   recorder.start();voiceBtn.classList.add('recording');voiceBtn.innerHTML='■ '+tUI('Stop recording')
-  }catch(e){toast(tUI('Microphone access is needed'))}
+
+ submit.onclick=()=>{
+  const issues=[...selectedIssues];
+  if(!issues.length)return;
+  app.lastReportIssues=issues;
+  app.lastReportIssue=issues[0];
+  app.lastReportTranscript=voiceTranscriptText;
+  app.lastReportMentions=issueMentions;
+  app.reportMode='sent';
+  persist();renderReport()
  };
- submit.onclick=()=>{if(!selectedIssue)return;app.lastReportIssue=selectedIssue;app.reportMode='sent';persist();renderReport()};
  $$('[data-recent]').forEach(r=>r.onclick=()=>{app.reportMode='detail';renderReport()});
- applyLanguageToRoot($('#reportRoot'))
+ applyLanguageToRoot($('#reportRoot'));renderSelection()
 }
+
 function renderReportSent(){
- const issue=app.lastReportIssue||'AC';
- $('#reportRoot').innerHTML=`<div class="card reportSent"><div class="sentIllustration">✓</div><h2>${tUI('Issue submitted')}</h2><p>${tUI('A Sevak ticket has been created and the DM team has been notified.')}</p><span class="reference">SVK-4827 · ${issue}</span></div><div class="card nextCard"><h3>${tUI('What happens next')}</h3><div class="nextStep"><div class="stepNo">1</div><div><b>${tUI('DM team reviews the ticket')}</b><p>${tUI('They can assign it to the maintenance team.')}</p></div></div><div class="nextStep"><div class="stepNo">2</div><div><b>${tUI('Maintenance updates the status')}</b><p>${tUI('Diagnosis, expected completion time and resolution are tracked in Sevak.')}</p></div></div></div><button class="btn primary full" style="margin-top:11px;height:46px" id="reportDone">${tUI('Done')}</button>`;
+ const issues=Array.isArray(app.lastReportIssues)&&app.lastReportIssues.length?app.lastReportIssues:[app.lastReportIssue||'AC'];
+ const many=issues.length>1;
+ const tickets=issues.map((issue,i)=>({id:'SVK-'+(4827+i),issue}));
+ $('#reportRoot').innerHTML=`<div class="card reportSent"><div class="sentIllustration">✓</div><h2>${many?tUI('Issues submitted'):tUI('Issue submitted')}</h2><p>${many?tUI('Separate Sevak tickets have been created for each issue on the same bus.'):tUI('A Sevak ticket has been created and the DM team has been notified.')}</p><div style="margin-top:10px">${tickets.map(t=>`<span class="reference" style="margin:3px">${t.id} · ${t.issue}</span>`).join('')}</div></div><div class="card nextCard"><h3>${tUI('What happens next')}</h3><div class="nextStep"><div class="stepNo">1</div><div><b>${tUI('DM team reviews the ticket')}</b><p>${tUI('They can assign it to the maintenance team.')}</p></div></div><div class="nextStep"><div class="stepNo">2</div><div><b>${tUI('Maintenance updates the status')}</b><p>${tUI('Each issue can be diagnosed and resolved independently in Sevak.')}</p></div></div></div><button class="btn primary full" style="margin-top:11px;height:46px" id="reportDone">${tUI('Done')}</button>`;
  $('#reportDone').onclick=()=>{app.reportMode='home';renderReport()}
 }
 function renderReportDetail(){
  $('#reportRoot').innerHTML=`<div class="backRow" style="padding:0 0 8px"><button class="backBtn" id="reportDetailBack">‹</button><div class="backTitle">SVK-4821</div></div><div class="card reportDetailCard"><div class="row between"><span class="tiny muted">${tUI('Bus issue')}</span><span class="ticketStatus progress">${tUI('Being looked into')}</span></div><div class="reportDetailTitle">AC</div><div class="reportMeta">MH01 EV 1402 · 10:42 AM</div><div class="voiceResult" style="margin-top:12px"><b>${tUI('Maintenance update')}</b><p>${tUI('Issue diagnosed. Expected completion by 4:30 PM.')}</p></div></div>`;
  $('#reportDetailBack').onclick=()=>{app.reportMode='home';renderReport()}
 }
+
+function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]))}
 
 function metricCard(id,icon,title,summary,statusClass,statusText,note,detail){return `<div class="card metricCard ${app.performanceOpen===id?'open':''}" data-metric-card="${id}"><button class="metricHead" data-metric="${id}"><div class="iconCircle">${svg(icon,17)}</div><div><b>${title}</b><span class="status ${statusClass}">${statusText}</span></div><span></span><span class="arrow">⌄</span></button><div class="metricDetail">${note?`<div class="metricNote">${note}</div>`:''}${detail}</div></div>`}
 function renderPerformance(){$('#performanceRoot').innerHTML=`<div class="card scoreCard"><div class="scorePeriod">Last 30 days</div><div class="scoreLine"><div class="scoreNum">82</div><div class="scoreDen">/100</div></div><div class="scoreTrend"><span class="status green">Good</span><span class="up">↗ Up 4 from August</span></div><button class="scoreHow" id="scoreHow">How is this calculated?</button></div>${metricCard('driving','performance','Driving feedback','A few opportunities to make rides smoother','green','Keep improving','You’re doing well overall. Smoother starts at signals can make the ride even more comfortable.',`<div class="kv"><span>Hard braking events</span><b>4 times</b></div><div class="kv"><span>Sudden acceleration events</span><b>7 times</b></div><div class="kv"><span>Avoidable idling</span><b>38 min a day</b></div><div class="kv"><span>Compared with similar-route drivers</span><b>Better than 62%</b></div>`)}${metricCard('punctuality','clock','Punctuality','46 of 50 trips on time','green','Good','',`<div class="kv"><span>Trips on time</span><b>46 of 50</b></div><div class="kv"><span>Late trips</span><b>4</b></div><div class="kv"><span>Average delay when late</span><b>5 min</b></div>`)}${metricCard('feedback','complaint','Customer feedback','14 responses · 12 positive','green','Good','Passenger feedback helps you understand what riders value and where the experience can improve.',`<div class="complaintItem"><b>12 Sep · Smooth driving</b><p>Marol → BKC · Bus MH01 EV 1245</p></div><div class="complaintItem"><b>03 Sep · Stop was missed</b><p>BKC → Thane · Bus MH01 EV 1245</p></div><button class="disputeBtn">View feedback details</button>`) }`;$$('[data-metric]').forEach(b=>b.onclick=()=>{app.performanceOpen=app.performanceOpen===b.dataset.metric?null:b.dataset.metric;persist();renderPerformance()});$('#scoreHow').onclick=openScoreSheet;applyLanguageToRoot($('#performanceRoot'))}
@@ -453,7 +609,7 @@ const HI_TEXT={
  'Running late?':'देर से पहुंचेंगे?','Tell us by voice or choose the delay.':'आवाज़ से बताएं या देरी चुनें।','Tell by voice':'आवाज़ से बताएं','Choose delay':'देरी चुनें','Update by voice':'आवाज़ से अपडेट करें','Expected arrival':'पहुंचने का समय','min delay shared with DM team':'मिनट की देरी डीएम टीम को बताई गई','We will notify you if your duty changes.':'ड्यूटी बदलने पर हम आपको बताएंगे।',
  'The DM team has been informed.':'डीएम टीम को बता दिया गया है।','Call DM team':'डीएम टीम को कॉल करें','Call the DM team to confirm your availability.':'अपनी उपलब्धता की पुष्टि के लिए डीएम टीम को कॉल करें।','Duty refreshed':'ड्यूटी रिफ्रेश हुई',
  'Tell us how late you will be':'बताएं आप कितनी देर से पहुंचेंगे','Example: I will be 20 minutes late.':'उदाहरण: मैं 20 मिनट देर से पहुंचूंगा।','Tap the microphone and speak':'माइक पर टैप करके बोलें','Listening… tap again to stop':'सुन रहे हैं… रोकने के लिए फिर टैप करें','Voice captured':'आवाज़ रिकॉर्ड हुई','You said':'आपने कहा','Expected delay':'अपेक्षित देरी','Confirm delay':'देरी कन्फर्म करें','Choose delay instead':'देरी चुनकर बताएं','Microphone access is needed':'माइक की अनुमति जरूरी है',
- 'Report a bus issue':'बस की समस्या रिपोर्ट करें','Speak naturally. We will identify the issue category for you.':'सामान्य तरीके से बोलें। हम समस्या की श्रेणी पहचान लेंगे।','Describe issue by voice':'आवाज़ से समस्या बताएं','Or choose the issue':'या समस्या चुनें','Use this if you prefer tapping.':'अगर टैप करना आसान लगे तो इसका उपयोग करें।',
+ 'Report a bus issue':'बस की समस्या रिपोर्ट करें','Speak naturally. You can report more than one issue together.':'सामान्य तरीके से बोलें। आप एक साथ एक से अधिक समस्याएं बता सकते हैं।','Or choose the issues':'या समस्याएं चुनें','Select one or more issues if you prefer tapping.':'अगर टैप करना आसान लगे तो एक या अधिक समस्याएं चुनें।','Submit':'भेजें','issues':'समस्याएं','issue selected':'समस्या चुनी गई','issues selected':'समस्याएं चुनी गईं','mentions':'बार बताया','Listening':'सुन रहे हैं','Speak about all bus issues in one sentence.':'बस की सभी समस्याएं एक वाक्य में बताएं।','Identified issues':'पहचानी गई समस्याएं','We could not identify a bus issue. Please select the issue below.':'हम समस्या पहचान नहीं पाए। नीचे समस्या चुनें।','Voice recognition is not supported in this browser. Please use issue selection below.':'इस ब्राउज़र में वॉइस पहचान उपलब्ध नहीं है। नीचे समस्या चुनें।','Microphone permission was denied. Please select the issue below.':'माइक की अनुमति नहीं मिली। नीचे समस्या चुनें।','No speech was detected. Please try again or select the issue below.':'आवाज़ नहीं मिली। फिर से कोशिश करें या नीचे समस्या चुनें।','Voice recognition failed. Please try again or select the issue below.':'वॉइस पहचान नहीं हो पाई। फिर से कोशिश करें या नीचे समस्या चुनें।','Issues submitted':'समस्याएं भेज दी गईं','Separate Sevak tickets have been created for each issue on the same bus.':'एक ही बस की हर अलग समस्या के लिए अलग Sevak टिकट बनाया गया है।','Each issue can be diagnosed and resolved independently in Sevak.':'हर समस्या की जांच और समाधान Sevak में अलग-अलग किया जा सकता है।','Speak naturally. We will identify the issue category for you.':'सामान्य तरीके से बोलें। हम समस्या की श्रेणी पहचान लेंगे।','Describe issue by voice':'आवाज़ से समस्या बताएं','Or choose the issue':'या समस्या चुनें','Use this if you prefer tapping.':'अगर टैप करना आसान लगे तो इसका उपयोग करें।',
  'Add photo':'फोटो जोड़ें','Optional. Add a useful photo from gallery or camera.':'वैकल्पिक। गैलरी या कैमरे से उपयोगी फोटो जोड़ें।','Gallery':'गैलरी','Camera':'कैमरा','No photo attached':'कोई फोटो नहीं जोड़ी','photo attached':'फोटो जोड़ी','Submit issue':'समस्या भेजें','Recent bus issues':'हाल की बस समस्याएं','Being looked into':'जांच जारी है','Resolved':'हल हो गया',
  'Stop recording':'रिकॉर्डिंग रोकें','Heard':'सुना गया','Categorized as':'श्रेणी','Issue submitted':'समस्या भेज दी गई','A Sevak ticket has been created and the DM team has been notified.':'Sevak टिकट बन गया है और डीएम टीम को सूचना दे दी गई है।','What happens next':'आगे क्या होगा','DM team reviews the ticket':'डीएम टीम टिकट देखती है','They can assign it to the maintenance team.':'वे इसे मेंटेनेंस टीम को असाइन कर सकते हैं।','Maintenance updates the status':'मेंटेनेंस टीम स्टेटस अपडेट करती है','Diagnosis, expected completion time and resolution are tracked in Sevak.':'जांच, अपेक्षित समय और समाधान Sevak में ट्रैक होते हैं।','Done':'हो गया','Bus issue':'बस की समस्या','Maintenance update':'मेंटेनेंस अपडेट','Issue diagnosed. Expected completion by 4:30 PM.':'समस्या की जांच हो गई है। 4:30 PM तक पूरा होने की उम्मीद है।',
  'Bus location is unavailable':'बस की लोकेशन उपलब्ध नहीं है','Bus location is old':'बस की लोकेशन पुरानी है','The last GPS update is too old to navigate reliably. Call the DM team for help.':'आखिरी GPS अपडेट बहुत पुराना है। मदद के लिए डीएम टीम को कॉल करें।','Location access is off. HERE will ask for your location.':'लोकेशन एक्सेस बंद है। HERE आपसे लोकेशन की अनुमति मांगेगा।','Cancel':'रद्द करें','Choose the language you want to use.':'ऐप की भाषा चुनें।'
@@ -464,7 +620,7 @@ const MR_TEXT={
  'Running late?':'उशीर होणार आहे?','Tell us by voice or choose the delay.':'आवाजाने सांगा किंवा उशीर निवडा.','Tell by voice':'आवाजाने सांगा','Choose delay':'उशीर निवडा','Update by voice':'आवाजाने अपडेट करा','Expected arrival':'अपेक्षित पोहोचण्याची वेळ','min delay shared with DM team':'मिनिटांचा उशीर डीएम टीमला कळवला','We will notify you if your duty changes.':'ड्युटी बदलल्यास आम्ही कळवू.',
  'The DM team has been informed.':'डीएम टीमला कळवले आहे.','Call DM team':'डीएम टीमला कॉल करा','Call the DM team to confirm your availability.':'उपलब्धता पुष्टी करण्यासाठी डीएम टीमला कॉल करा.','Duty refreshed':'ड्युटी रिफ्रेश झाली',
  'Tell us how late you will be':'तुम्हाला किती उशीर होईल ते सांगा','Example: I will be 20 minutes late.':'उदाहरण: मी 20 मिनिटे उशिरा पोहोचेन.','Tap the microphone and speak':'माइकवर टॅप करून बोला','Listening… tap again to stop':'ऐकत आहोत… थांबवण्यासाठी पुन्हा टॅप करा','Voice captured':'आवाज रेकॉर्ड झाला','You said':'तुम्ही म्हणालात','Expected delay':'अपेक्षित उशीर','Confirm delay':'उशीर पुष्टी करा','Choose delay instead':'उशीर निवडा','Microphone access is needed':'माइकची परवानगी आवश्यक आहे',
- 'Report a bus issue':'बसची समस्या रिपोर्ट करा','Speak naturally. We will identify the issue category for you.':'नैसर्गिकपणे बोला. आम्ही समस्येची श्रेणी ओळखू.','Describe issue by voice':'आवाजाने समस्या सांगा','Or choose the issue':'किंवा समस्या निवडा','Use this if you prefer tapping.':'टॅप करणे सोपे वाटत असेल तर वापरा.',
+ 'Report a bus issue':'बसची समस्या रिपोर्ट करा','Speak naturally. You can report more than one issue together.':'नैसर्गिकपणे बोला. तुम्ही एकाच वेळी एकापेक्षा जास्त समस्या सांगू शकता.','Or choose the issues':'किंवा समस्या निवडा','Select one or more issues if you prefer tapping.':'टॅप करणे सोपे वाटत असेल तर एक किंवा अधिक समस्या निवडा.','Submit':'पाठवा','issues':'समस्या','issue selected':'समस्या निवडली','issues selected':'समस्या निवडल्या','mentions':'वेळा सांगितले','Listening':'ऐकत आहोत','Speak about all bus issues in one sentence.':'बसच्या सर्व समस्या एका वाक्यात सांगा.','Identified issues':'ओळखलेल्या समस्या','We could not identify a bus issue. Please select the issue below.':'आम्हाला समस्या ओळखता आली नाही. खाली समस्या निवडा.','Voice recognition is not supported in this browser. Please use issue selection below.':'या ब्राउझरमध्ये वॉइस ओळख उपलब्ध नाही. खाली समस्या निवडा.','Microphone permission was denied. Please select the issue below.':'माइक परवानगी नाकारली. खाली समस्या निवडा.','No speech was detected. Please try again or select the issue below.':'आवाज आढळला नाही. पुन्हा प्रयत्न करा किंवा खाली समस्या निवडा.','Voice recognition failed. Please try again or select the issue below.':'वॉइस ओळख अयशस्वी झाली. पुन्हा प्रयत्न करा किंवा खाली समस्या निवडा.','Issues submitted':'समस्या पाठवल्या','Separate Sevak tickets have been created for each issue on the same bus.':'एकाच बसच्या प्रत्येक वेगळ्या समस्येसाठी स्वतंत्र Sevak टिकट तयार झाले आहे.','Each issue can be diagnosed and resolved independently in Sevak.':'प्रत्येक समस्येचे निदान आणि निराकरण Sevak मध्ये स्वतंत्रपणे करता येईल.','Speak naturally. We will identify the issue category for you.':'नैसर्गिकपणे बोला. आम्ही समस्येची श्रेणी ओळखू.','Describe issue by voice':'आवाजाने समस्या सांगा','Or choose the issue':'किंवा समस्या निवडा','Use this if you prefer tapping.':'टॅप करणे सोपे वाटत असेल तर वापरा.',
  'Add photo':'फोटो जोडा','Optional. Add a useful photo from gallery or camera.':'वैकल्पिक. गॅलरी किंवा कॅमेरातून उपयुक्त फोटो जोडा.','Gallery':'गॅलरी','Camera':'कॅमेरा','No photo attached':'फोटो जोडलेला नाही','photo attached':'फोटो जोडला','Submit issue':'समस्या पाठवा','Recent bus issues':'अलीकडील बस समस्या','Being looked into':'तपास सुरू आहे','Resolved':'सोडवले',
  'Stop recording':'रेकॉर्डिंग थांबवा','Heard':'ऐकले','Categorized as':'श्रेणी','Issue submitted':'समस्या पाठवली','A Sevak ticket has been created and the DM team has been notified.':'Sevak टिकट तयार झाले आहे आणि डीएम टीमला कळवले आहे.','What happens next':'पुढे काय होईल','DM team reviews the ticket':'डीएम टीम टिकट पाहते','They can assign it to the maintenance team.':'ते मेंटेनन्स टीमला असाइन करू शकतात.','Maintenance updates the status':'मेंटेनन्स टीम स्टेटस अपडेट करते','Diagnosis, expected completion time and resolution are tracked in Sevak.':'निदान, अपेक्षित पूर्ण वेळ आणि निराकरण Sevak मध्ये ट्रॅक होते.','Done':'झाले','Bus issue':'बसची समस्या','Maintenance update':'मेंटेनन्स अपडेट','Issue diagnosed. Expected completion by 4:30 PM.':'समस्येचे निदान झाले आहे. 4:30 PM पर्यंत पूर्ण होण्याची अपेक्षा आहे.',
  'Bus location is unavailable':'बसची लोकेशन उपलब्ध नाही','Bus location is old':'बसची लोकेशन जुनी आहे','The last GPS update is too old to navigate reliably. Call the DM team for help.':'शेवटचा GPS अपडेट खूप जुना आहे. मदतीसाठी डीएम टीमला कॉल करा.','Location access is off. HERE will ask for your location.':'लोकेशन परवानगी बंद आहे. HERE लोकेशन परवानगी विचारेल.','Cancel':'रद्द करा','Choose the language you want to use.':'अॅपची भाषा निवडा.'
