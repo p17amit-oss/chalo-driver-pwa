@@ -26,16 +26,22 @@ button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}.a
 .card{background:#fff;border:1px solid #eee9e3;border-radius:12px;box-shadow:var(--shadow)}.cardPad{padding:12px}.stack{display:flex;flex-direction:column;gap:10px}.muted{color:var(--muted)}.tiny{font-size:10px}.small{font-size:12px}.body{font-size:13px;line-height:1.45}.label{font-size:10px;color:#837b75}.sectionLabel{font-size:13px;font-weight:800}.divider{height:1px;background:#eee9e3}.row{display:flex;align-items:center}.between{justify-content:space-between}.grow{flex:1;min-width:0}.right{text-align:right}.center{text-align:center}
 .btn{border:0;border-radius:7px;height:40px;padding:0 14px;font-size:12px;font-weight:800}.btn.primary{background:var(--orange);color:#fff}.btn.secondary{background:#efefef;color:#3b3734}.btn.outline{background:#fff;border:1px solid #ddd8d3}.btn.link{background:transparent;color:var(--orange);height:auto;padding:6px 0}.btn.full{width:100%}.btn:disabled{background:#f6cda9;color:#fff;cursor:default}.btnRow{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btnCall{background:#efefef;color:#3a3734;width:100%}
 .status{display:inline-flex;align-items:center;border-radius:3px;padding:4px 6px;font-size:9px;line-height:1;font-weight:700}.status.orange{background:#fff1dd;color:#c57918}.status.green{background:#e4f5e9;color:#3b9e57}.status.red{background:#fde9e9;color:#c44d4d}.status.yellow{background:#fff2d3;color:#aa761e}.status.blue{background:#e9f3ff;color:#3b7cbc}
-.nav{position:fixed;z-index:40;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,430px);height:calc(var(--nav-h) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-top:1px solid #ddd8d3}.nav button{border:0;background:transparent;color:#87817c;font-size:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}.nav button.on{color:var(--orange);font-weight:700}.nav svg{width:19px;height:19px}
+.nav{position:fixed;z-index:40;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,430px);height:calc(var(--nav-h) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(2,1fr);background:#fff;border-top:1px solid #ddd8d3}.nav button{border:0;background:transparent;color:#87817c;font-size:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}.nav button.on{color:var(--orange);font-weight:700}.nav svg{width:19px;height:19px}
 .icon{display:inline-flex;align-items:center;justify-content:center;color:var(--orange)}.icon svg{width:20px;height:20px}.iconCircle{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff2df;color:var(--orange);flex:none}.iconCircle.green{background:#e8f7ec;color:#3aaa59}.iconCircle.red{background:#fde9e9;color:#d84d4d}
+.headerActions{display:flex;align-items:center;gap:7px}.supportCall{height:34px;border:1px solid #ded8d2;border-radius:7px;background:#fff;padding:0 9px;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:#3b3734}.supportCall svg{width:15px;height:15px;color:var(--orange)}
+.dutyTool{margin-top:11px;border-top:1px solid #eee9e4;padding-top:10px}.toolBtn{width:100%;height:42px;border:1px solid #ded8d2;border-radius:7px;background:#fff;display:flex;align-items:center;justify-content:center;gap:7px;font-size:12px;font-weight:800;color:#3b3734}.toolBtn svg{color:var(--orange)}
+.voiceLateBox{margin-top:10px;padding-top:10px;border-top:1px solid #eee9e4}.voiceLateBox b{font-size:13px}.voiceLateBox p{font-size:11px;margin:3px 0 9px}.voicePrimary{display:flex;align-items:center;justify-content:center;gap:7px}.voicePrimary svg{width:18px;height:18px}.voiceCapture{text-align:center;padding:8px 4px}.voiceOrb{width:68px;height:68px;border-radius:50%;border:0;background:var(--orange);color:#fff;margin:12px auto;display:flex;align-items:center;justify-content:center;font-size:25px}.voiceOrb.recording{background:#d94d4d;box-shadow:0 0 0 7px #fde6e6}.voiceResult{padding:10px;border-radius:8px;background:#f7f5f2;text-align:left;margin:9px 0}.voiceResult b{font-size:12px}.voiceResult p{font-size:11px;margin:4px 0 0;color:#6f6862;line-height:1.4}
+.voiceHero{padding:16px;margin-bottom:11px;text-align:center}.voiceHero .micCircle{width:58px;height:58px;border-radius:50%;background:#fff1df;color:var(--orange);margin:0 auto 9px;display:flex;align-items:center;justify-content:center}.voiceHero h3{font-size:16px;margin:0 0 4px}.voiceHero p{font-size:12px;color:#7b736d;margin:0 0 11px;line-height:1.4}.voiceHero .btn{height:48px;font-size:14px}.voiceTranscript{margin-top:10px;text-align:left;background:#f7f5f2;border-radius:8px;padding:10px}.voiceTranscript .tag{display:inline-block;background:#e5f4e9;color:#3b9252;border-radius:12px;padding:4px 7px;font-size:10px;font-weight:800;margin-top:6px}
+.issuePicker{padding:14px;margin-bottom:11px}.issuePicker h3,.mediaCard h3,.recentCard h3{font-size:14px;margin:0 0 5px}.issuePicker .helperText,.mediaCard .helperText{font-size:11px;color:#817973;line-height:1.4;margin-bottom:7px}.issueGrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.issueChip{min-height:42px;border:1px solid #ded8d2;background:#fff;border-radius:8px;font-size:12px;font-weight:700;padding:7px}.issueChip.on{border-color:var(--orange);background:#fff8ee;color:#a85a08}.mediaCard{padding:14px;margin-bottom:11px}.mediaActions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mediaBtn{height:44px;border:1px solid #ded8d2;background:#fff;border-radius:8px;font-size:12px;font-weight:800}.ticketStatus{display:inline-block;border-radius:12px;padding:4px 7px;font-size:10px;font-weight:800}.ticketStatus.submitted{background:#fff1dd;color:#b56c12}.ticketStatus.progress{background:#e9f3ff;color:#3b7cbc}.ticketStatus.resolved{background:#e4f5e9;color:#3b9e57}
+
 /* login */
 .loginWrap{min-height:100vh;min-height:100dvh;background:#fff;display:flex;flex-direction:column;padding:24px 16px calc(18px + env(safe-area-inset-bottom))}.loginTop{height:34px;display:flex;align-items:center}.loginHeading{font-size:20px;font-weight:800;line-height:1.35;margin:18px 0 18px;max-width:320px}.phoneRow{display:grid;grid-template-columns:62px 1fr;gap:8px}.country{height:48px;border:1px solid #dfd9d3;border-radius:7px;background:#fff;font-size:14px}.textInput{height:48px;border:1px solid #dfd9d3;border-radius:7px;background:#fff;padding:0 12px;outline:none;font-size:16px}.textInput:focus{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange)}.loginBottom{position:static;width:100%;padding:18px 0 0;background:#fff}.loginBottom .btn{height:50px;font-size:15px;border-radius:8px}#loginOtpScreen .loginBottom{margin-top:24px}.otpBoxes{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;width:100%;max-width:100%}.otpBox{width:100%;min-width:0;height:46px;border:1px solid #d7d0ca;border-radius:6px;text-align:center;font-size:19px;outline:none;padding:0}.otpBox:focus{border-color:var(--orange)}.resend{font-size:12px;color:#6f6862;margin-top:12px}.resend b{color:var(--orange)}
 /* notifications */
 .notifyWrap{min-height:100vh;min-height:100dvh;background:linear-gradient(180deg,#ffcf72 0,#fff4dc 28%,#fff 55%);padding:34px 14px calc(16px + env(safe-area-inset-bottom));display:flex;flex-direction:column}.notifyBell{font-size:42px;text-align:center;margin-bottom:14px}.notifyTitle{font-size:19px;font-weight:800;text-align:center}.notifySub{font-size:12px;line-height:1.45;color:#7d756f;text-align:center;margin:5px auto 12px;max-width:310px}.notifyReasons{padding:4px 12px}.notifyReason{display:flex;gap:10px;padding:8px 0}.notifyReason b{display:block;font-size:12px}.notifyReason span{display:block;color:#817973;font-size:10px;margin-top:2px}.notifyActions{margin-top:14px;display:flex;flex-direction:column;gap:8px;padding:0}.notifyActions .btn{height:46px;font-size:14px}
 /* duty */
 #dutyScreen .pagePad{padding:16px 14px 24px}#dutyScreen .pageTitle{font-size:21px}#dutyScreen .langBtn{height:34px;padding:0 12px;font-size:12px}
-.dateTabs{display:flex;gap:10px;margin-bottom:12px}.dateTab{border:1px solid #e4d7c9;background:#fff;border-radius:20px;height:38px;padding:0 17px;font-size:13px;font-weight:700;color:#6f6861}.dateTab.on{border-color:#df9b45;background:#fff8ee;color:#3c342e;box-shadow:0 1px 3px rgba(67,48,28,.08)}.dutySummary{padding:14px 14px;margin-bottom:12px}.summaryGrid{display:grid;grid-template-columns:.8fr 1fr 1.45fr;gap:12px;margin-top:10px}.summaryValue{font-size:16px;font-weight:800;margin-top:3px;line-height:1.25}.dutySummary .label{font-size:11px}.dutySummary .status{font-size:10px;padding:5px 7px}.responseCard{padding:15px;margin-bottom:12px}.responseCard h3{font-size:16px;margin:0 0 5px}.responseCard p{font-size:13px;color:#756e68;margin:0 0 12px;line-height:1.45}#dutyScreen .btn{height:46px;font-size:14px}.noticeCard{display:flex;gap:10px;padding:13px 14px;margin-bottom:11px}.noticeCard b{font-size:14px}.noticeCard p{font-size:12px;color:#756d67;margin:3px 0 0;line-height:1.45}.noticeCard.change{background:#fff;border-left:3px solid var(--orange)}
-.tripCard{padding:13px 14px;margin-bottom:14px}.tripHeader{display:flex;align-items:center;justify-content:space-between;padding-bottom:6px}.tripHeader b{font-size:15px}.tripHeader span{font-size:11px;color:#7d756f}.tripRow{display:grid;grid-template-columns:54px 1fr 30px;gap:8px;align-items:center;padding:12px 0;border-top:1px solid #eee9e4}.tripRow:first-of-type{border-top:0}.tripTime{font-size:13px;font-weight:800}.tripRoute{font-size:14px;font-weight:800;line-height:1.3}.tripMeta{font-size:11px;color:#827a74;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.routeAction{border:0;background:transparent;color:var(--orange);padding:4px}.opsRow{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;margin:6px -4px;padding:11px 10px;border-radius:9px;background:#fff7e9;border:1px solid #f4dfbe}.opsRow.final{background:#f2f5f3;border-color:#e0e8e2}.opsIcon{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#ffe4b7;color:#c46d0d;font-size:16px;font-weight:800}.opsRow.final .opsIcon{background:#e2eee5;color:#49865a}.opsTitle{font-size:13px;font-weight:800}.opsMeta{font-size:11px;color:#7d756f;margin-top:2px}.dutyActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.singleAction{margin-top:8px}.emptyDuty{padding:38px 22px 34px;text-align:center}.busIllustration{font-size:54px;margin:15px 0 12px}.emptyDuty h3{font-size:17px;margin:0 0 8px}.emptyDuty p{font-size:13px;color:#77706a;line-height:1.45;max-width:270px;margin:0 auto 14px}.refreshLink{border:0;background:transparent;color:var(--orange);font-size:13px;font-weight:700}.updatedLine{font-size:11px;color:#8e8780;margin-bottom:5px}.changeTime{font-size:13px;font-weight:800}.lateInfo{font-size:12px;color:#776f69;line-height:1.5;margin-top:6px}
+.dateTabs{display:flex;gap:10px;margin-bottom:12px}.dateTab{border:1px solid #e4d7c9;background:#fff;border-radius:20px;height:38px;padding:0 17px;font-size:13px;font-weight:700;color:#6f6861}.dateTab.on{border-color:#df9b45;background:#fff8ee;color:#3c342e;box-shadow:0 1px 3px rgba(67,48,28,.08)}.dutySummary{padding:14px 14px;margin-bottom:12px}.summaryGrid{display:grid;grid-template-columns:1fr 1.5fr;gap:16px;margin-top:10px}.summaryValue{font-size:16px;font-weight:800;margin-top:3px;line-height:1.25}.dutySummary .label{font-size:11px}.dutySummary .status{font-size:10px;padding:5px 7px}.responseCard{padding:15px;margin-bottom:12px}.responseCard h3{font-size:16px;margin:0 0 5px}.responseCard p{font-size:13px;color:#756e68;margin:0 0 12px;line-height:1.45}#dutyScreen .btn{height:46px;font-size:14px}.noticeCard{display:flex;gap:10px;padding:13px 14px;margin-bottom:11px}.noticeCard b{font-size:14px}.noticeCard p{font-size:12px;color:#756d67;margin:3px 0 0;line-height:1.45}.noticeCard.change{background:#fff;border-left:3px solid var(--orange)}
+.tripCard{padding:13px 14px;margin-bottom:14px}.tripHeader{display:flex;align-items:center;justify-content:space-between;padding-bottom:6px}.tripHeader b{font-size:15px}.tripHeader span{font-size:11px;color:#7d756f}.tripRow{display:grid;grid-template-columns:54px 1fr auto;gap:8px;align-items:center;padding:12px 0;border-top:1px solid #eee9e4}.tripRow:first-of-type{border-top:0}.tripTime{font-size:13px;font-weight:800}.tripRoute{font-size:14px;font-weight:800;line-height:1.3}.tripMeta{font-size:11px;color:#827a74;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.routeAction{border:1px solid #efc58d;background:#fff8ee;color:#b96508;padding:7px 9px;border-radius:7px;font-size:11px;font-weight:800;white-space:nowrap}.opsRow{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;margin:6px -4px;padding:11px 10px;border-radius:9px;background:#fff7e9;border:1px solid #f4dfbe}.opsRow.final{background:#f2f5f3;border-color:#e0e8e2}.opsIcon{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#ffe4b7;color:#c46d0d;font-size:16px;font-weight:800}.opsRow.final .opsIcon{background:#e2eee5;color:#49865a}.opsTitle{font-size:13px;font-weight:800}.opsMeta{font-size:11px;color:#7d756f;margin-top:2px}.dutyActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.singleAction{margin-top:8px}.emptyDuty{padding:38px 22px 34px;text-align:center}.busIllustration{font-size:54px;margin:15px 0 12px}.emptyDuty h3{font-size:17px;margin:0 0 8px}.emptyDuty p{font-size:13px;color:#77706a;line-height:1.45;max-width:270px;margin:0 auto 14px}.refreshLink{border:0;background:transparent;color:var(--orange);font-size:13px;font-weight:700}.updatedLine{font-size:11px;color:#8e8780;margin-bottom:5px}.changeTime{font-size:13px;font-weight:800}.lateInfo{font-size:12px;color:#776f69;line-height:1.5;margin-top:6px}
 /* report */
 .emergencyCard{padding:11px;margin-bottom:10px}.emergencyTop{display:flex;gap:9px;align-items:flex-start}.emergencyTop b{font-size:12px}.emergencyTop p{font-size:10px;color:#8a817a;margin:2px 0 10px;line-height:1.4}.reportList{padding:11px;margin-bottom:10px}.reportListTitle{font-size:12px;font-weight:800;margin-bottom:5px}.reportChoice{width:100%;border:0;background:#fff;display:grid;grid-template-columns:34px 1fr 20px;gap:8px;align-items:center;text-align:left;padding:9px 0;border-top:1px solid #f0ece8}.reportChoice:first-of-type{border-top:0}.reportChoice b{display:block;font-size:11px}.reportChoice span{display:block;font-size:9px;color:#8b837c;margin-top:2px}.chev{font-size:20px;color:#968d85}.recentCard{padding:11px}.recentHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}.recentHead b{font-size:11px}.recentHead button{border:0;background:transparent;color:var(--orange);font-size:9px}.recentRow{padding:10px 0;border-top:1px solid #f0ece8;display:flex;justify-content:space-between;gap:8px}.recentRow:first-of-type{border-top:0}.recentRow b{font-size:10px}.recentRow span{font-size:9px;color:#8d857e;display:block;margin-top:2px}.formCard{padding:11px}.formLabel{font-size:10px;font-weight:700;margin:9px 0 5px}.selectBox,.fieldBox{width:100%;height:39px;border:1px solid #ded8d2;border-radius:6px;background:#fff;padding:0 10px;font-size:11px}.readonly{background:#fff}.helper{font-size:9px;color:#948c85;margin-top:4px}.radioList{margin-top:6px}.radioLine{display:flex;align-items:center;gap:9px;min-height:40px;border-top:1px solid #f0ece8;font-size:11px;padding:5px 0}.radioLine:first-child{border-top:0}.radioLine input{accent-color:var(--orange);width:15px;height:15px}.errorText{font-size:10px;color:#d55353;margin-top:5px}.formBottom{margin-top:12px}.attachBlock{margin-top:14px;padding-top:12px;border-top:1px solid #eee9e4}.attachTitle{font-size:12px;font-weight:800}.attachHelper{font-size:10px;color:#877f78;margin-top:3px;line-height:1.4}.attachActions{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}.attachBtn{min-height:54px;border:1px solid #ded8d2;background:#fff;border-radius:8px;font-size:10px;font-weight:700;padding:7px 5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}.attachBtn.recording{border-color:var(--red);color:var(--red);background:#fff7f7}.attachStatus{margin-top:8px;font-size:10px;color:#6f6862;line-height:1.45}.attachChip{display:inline-flex;align-items:center;gap:5px;background:#f4f1ee;border-radius:14px;padding:5px 8px;margin:3px 4px 0 0;max-width:100%}.attachChip span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px}.requiredNote{margin-top:7px;padding:8px 9px;background:#fff4df;border-radius:7px;font-size:10px;color:#8a641e;display:none}.photoRow{display:flex;gap:8px;margin-top:10px}.photoPlaceholder{width:55px;height:44px;border-radius:6px;background:#efefef;display:flex;align-items:center;justify-content:center;color:#8a837d}.reportSent{padding:18px 12px;text-align:center}.sentIllustration{font-size:58px}.reportSent h2{font-size:17px;margin:5px 0 6px}.reportSent p{font-size:10px;line-height:1.45;color:#817971;max-width:280px;margin:0 auto}.reference{display:inline-block;background:#f2f0ee;border-radius:12px;padding:4px 9px;font-size:9px;color:#7a736d;margin-top:8px}.nextCard{padding:11px;margin-top:11px;text-align:left}.nextCard h3{font-size:12px;margin:0 0 7px}.nextStep{display:grid;grid-template-columns:24px 1fr;gap:8px;padding:6px 0}.stepNo{width:20px;height:20px;border-radius:50%;background:#fff3df;color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}.nextStep b{font-size:10px}.nextStep p{font-size:9px;color:#8c847d;margin:1px 0 0}.reportDetailCard{padding:11px;margin-top:4px}.reportDetailTitle{font-size:16px;font-weight:800;margin:11px 0}.reportMeta{font-size:9px;color:#8a817a}
 /* performance */
@@ -147,17 +153,13 @@ button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}.a
     </div>
   </section>
 
-  <section class="screen" id="dutyScreen"><div class="pageHeader"><div><div class="pageTitle">Duty</div><div class="driverName">Ramesh Patil</div></div><button class="langBtn" data-lang>文 EN</button></div><div class="pagePad" id="dutyRoot"></div></section>
-  <section class="screen" id="reportScreen"><div class="pageHeader"><div><div class="pageTitle">Report</div><div class="driverName">Ramesh Patil</div></div><button class="langBtn" data-lang>文 EN</button></div><div class="pagePad" id="reportRoot"></div></section>
-  <section class="screen" id="performanceScreen"><div class="pageHeader"><div><div class="pageTitle">Performance</div><div class="driverName">Ramesh Patil</div></div><button class="langBtn" data-lang>文 EN</button></div><div class="pagePad" id="performanceRoot"></div></section>
-  <section class="screen" id="moreScreen"><div class="pageHeader"><div><div class="pageTitle">More</div><div class="driverName">Ramesh Patil</div></div><button class="langBtn" data-lang>文 EN</button></div><div class="pagePad" id="moreRoot"></div></section>
+  <section class="screen" id="dutyScreen"><div class="pageHeader"><div><div class="pageTitle">Duty</div><div class="driverName">Ramesh Patil</div></div><div class="headerActions"><button class="supportCall" data-call-dm><span data-icon="phone"></span><span>DM</span></button><button class="langBtn" data-lang>文 EN</button></div></div><div class="pagePad" id="dutyRoot"></div></section>
+  <section class="screen" id="reportScreen"><div class="pageHeader"><div><div class="pageTitle">Report</div><div class="driverName">Ramesh Patil</div></div><div class="headerActions"><button class="supportCall" data-call-dm><span data-icon="phone"></span><span>DM</span></button><button class="langBtn" data-lang>文 EN</button></div></div><div class="pagePad" id="reportRoot"></div></section>
   <section class="screen" id="subScreen"><div id="subRoot"></div></section>
 
   <nav class="nav" id="nav">
     <button data-nav="duty" class="on"><span data-nav-icon="duty"></span><span>Duty</span></button>
-    <button data-nav="report"><span data-nav-icon="report"></span><span>Report</span></button>
-    <button data-nav="performance"><span data-nav-icon="performance"></span><span>Performance</span></button>
-    <button data-nav="more"><span data-nav-icon="more"></span><span>More</span></button>
+    <button data-nav="report"><span data-nav-icon="report"></span><span>Report issue</span></button>
   </nav>
 </div>
 <div class="overlay" id="sheetOverlay"><div class="sheet"><div class="grab"></div><div id="sheetContent"></div></div></div>
@@ -188,17 +190,17 @@ const ICONS={
 };
 function svg(name,size=20){return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]||ICONS.more}</svg>`}
 function hydrateIcons(){$$('[data-icon]').forEach(x=>x.innerHTML=svg(x.dataset.icon));$$('[data-nav-icon]').forEach(x=>x.innerHTML=svg(x.dataset.navIcon));}
-let app={authed:false,notifySeen:false,tab:'duty',day:'tomorrow',dutyStates:{today:'confirmed',tomorrow:'pending'},delay:15,reportMode:'home',performanceOpen:null,licenceState:'add',lang:'en'};
+let app={authed:false,notifySeen:false,tab:'duty',day:'tomorrow',dutyStates:{today:'confirmed',tomorrow:'pending'},delay:20,reportMode:'home',lang:'en'};
 try{const saved=JSON.parse(localStorage.getItem('chaloDriverV7State')||'{}');app={...app,...saved}}catch(e){}
-if(!app.dutyStates||typeof app.dutyStates!=='object')app.dutyStates={today:'confirmed',tomorrow:'pending'};
+if(!app.dutyStates||typeof app.dutyStates!=='object')app.dutyStates={today:'confirmed',tomorrow:'pending'};if(!['duty','report'].includes(app.tab))app.tab='duty';
 delete app.dutyState;
 function persist(){localStorage.setItem('chaloDriverV7State',JSON.stringify(app))}
 function getDutyState(day=app.day){return app.dutyStates[day]||(day==='today'?'confirmed':'pending')}
 function setDutyState(state,day=app.day){app.dutyStates={...app.dutyStates,[day]:state};persist()}
-function showScreen(id){$$('.screen').forEach(x=>x.classList.remove('on'));$('#'+id).classList.add('on');$('#nav').style.display=['dutyScreen','reportScreen','performanceScreen','moreScreen'].includes(id)?'grid':'none';window.scrollTo(0,0)}
+function showScreen(id){$('.screen').forEach(x=>x.classList.remove('on'));const target=$('#'+id);if(target)target.classList.add('on');$('#nav').style.display=['dutyScreen','reportScreen'].includes(id)?'grid':'none';window.scrollTo(0,0)}
 function toast(msg){const x=$('#toast');x.textContent=msg;x.classList.add('on');clearTimeout(window.__t);window.__t=setTimeout(()=>x.classList.remove('on'),1800)}
-function setTab(tab){app.tab=tab;persist();$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav===tab));if(tab==='duty'){renderDuty();showScreen('dutyScreen')}if(tab==='report'){app.reportMode='home';renderReport();showScreen('reportScreen')}if(tab==='performance'){renderPerformance();showScreen('performanceScreen')}if(tab==='more'){renderMore();showScreen('moreScreen')}hydrateIcons();syncLanguageUI()}
-$$('#nav button').forEach(b=>b.onclick=()=>setTab(b.dataset.nav));
+function setTab(tab){if(!['duty','report'].includes(tab))tab='duty';app.tab=tab;persist();$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav===tab));if(tab==='duty'){renderDuty();showScreen('dutyScreen')}if(tab==='report'){app.reportMode='home';renderReport();showScreen('reportScreen')}hydrateIcons();syncLanguageUI();bindCommonActions()}
+$('#nav button').forEach(b=>b.onclick=()=>setTab(b.dataset.nav));
 function openSheet(html){$('#sheetContent').innerHTML=html;$('#sheetOverlay').classList.add('on');hydrateIcons();applyLanguageToRoot($('#sheetContent'))}
 function closeSheet(){$('#sheetOverlay').classList.remove('on')}
 $('#sheetOverlay').onclick=e=>{if(e.target===$('#sheetOverlay'))closeSheet()}
@@ -217,10 +219,57 @@ function completeOnboarding(){
   $$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav==='duty'));
   hydrateIcons();
   try{syncLanguageUI()}catch(e){console.error('Language sync failed',e)}
+  bindCommonActions();
 }
 $('#enableAlertsBtn').onclick=()=>{completeOnboarding();enablePush()};
 $('#skipAlertsBtn').onclick=()=>completeOnboarding();
 
+const DM_SUPPORT_NUMBER='1800000000'; // replace with production toll-free DM number
+const busLastLocation={
+ tomorrow:{busNo:'MH01 EV 1402',lat:19.0477,lng:72.8804,updatedMinutes:2},
+ today:{busNo:'MH01 EV 1245',lat:19.0479,lng:72.8801,updatedMinutes:3}
+};
+const hereRoutes={
+ 'Navi Mumbai → BKC':[
+  {lat:19.0328,lng:73.0297,name:'Navi Mumbai',type:'s'},
+  {lat:19.0735,lng:72.9988,name:'Vashi',type:'s'},
+  {lat:19.0527,lng:72.9005,name:'Chembur',type:'s'},
+  {lat:19.0452,lng:72.8750,name:'Sion',type:'s'},
+  {lat:19.0567,lng:72.8682,name:'BKC approach',type:'p'},
+  {lat:19.0660,lng:72.8697,name:'BKC',type:'s'}
+ ],
+ 'Bandra → BKC':[
+  {lat:19.0596,lng:72.8295,name:'Bandra',type:'s'},
+  {lat:19.0588,lng:72.8478,name:'Kala Nagar',type:'s'},
+  {lat:19.0614,lng:72.8582,name:'BKC approach',type:'p'},
+  {lat:19.0660,lng:72.8697,name:'BKC',type:'s'}
+ ],
+ 'BKC → Navi Mumbai':[
+  {lat:19.0660,lng:72.8697,name:'BKC',type:'s'},
+  {lat:19.0452,lng:72.8750,name:'Sion',type:'s'},
+  {lat:19.0527,lng:72.9005,name:'Chembur',type:'s'},
+  {lat:19.0735,lng:72.9988,name:'Vashi',type:'s'},
+  {lat:19.0328,lng:73.0297,name:'Navi Mumbai',type:'s'}
+ ]
+};
+function hereSegment(p){return `${p.lat},${p.lng},${encodeURIComponent(p.name||'')},${p.type||'s'}`}
+function buildHereRoute(points,origin='mylocation',mode='d'){return 'https://share.here.com/r/'+[origin,...points.map(hereSegment)].join('/')+'?m='+mode}
+function openTripNavigation(route){const points=hereRoutes[route]||hereRoutes['Bandra → BKC'];location.href=buildHereRoute(points)}
+function openBusLocation(){
+ const bus=busLastLocation[app.day]||busLastLocation.tomorrow;
+ if(!bus)return toast(tUI('Bus location is unavailable'));
+ if(bus.updatedMinutes>15)return openDialog(`<div class="dialogWrap"><h2>${tUI('Bus location is old')}</h2><p>${tUI('The last GPS update is too old to navigate reliably. Call the DM team for help.')}</p><button class="btn primary full" data-call-dm>${tUI('Call DM team')}</button><button class="btn secondary full" style="margin-top:7px" id="closeOldBus">${tUI('Cancel')}</button></div>`),bindCommonActions(),$('#closeOldBus').onclick=closeDialog;
+ const dest={lat:bus.lat,lng:bus.lng,name:'Bus '+bus.busNo,type:'s'};
+ const fallback=buildHereRoute([dest],'mylocation','w');
+ if(!navigator.geolocation){location.href=fallback;return}
+ navigator.geolocation.getCurrentPosition(
+  pos=>{const origin=`${pos.coords.latitude},${pos.coords.longitude},My%20location,s`;location.href=buildHereRoute([dest],origin,'w')},
+  ()=>{toast(tUI('Location access is off. HERE will ask for your location.'));setTimeout(()=>location.href=fallback,250)},
+  {enableHighAccuracy:true,timeout:6000,maximumAge:30000}
+ );
+}
+function callDm(){location.href='tel:'+DM_SUPPORT_NUMBER}
+function bindCommonActions(){$('[data-call-dm]').forEach(b=>b.onclick=callDm)}
 const trips={
  tomorrow:[
   {time:'06:40',route:'Navi Mumbai → BKC',bus:'Bus MH01 EV 1402',busNo:'MH01 EV 1402',detail:'06:40 → 07:55 AM · 1h 15m'},
@@ -252,37 +301,75 @@ const HI_DUTY={
  'Your duty has changed':'आपकी ड्यूटी बदल गई है','Trips were updated. Review the changes below and confirm again.':'ट्रिप में बदलाव हुआ है। नीचे बदलाव देखकर फिर से पुष्टि करें।',
  'No duty for today':'आज कोई ड्यूटी नहीं है','Refresh':'रिफ्रेश'
 };
-function tDuty(s){return app.lang==='hi'?(HI_DUTY[s]||s):s}
+const MR_DUTY={
+ 'Duty':'ड्युटी','Report':'रिपोर्ट','Today, 24 Sept':'आज, 24 सप्टेंबर','Tomorrow, 25 Sept':'उद्या, 25 सप्टेंबर',
+ 'Response needed':'उत्तर द्या','Confirmed':'पुष्टी झाली','Declined':'नकार दिला','Running late':'उशीर होईल','No response':'उत्तर नाही','On duty':'ड्युटीवर',
+ 'Report at':'रिपोर्टिंग वेळ','Bus':'बस','Buses':'बसेस','Trips':'ट्रिप्स','Charging halt':'चार्जिंग हॉल्ट','Night halt':'नाईट हॉल्ट',
+ 'Can you do this duty?':'तुम्ही ही ड्युटी करू शकता का?','I can do this duty':'मी ही ड्युटी करू शकतो','I can’t do this duty':'मी ही ड्युटी करू शकत नाही',
+ 'You’re confirmed':'तुमची ड्युटी कन्फर्म आहे','You’re confirmed for today':'आजची ड्युटी कन्फर्म आहे','Change response':'उत्तर बदला',
+ 'You have declined this duty':'तुम्ही ही ड्युटी नाकारली आहे','Call duty manager':'ड्युटी मॅनेजरला कॉल करा',
+ 'Can you do the updated duty?':'बदललेली ड्युटी करू शकता का?','Response time is over':'उत्तर देण्याची वेळ संपली',
+ 'Your duty has changed':'तुमची ड्युटी बदलली आहे','No duty for today':'आज ड्युटी नाही','Refresh':'रिफ्रेश','I’m on time now':'आता मी वेळेवर आहे'
+};
+function tDuty(s){if(app.lang==='hi')return HI_DUTY[s]||s;if(app.lang==='mr')return MR_DUTY[s]||s;return s}
 function dutyBuses(day){return [...new Set(trips[day].filter(x=>!x.kind).map(x=>x.busNo).filter(Boolean))]}
 function dutySummary(day,state){
  let status=['pending','changed'].includes(state)?['Response needed','orange']:state==='confirmed'?['Confirmed','green']:state==='declined'?['Declined','red']:state==='delay'?['Running late','yellow']:state==='over'?['No response','red']:state==='progress'?['On duty','blue']:['Confirmed','green'];
- let report=day==='tomorrow'?'06:15 AM':'06:30 AM';let depot=day==='tomorrow'?'Taloja Depot':'Marol Depot';if(state==='delay')report='06:30 AM';if(day==='today'&&state==='confirmed')report='06:30 AM';
+ let report=day==='tomorrow'?'06:15 AM':'06:30 AM';
  const buses=dutyBuses(day);
- return `<div class="card dutySummary"><span class="status ${status[1]}">${tDuty(status[0])}</span><div class="summaryGrid"><div><div class="label">${tDuty('Report at')}</div><div class="summaryValue">${report}</div></div><div><div class="label">${tDuty('Depot')}</div><div class="summaryValue">${depot}</div></div><div><div class="label">${tDuty(buses.length>1?'Buses':'Bus')}</div><div class="summaryValue">${buses.join('<br>')}</div></div></div></div>`}
+ return `<div class="card dutySummary"><span class="status ${status[1]}">${tDuty(status[0])}</span><div class="summaryGrid"><div><div class="label">${tDuty('Report at')}</div><div class="summaryValue">${report}</div></div><div><div class="label">${tDuty(buses.length>1?'Buses':'Bus')}</div><div class="summaryValue">${buses.join('<br>')}</div></div></div><div class="dutyTool"><button class="toolBtn" id="locateBusBtn">${svg('bus',18)}<span>${tUI('Find my bus')}</span></button></div></div>`}
 function tripList(day){
  const list=trips[day],tripCount=list.filter(x=>!x.kind).length,buses=dutyBuses(day);
  return `<div class="card tripCard"><div class="tripHeader"><b>${tDuty('Trips')}</b><span>${tripCount} ${app.lang==='hi'?'ट्रिप':'trips'} · ${buses.length} ${app.lang==='hi'?'बस':(buses.length===1?'bus':'buses')}</span></div>${list.map((x,i)=>{
    if(x.kind==='charging')return `<div class="opsRow"><div class="opsIcon">⚡</div><div><div class="opsTitle">${tDuty('Charging halt')}</div><div class="opsMeta">${x.location} · ${x.busNo}</div></div></div>`;
    if(x.kind==='final')return `<div class="opsRow final"><div class="opsIcon">■</div><div><div class="opsTitle">${tDuty('Night halt')}</div><div class="opsMeta">${x.location} · ${x.busNo}</div></div></div>`;
-   return `<div class="tripRow" data-trip="${i}"><div class="tripTime">${x.time}</div><div><div class="tripRoute">${x.route}</div><div class="tripMeta">${x.bus}</div></div><button class="routeAction" data-open-route="${i}" aria-label="Open route">${svg('route',20)}</button></div>`;
+   return `<div class="tripRow" data-trip="${i}"><div class="tripTime">${x.time}</div><div><div class="tripRoute">${x.route}</div><div class="tripMeta">${x.bus}</div></div><button class="routeAction" data-open-route="${i}" aria-label="Navigate">${tUI('Navigate')}</button></div>`;
  }).join('')}</div>`}
-function renderDuty(){const day=app.day,state=getDutyState(day);let html=`<div class="dateTabs"><button class="dateTab ${day==='today'?'on':''}" data-day="today">${tDuty('Today, 24 Sept')}</button><button class="dateTab ${day==='tomorrow'?'on':''}" data-day="tomorrow">${tDuty('Tomorrow, 25 Sept')}</button></div>`;
- if(state==='none'&&day==='today'){html+=`<div class="card emptyDuty"><div class="busIllustration">🚌</div><h3>${tDuty('No duty for today')}</h3><p>${app.lang==='hi'?'ड्यूटी मिलते ही हम आपको सूचित करेंगे। आने वाली ड्यूटी के लिए कल वाला टैब देखें।':'We’ll notify you as soon as a duty is assigned. Check tomorrow’s tab for upcoming duty.'}</p><div class="updatedLine">↻ ${app.lang==='hi'?'अपडेट 05:40 AM':'Updated 05:40 AM'}</div><button class="refreshLink" id="refreshDuty">${tDuty('Refresh')}</button></div>`;$('#dutyRoot').innerHTML=html;applyLanguageToRoot($('#dutyRoot'));bindDuty();return}
- if(state==='changed')html+=`<div class="card noticeCard change"><div class="icon">${svg('refresh',20)}</div><div><b>${tDuty('Your duty has changed')}</b><p>${app.lang==='hi'?'2 ट्रिप 10:42 PM पर बदली गईं। नीचे बदलाव देखकर फिर से पुष्टि करें।':'2 trips were updated at 10:42 PM. Review the changes below and confirm again.'}</p></div></div>`;
+function renderDuty(){
+ const day=app.day,state=getDutyState(day);
+ let html=`<div class="dateTabs"><button class="dateTab ${day==='today'?'on':''}" data-day="today">${tDuty('Today, 24 Sept')}</button><button class="dateTab ${day==='tomorrow'?'on':''}" data-day="tomorrow">${tDuty('Tomorrow, 25 Sept')}</button></div>`;
+ if(state==='none'&&day==='today'){html+=`<div class="card emptyDuty"><div class="busIllustration">🚌</div><h3>${tDuty('No duty for today')}</h3><p>${tUI('Your duty will appear here once it is allocated.')}</p><button class="refreshLink" id="refreshDuty">${tDuty('Refresh')}</button></div>`;$('#dutyRoot').innerHTML=html;applyLanguageToRoot($('#dutyRoot'));bindDuty();return}
+ if(state==='changed')html+=`<div class="card noticeCard change"><div class="icon">${svg('refresh',20)}</div><div><b>${tDuty('Your duty has changed')}</b><p>${tUI('Review the updated trips and confirm again.')}</p></div></div>`;
  html+=dutySummary(day,state);
- if(state==='pending')html+=`<div class="card responseCard"><h3>${tDuty('Can you do this duty?')}</h3><p>${app.lang==='hi'?'11:12 PM तक जवाब दें':'Respond by 11:12 PM'}</p><div class="stack" style="gap:8px"><button class="btn primary full" id="acceptDuty">${tDuty('I can do this duty')}</button><button class="btn secondary full" id="declineDuty">${tDuty('I can’t do this duty')}</button></div></div>`;
- if(state==='confirmed')html+=`<div class="card responseCard"><h3>${tDuty(day==='today'?'You’re confirmed for today':'You’re confirmed')}</h3><p>${app.lang==='hi'?(day==='tomorrow'?'आप इसे 05:15 AM तक बदल सकते हैं।':'06:30 AM तक Marol Depot पहुँचें'):(day==='tomorrow'?'You can change this until 05:15 AM.':'Reach Marol Depot by 06:30 AM')}</p><button class="btn secondary full" id="changeResponse">${tDuty('Change response')}</button>${day==='today'?`<button class="btn secondary full singleAction" id="runningLate">${tDuty('Running late')}</button>`:''}</div>`;
- if(state==='delay')html+=`<div class="card responseCard"><h3>Reaching by 06:${30+app.delay<60?String(30+app.delay).padStart(2,'0'):'45'} AM</h3><div class="lateInfo">${app.delay} min delay shared with Duty Manager at 05:52 AM. If your trips change, we’ll notify you.</div><div class="stack" style="gap:7px;margin-top:10px"><button class="btn secondary full" id="changeDelay">Change delay</button><button class="btn secondary full" id="onTimeNow">I’m on time now</button></div></div>`;
- if(state==='declined')html+=`<div class="card responseCard"><h3>${tDuty('You have declined this duty')}</h3><p>${app.lang==='hi'?'कारण · छुट्टी':'Reason · Leave'}</p><button class="btn secondary full" onclick="location.href='tel:9876543210'">${tDuty('Call duty manager')}</button><button class="btn secondary full singleAction" id="changeResponse">${tDuty('Change response')}</button></div>`;
- if(state==='changed')html+=`<div class="card responseCard"><h3>${tDuty('Can you do the updated duty?')}</h3><p>${app.lang==='hi'?'11:12 PM तक जवाब दें':'Respond by 11:12 PM'}</p><div class="stack" style="gap:8px"><button class="btn primary full" id="acceptDuty">${tDuty('I can do this duty')}</button><button class="btn secondary full" id="declineDuty">${tDuty('I can’t do this duty')}</button></div></div>`;
- if(state==='over')html+=`<div class="card responseCard"><h3>${tDuty('Response time is over')}</h3><p>${app.lang==='hi'?'आपने 11:12 PM तक जवाब नहीं दिया। ड्यूटी करने की पुष्टि के लिए Duty Manager को कॉल करें।':'You didn’t respond by 11:12 PM. Call your Duty Manager to confirm whether you can do this duty.'}</p><button class="btn primary full" onclick="location.href='tel:9876543210'">${tDuty('Call duty manager')}</button></div>`;
- html+=tripList(day);$('#dutyRoot').innerHTML=html;applyLanguageToRoot($('#dutyRoot'));bindDuty();}
-function bindDuty(){$$('[data-day]').forEach(b=>b.onclick=()=>{app.day=b.dataset.day;persist();renderDuty()});const a=$('#acceptDuty');if(a)a.onclick=()=>{setDutyState('confirmed');renderDuty()};const d=$('#declineDuty');if(d)d.onclick=openDeclineSheet;const c=$('#changeResponse');if(c)c.onclick=()=>{setDutyState('pending');renderDuty()};const r=$('#runningLate');if(r)r.onclick=openDelaySheet;const cd=$('#changeDelay');if(cd)cd.onclick=openDelaySheet;const ot=$('#onTimeNow');if(ot)ot.onclick=()=>{setDutyState('confirmed');renderDuty()};$$('[data-trip]').forEach(row=>{row.onclick=e=>{if(e.target.closest('[data-open-route]'))return;const i=Number(row.dataset.trip);if(i===0&&!trips[app.day][i].kind)openTripDetails(app.day,i)}});$$('[data-open-route]').forEach(b=>b.onclick=e=>{e.stopPropagation();location.href='chalo://tracking/route?routeId=fqCvFUFQ'});const rf=$('#refreshDuty');if(rf)rf.onclick=()=>toast('Duty refreshed')}
+ if(state==='pending')html+=`<div class="card responseCard"><h3>${tDuty('Can you do this duty?')}</h3><p>${tUI('Please confirm after reviewing all trips.')}</p><div class="stack" style="gap:8px"><button class="btn primary full" id="acceptDuty">${tDuty('I can do this duty')}</button><button class="btn secondary full" id="declineDuty">${tDuty('I can’t do this duty')}</button></div></div>`;
+ if(state==='confirmed')html+=`<div class="card responseCard"><h3>${tDuty(day==='today'?'You’re confirmed for today':'You’re confirmed')}</h3><button class="btn secondary full" id="changeResponse">${tDuty('Change response')}</button>${day==='today'?`<div class="voiceLateBox"><b>${tUI('Running late?')}</b><p>${tUI('Tell us by voice or choose the delay.')}</p><button class="btn primary full voicePrimary" id="voiceLateBtn">${svg('complaint',18)}<span>${tUI('Tell by voice')}</span></button><button class="btn secondary full singleAction" id="runningLate">${tUI('Choose delay')}</button></div>`:''}</div>`;
+ if(state==='delay'){const arrival=expectedArrival(app.delay);html+=`<div class="card responseCard"><h3>${tUI('Expected arrival')}: ${arrival}</h3><div class="lateInfo">${app.delay} ${tUI('min delay shared with DM team')}. ${tUI('We will notify you if your duty changes.')}</div><div class="stack" style="gap:7px;margin-top:10px"><button class="btn primary full voicePrimary" id="voiceLateBtn">${svg('complaint',18)}<span>${tUI('Update by voice')}</span></button><button class="btn secondary full" id="changeDelay">${tUI('Choose delay')}</button><button class="btn secondary full" id="onTimeNow">${tDuty('I’m on time now')}</button></div></div>`}
+ if(state==='declined')html+=`<div class="card responseCard"><h3>${tDuty('You have declined this duty')}</h3><p>${tUI('The DM team has been informed.')}</p><button class="btn secondary full" data-call-dm>${tUI('Call DM team')}</button><button class="btn secondary full singleAction" id="changeResponse">${tDuty('Change response')}</button></div>`;
+ if(state==='changed')html+=`<div class="card responseCard"><h3>${tDuty('Can you do the updated duty?')}</h3><div class="stack" style="gap:8px"><button class="btn primary full" id="acceptDuty">${tDuty('I can do this duty')}</button><button class="btn secondary full" id="declineDuty">${tDuty('I can’t do this duty')}</button></div></div>`;
+ if(state==='over')html+=`<div class="card responseCard"><h3>${tDuty('Response time is over')}</h3><p>${tUI('Call the DM team to confirm your availability.')}</p><button class="btn primary full" data-call-dm>${tUI('Call DM team')}</button></div>`;
+ html+=tripList(day);$('#dutyRoot').innerHTML=html;applyLanguageToRoot($('#dutyRoot'));hydrateIcons();bindDuty();bindCommonActions()
+}
+function bindDuty(){
+ $$('[data-day]').forEach(b=>b.onclick=()=>{app.day=b.dataset.day;persist();renderDuty()});
+ const a=$('#acceptDuty');if(a)a.onclick=()=>{setDutyState('confirmed');renderDuty()};
+ const d=$('#declineDuty');if(d)d.onclick=openDeclineSheet;
+ const ch=$('#changeResponse');if(ch)ch.onclick=()=>{setDutyState('pending');renderDuty()};
+ const r=$('#runningLate');if(r)r.onclick=openDelaySheet;
+ const vr=$('#voiceLateBtn');if(vr)vr.onclick=openVoiceLateSheet;
+ const cd=$('#changeDelay');if(cd)cd.onclick=openDelaySheet;
+ const ot=$('#onTimeNow');if(ot)ot.onclick=()=>{setDutyState('confirmed');renderDuty()};
+ const lb=$('#locateBusBtn');if(lb)lb.onclick=openBusLocation;
+ $$('[data-open-route]').forEach(b=>b.onclick=e=>{e.stopPropagation();const row=b.closest('[data-trip]');const i=Number(row?.dataset.trip);const trip=trips[app.day][i];if(trip&&!trip.kind)openTripNavigation(trip.route)});
+ const rf=$('#refreshDuty');if(rf)rf.onclick=()=>toast(tUI('Duty refreshed'))
+}
+function expectedArrival(delay){const base=390,total=base+Number(delay||0),h=Math.floor(total/60)%24,m=total%60;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+' AM'}
+function openVoiceLateSheet(){
+ let recorder=null,chunks=[],capturedDelay=null;
+ openSheet(`<div class="voiceCapture"><h2>${tUI('Tell us how late you will be')}</h2><p>${tUI('Example: I will be 20 minutes late.')}</p><button class="voiceOrb" id="lateMic">●</button><div id="lateVoiceState" class="helper">${tUI('Tap the microphone and speak')}</div><div id="lateVoiceResult" style="display:none"></div><button class="btn primary full" id="confirmVoiceLate" disabled>${tUI('Confirm delay')}</button><button class="btn secondary full" style="margin-top:7px" id="useTapDelay">${tUI('Choose delay instead')}</button></div>`);
+ const mic=$('#lateMic'),state=$('#lateVoiceState'),result=$('#lateVoiceResult'),confirm=$('#confirmVoiceLate');
+ const finish=(text,mins)=>{capturedDelay=mins;state.textContent=tUI('Voice captured');result.style.display='block';result.className='voiceResult';result.innerHTML=`<b>${tUI('You said')}</b><p>${text}</p><b style="display:block;margin-top:7px">${tUI('Expected delay')}: ${mins} min</b>`;confirm.disabled=false;mic.classList.remove('recording')};
+ mic.onclick=async()=>{
+  if(recorder&&recorder.state==='recording'){recorder.stop();return}
+  try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};recorder.onstop=()=>{stream.getTracks().forEach(t=>t.stop());finish(app.lang==='hi'?'मैं 20 मिनट लेट पहुंचूंगा':app.lang==='mr'?'मी 20 मिनिटे उशिरा पोहोचेन':'I will be 20 minutes late',20)};recorder.start();mic.classList.add('recording');state.textContent=tUI('Listening… tap again to stop')}catch(e){toast(tUI('Microphone access is needed'))}
+ };
+ confirm.onclick=()=>{if(!capturedDelay)return;app.delay=capturedDelay;persist();setDutyState('delay');closeSheet();renderDuty()};
+ $('#useTapDelay').onclick=()=>{closeSheet();openDelaySheet()}
+}
 function openDeclineSheet(){openSheet(`<h2>Why can’t you do this duty?</h2><p>Our Duty Manager will use this right away and arrange another driver.</p><label class="sheetChoice"><input type="radio" name="reason" value="Leave"> Leave</label><label class="sheetChoice"><input type="radio" name="reason" value="Unwell"> Unwell</label><label class="sheetChoice"><input type="radio" name="reason" value="Family emergency"> Family emergency</label><label class="sheetChoice"><input type="radio" name="reason" value="Other"> Other</label><button class="btn primary full" id="submitDecline">Submit</button><button class="btn secondary full" style="margin-top:7px" id="cancelDecline">Cancel</button>`);$('#submitDecline').onclick=()=>{if(!$('input[name=reason]:checked'))return toast('Choose a reason');setDutyState('declined');closeSheet();renderDuty()};$('#cancelDecline').onclick=closeSheet}
 function openDelaySheet(){
  const opts=[10,20,30,45],isChanging=getDutyState()==='delay';
  let selected=isChanging?app.delay:null,otherSelected=isChanging&&!opts.includes(app.delay);
- const arrival=n=>{const total=390+n,h=Math.floor(total/60),m=total%60;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+' AM'};
+ const arrival=n=>expectedArrival(n);
  openSheet(`<h2>How late will you be?</h2><div class="delayGrid">${opts.map(n=>`<button class="delayOpt ${selected===n?'on':''}" data-delay="${n}">+${n} min<span>${arrival(n)}</span></button>`).join('')}<button class="delayOpt ${otherSelected?'on':''}" id="otherDelay">Other<span>Enter minutes</span></button></div><div id="customDelayWrap" style="display:${otherSelected?'block':'none'};margin:8px 0 10px"><div class="formLabel">Delay in minutes</div><input class="fieldBox" id="customDelayInput" type="number" inputmode="numeric" min="1" max="180" placeholder="${app.lang==='hi'?'मिनट दर्ज करें':'Enter minutes'}" value="${otherSelected?app.delay:''}"><div class="errorText" id="delayError" style="display:none"></div></div><button class="btn primary full" id="submitDelay" ${selected===null?'disabled':''}>Submit</button><button class="btn secondary full" style="margin-top:7px" id="cancelDelay">Cancel</button>`);
  const submit=$('#submitDelay'),wrap=$('#customDelayWrap'),input=$('#customDelayInput'),err=$('#delayError');
  const clearSelection=()=>$('.delayOpt').forEach(x=>x.classList.remove('on'));
@@ -294,54 +381,57 @@ function openDelaySheet(){
 }
 function openTripDetails(day,index){const t=trips[day][index];$('#subRoot').innerHTML=`<div class="backRow"><button class="backBtn" id="subBack">‹</button><div class="backTitle">Trip details</div></div><div class="pagePad"><div class="card cardPad"><div class="sectionLabel">${t.route}</div><div class="small" style="margin-top:6px">◷ ${t.detail||'06:40 → 07:55 AM · 1h 15m'}</div><div class="small" style="margin-top:4px">▣ ${t.bus.split('·')[0].trim()}</div></div><div class="card cardPad" style="margin-top:10px"><div class="row between"><b class="sectionLabel">Stops</b><span class="tiny muted">8 stops · 24 km</span></div>${[['Taloja Depot','06:40'],['Kharghar Sec 12','06:52'],['Belapur CBD','07:02'],['Vashi Plaza','07:18'],['Sanpada','07:24'],['Chembur','07:38'],['Kurla West','07:46'],['BKC','07:55']].map((s,i)=>`<div class="recentRow"><div class="row" style="gap:8px"><span class="tiny" style="color:${i===0||i===7?'var(--orange)':'#999'}">${i+1}</span><b>${s[0]}</b></div><span>${s[1]}</span></div>`).join('')}</div></div>`;showScreen('subScreen');applyLanguageToRoot($('#subRoot'));$('#subBack').onclick=()=>setTab('duty')}
 
-const reportDefs={bus:{title:'Bus issue',entity:'Bus',entityVal:'MH01 EV 1402',helper:'',issues:['AC not working','Tyre','Brakes','Breakdown','Doors or windows','Other']},route:{title:'Route issue',entity:'Trip',entityVal:'09:20 · BKC → Thane',helper:'Your current trip · tap to change',issues:['Road closed','Heavy traffic','Diversion','Stop skipped','Running early','Other']},duty:{title:'Duty issue',entity:'Duty',entityVal:'Today · Thu, 24 Sep',helper:'Today’s duty · tap to change',issues:['Duty too long','No break given','Roster doesn’t match','Other']},etim:{title:'ETIM issue',entity:'ETIM',entityVal:'ETIM-2041',helper:'Linked to bus MH01 EV 1402',issues:["Can’t log in",'Ticket not printing','Out of paper','Device won’t start','Other']}};
-function renderReport(){if(app.reportMode==='home')renderReportHome();else if(app.reportMode==='sent')renderReportSent();else if(app.reportMode==='detail')renderReportDetail();else renderReportForm(app.reportMode);applyLanguageToRoot($('#reportRoot'))}
-function renderReportHome(){$('#reportRoot').innerHTML=`<div class="card reportList"><div class="reportListTitle">What do you want to report?</div>${[['bus','tool','Bus issue','AC, tyre, brakes, breakdown'],['route','route','Route issue','Road closed, diversion, stop skipped'],['duty','calendar','Duty issue','Long duty, no break, roster mismatch'],['etim','ticket','ETIM issue','Login, ticketing, printer']].map(x=>`<button class="reportChoice" data-report-type="${x[0]}"><div class="iconCircle">${svg(x[1],17)}</div><div><b>${x[2]}</b><span>${x[3]}</span></div><div class="chev">›</div></button>`).join('')}</div><div class="card recentCard"><div class="recentHead"><b>My recent reports</b><button id="seeAllReports">See all</button></div>${[['RI-3136 · ETIM issue','Printer not working · 2 min ago'],['RI-3047 · Bus issue','AC not working · MH01 EV 1402'],['RI-3019 · Route issue','Early arrival · Taloja → BKC']].map((r,i)=>`<div class="recentRow" data-recent="${i}"><div><b>${r[0]}</b><span>${r[1]}</span></div><div class="chev">›</div></div>`).join('')}</div>`;$$('[data-report-type]').forEach(b=>b.onclick=()=>{app.reportMode=b.dataset.reportType;renderReport()});$$('[data-recent]').forEach(r=>r.onclick=()=>{app.reportMode='detail';renderReport()})}
-function renderReportForm(type){
- const d=reportDefs[type];
- let attachments=[],voiceBlob=null,mediaRecorder=null,audioChunks=[];
- $('#reportRoot').innerHTML=`<div class="backRow" style="padding:0 0 8px"><button class="backBtn" id="reportBack">‹</button><div class="backTitle">${d.title}</div></div><div class="card formCard"><div class="formLabel">${d.entity}</div><input class="fieldBox readonly" value="${d.entityVal}" readonly><div class="helper">${d.helper}</div><div class="formLabel" style="font-size:12px;margin-top:13px">What’s the issue?</div><div id="formError" class="errorText" style="display:none"></div><div class="radioList">${d.issues.map(x=>`<label class="radioLine"><input type="radio" name="issue" value="${x}"> ${x}</label>`).join('')}</div><div class="attachBlock"><div class="attachTitle">Add supporting media</div><div class="attachHelper">Optional for most issues. You can add a photo/video or voice note.</div><div class="requiredNote" id="otherRequired">For Other, add at least one photo/video or voice note.</div><div class="attachActions"><button type="button" class="attachBtn" id="galleryBtn">▧<span>Gallery</span></button><button type="button" class="attachBtn" id="cameraBtn">▣<span>Camera</span></button><button type="button" class="attachBtn" id="voiceBtn">●<span>Voice note</span></button></div><input id="galleryInput" type="file" accept="image/*,video/*" multiple hidden><input id="cameraInput" type="file" accept="image/*,video/*" capture="environment" hidden><div class="attachStatus" id="attachStatus">No media attached</div></div><div class="formBottom"><button class="btn primary full" id="submitReport" disabled>Submit report</button></div></div>`;
- const selectedIssue=()=>{const x=$('input[name=issue]:checked');return x?x.value:null};
- const hasEvidence=()=>attachments.length>0||!!voiceBlob;
- const renderAttachments=()=>{
-   const bits=attachments.map(f=>`<span class="attachChip">✓ <span>${f.name||'Media attached'}</span></span>`);
-   if(voiceBlob)bits.push('<span class="attachChip">🎙 <span>Voice note recorded</span></span>');
-   $('#attachStatus').innerHTML=bits.length?bits.join(''):'No media attached';
-   validate(false);
- };
- const validate=(showError=true)=>{
-   const issue=selectedIssue(),other=issue==='Other';
-   $('#otherRequired').style.display=other?'block':'none';
-   let msg='';
-   if(!issue)msg='Choose an issue to continue';
-   else if(other&&!hasEvidence())msg='Add a photo/video or voice note for Other';
-   $('#submitReport').disabled=!!msg;
-   if(showError&&msg){$('#formError').textContent=msg;$('#formError').style.display='block'}else{$('#formError').style.display='none'}
-   return !msg;
- };
- $('#reportBack').onclick=()=>{if(mediaRecorder&&mediaRecorder.state==='recording')mediaRecorder.stop();app.reportMode='home';renderReport()};
- $$('input[name=issue]').forEach(r=>r.onchange=()=>validate(false));
- $('#galleryBtn').onclick=()=>$('#galleryInput').click();
- $('#cameraBtn').onclick=()=>$('#cameraInput').click();
- $('#galleryInput').onchange=e=>{attachments.push(...Array.from(e.target.files||[]));renderAttachments()};
- $('#cameraInput').onchange=e=>{attachments.push(...Array.from(e.target.files||[]));renderAttachments()};
- $('#voiceBtn').onclick=async()=>{
-   if(mediaRecorder&&mediaRecorder.state==='recording'){mediaRecorder.stop();return}
-   try{
-     const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-     audioChunks=[];
-     mediaRecorder=new MediaRecorder(stream);
-     mediaRecorder.ondataavailable=e=>{if(e.data&&e.data.size)audioChunks.push(e.data)};
-     mediaRecorder.onstop=()=>{voiceBlob=new Blob(audioChunks,{type:mediaRecorder.mimeType||'audio/webm'});stream.getTracks().forEach(t=>t.stop());$('#voiceBtn').classList.remove('recording');$('#voiceBtn').innerHTML='●<span>Voice note</span>';renderAttachments()};
-     mediaRecorder.start();
-     $('#voiceBtn').classList.add('recording');$('#voiceBtn').innerHTML='■<span>Stop recording</span>';
-   }catch(e){console.error(e);toast('Microphone access is needed for a voice note')}
- };
- $('#submitReport').onclick=()=>{if(!validate(true))return;app.reportMode='sent';app.lastReportType=type;renderReport()};
- applyLanguageToRoot($('#reportRoot'));
+const BUS_ISSUES=['AC','Door','Brakes','Tyre','Steering','Water leakage','Cleanliness / cabin'];
+function classifyBusIssue(text){
+ const s=(text||'').toLowerCase();
+ if(/\bac\b|air condition|एसी|ए.सी|एअर/.test(s))return 'AC';
+ if(/door|दरवाज|दार/.test(s))return 'Door';
+ if(/brake|ब्रेक/.test(s))return 'Brakes';
+ if(/tyre|tire|टायर/.test(s))return 'Tyre';
+ if(/steer|स्टीयर/.test(s))return 'Steering';
+ if(/water|leak|पानी|पाणी|लीक/.test(s))return 'Water leakage';
+ if(/clean|cabin|साफ|स्वच्छ|केबिन/.test(s))return 'Cleanliness / cabin';
+ return null
 }
-function renderReportSent(){const team=app.lastReportType==='bus'?'Maintenance team':app.lastReportType==='route'?'Planning team':app.lastReportType==='duty'?'Duty Manager team':'ETIM support team';$('#reportRoot').innerHTML=`<div class="card reportSent"><div class="sentIllustration">🙋‍♂️</div><h2>Report sent</h2><p>The ${team} will check this. You’ll get a notification when there’s an update.</p><span class="reference">Reference RI-3137</span></div><div class="card nextCard"><h3>What happens next</h3><div class="nextStep"><div class="stepNo">1</div><div><b>${team.replace(' team','')} reviews it</b><p>Usually within 2 hours</p></div></div><div class="nextStep"><div class="stepNo">2</div><div><b>You get an update</b><p>Here in My recent reports, and as a notification</p></div></div></div><button class="btn primary full" style="margin-top:11px" id="reportDone">Done</button><button class="btn link full" id="viewReport">View report</button>`;$('#reportDone').onclick=()=>{app.reportMode='home';renderReport()};$('#viewReport').onclick=()=>{app.reportMode='detail';renderReport()}}
-function renderReportDetail(){$('#reportRoot').innerHTML=`<div class="backRow" style="padding:0 0 8px"><button class="backBtn" id="reportDetailBack">‹</button><div class="backTitle">RI-3047</div></div><div class="card reportDetailCard"><div class="row between"><span class="tiny muted">Bus issue</span><span class="status yellow">In progress</span></div><div class="reportDetailTitle">AC not working</div><div class="reportMeta">Bus MH01 EV 1402 · Reported 24 Sep, 08:12</div><div class="photoRow"><div class="photoPlaceholder">${svg('camera',18)}</div><div class="photoPlaceholder">${svg('camera',18)}</div></div></div>`;$('#reportDetailBack').onclick=()=>{app.reportMode='home';renderReport()};hydrateIcons()}
+function renderReport(){if(app.reportMode==='sent')renderReportSent();else if(app.reportMode==='detail')renderReportDetail();else renderReportHome();applyLanguageToRoot($('#reportRoot'));hydrateIcons();bindCommonActions()}
+function renderReportHome(){
+ let selectedIssue=null,attachments=[],recorder=null,chunks=[];
+ $('#reportRoot').innerHTML=`<div class="card voiceHero"><div class="micCircle">${svg('complaint',25)}</div><h3>${tUI('Report a bus issue')}</h3><p>${tUI('Speak naturally. We will identify the issue category for you.')}</p><button class="btn primary full voicePrimary" id="reportVoiceBtn">${svg('complaint',18)}<span>${tUI('Describe issue by voice')}</span></button><div id="voiceTranscript" class="voiceTranscript" style="display:none"></div></div>
+ <div class="card issuePicker"><h3>${tUI('Or choose the issue')}</h3><div class="helperText">${tUI('Use this if you prefer tapping.')}</div><div class="issueGrid">${BUS_ISSUES.map(x=>`<button class="issueChip" data-issue="${x}">${x}</button>`).join('')}</div></div>
+ <div class="card mediaCard"><h3>${tUI('Add photo')}</h3><div class="helperText">${tUI('Optional. Add a useful photo from gallery or camera.')}</div><div class="mediaActions"><button class="mediaBtn" id="galleryBtn">▧ ${tUI('Gallery')}</button><button class="mediaBtn" id="cameraBtn">▣ ${tUI('Camera')}</button></div><input id="galleryInput" type="file" accept="image/*" multiple hidden><input id="cameraInput" type="file" accept="image/*" capture="environment" hidden><div class="attachStatus" id="attachStatus">${tUI('No photo attached')}</div></div>
+ <button class="btn primary full" style="height:48px;font-size:14px" id="submitBusIssue" disabled>${tUI('Submit issue')}</button>
+ <div class="card recentCard" style="margin-top:11px"><div class="recentHead"><b>${tUI('Recent bus issues')}</b></div>
+  <div class="recentRow" data-recent><div><b>SVK-4821 · AC</b><span>MH01 EV 1402 · 10:42 AM</span></div><span class="ticketStatus progress">${tUI('Being looked into')}</span></div>
+  <div class="recentRow"><div><b>SVK-4794 · Door</b><span>MH01 EV 1245 · Yesterday</span></div><span class="ticketStatus resolved">${tUI('Resolved')}</span></div>
+ </div>`;
+ const submit=$('#submitBusIssue'),transcript=$('#voiceTranscript'),voiceBtn=$('#reportVoiceBtn');
+ const selectIssue=issue=>{selectedIssue=issue;$$('[data-issue]').forEach(b=>b.classList.toggle('on',b.dataset.issue===issue));submit.disabled=!selectedIssue};
+ $$('[data-issue]').forEach(b=>b.onclick=()=>selectIssue(b.dataset.issue));
+ const renderFiles=()=>{$('#attachStatus').textContent=attachments.length?attachments.length+' '+tUI('photo attached')+(attachments.length>1?'s':''):tUI('No photo attached')};
+ $('#galleryBtn').onclick=()=>$('#galleryInput').click();$('#cameraBtn').onclick=()=>$('#cameraInput').click();
+ $('#galleryInput').onchange=e=>{attachments.push(...Array.from(e.target.files||[]));renderFiles()};
+ $('#cameraInput').onchange=e=>{attachments.push(...Array.from(e.target.files||[]));renderFiles()};
+ voiceBtn.onclick=async()=>{
+  if(recorder&&recorder.state==='recording'){recorder.stop();return}
+  try{
+   const stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};
+   recorder.onstop=()=>{stream.getTracks().forEach(t=>t.stop());voiceBtn.classList.remove('recording');voiceBtn.innerHTML=`${svg('complaint',18)}<span>${tUI('Describe issue by voice')}</span>`;const text=app.lang==='hi'?'बस का एसी ठंडा नहीं कर रहा है':app.lang==='mr'?'बसचा एसी थंड हवा देत नाही':'The bus AC is not cooling';const issue=classifyBusIssue(text)||'AC';selectIssue(issue);transcript.style.display='block';transcript.innerHTML=`<b>${tUI('Heard')}</b><div style="font-size:12px;margin-top:4px">${text}</div><span class="tag">${tUI('Categorized as')}: ${issue}</span>`};
+   recorder.start();voiceBtn.classList.add('recording');voiceBtn.innerHTML='■ '+tUI('Stop recording')
+  }catch(e){toast(tUI('Microphone access is needed'))}
+ };
+ submit.onclick=()=>{if(!selectedIssue)return;app.lastReportIssue=selectedIssue;app.reportMode='sent';persist();renderReport()};
+ $$('[data-recent]').forEach(r=>r.onclick=()=>{app.reportMode='detail';renderReport()});
+ applyLanguageToRoot($('#reportRoot'))
+}
+function renderReportSent(){
+ const issue=app.lastReportIssue||'AC';
+ $('#reportRoot').innerHTML=`<div class="card reportSent"><div class="sentIllustration">✓</div><h2>${tUI('Issue submitted')}</h2><p>${tUI('A Sevak ticket has been created and the DM team has been notified.')}</p><span class="reference">SVK-4827 · ${issue}</span></div><div class="card nextCard"><h3>${tUI('What happens next')}</h3><div class="nextStep"><div class="stepNo">1</div><div><b>${tUI('DM team reviews the ticket')}</b><p>${tUI('They can assign it to the maintenance team.')}</p></div></div><div class="nextStep"><div class="stepNo">2</div><div><b>${tUI('Maintenance updates the status')}</b><p>${tUI('Diagnosis, expected completion time and resolution are tracked in Sevak.')}</p></div></div></div><button class="btn primary full" style="margin-top:11px;height:46px" id="reportDone">${tUI('Done')}</button>`;
+ $('#reportDone').onclick=()=>{app.reportMode='home';renderReport()}
+}
+function renderReportDetail(){
+ $('#reportRoot').innerHTML=`<div class="backRow" style="padding:0 0 8px"><button class="backBtn" id="reportDetailBack">‹</button><div class="backTitle">SVK-4821</div></div><div class="card reportDetailCard"><div class="row between"><span class="tiny muted">${tUI('Bus issue')}</span><span class="ticketStatus progress">${tUI('Being looked into')}</span></div><div class="reportDetailTitle">AC</div><div class="reportMeta">MH01 EV 1402 · 10:42 AM</div><div class="voiceResult" style="margin-top:12px"><b>${tUI('Maintenance update')}</b><p>${tUI('Issue diagnosed. Expected completion by 4:30 PM.')}</p></div></div>`;
+ $('#reportDetailBack').onclick=()=>{app.reportMode='home';renderReport()}
+}
 
 function metricCard(id,icon,title,summary,statusClass,statusText,note,detail){return `<div class="card metricCard ${app.performanceOpen===id?'open':''}" data-metric-card="${id}"><button class="metricHead" data-metric="${id}"><div class="iconCircle">${svg(icon,17)}</div><div><b>${title}</b><span class="status ${statusClass}">${statusText}</span></div><span></span><span class="arrow">⌄</span></button><div class="metricDetail">${note?`<div class="metricNote">${note}</div>`:''}${detail}</div></div>`}
 function renderPerformance(){$('#performanceRoot').innerHTML=`<div class="card scoreCard"><div class="scorePeriod">Last 30 days</div><div class="scoreLine"><div class="scoreNum">82</div><div class="scoreDen">/100</div></div><div class="scoreTrend"><span class="status green">Good</span><span class="up">↗ Up 4 from August</span></div><button class="scoreHow" id="scoreHow">How is this calculated?</button></div>${metricCard('driving','performance','Driving feedback','A few opportunities to make rides smoother','green','Keep improving','You’re doing well overall. Smoother starts at signals can make the ride even more comfortable.',`<div class="kv"><span>Hard braking events</span><b>4 times</b></div><div class="kv"><span>Sudden acceleration events</span><b>7 times</b></div><div class="kv"><span>Avoidable idling</span><b>38 min a day</b></div><div class="kv"><span>Compared with similar-route drivers</span><b>Better than 62%</b></div>`)}${metricCard('punctuality','clock','Punctuality','46 of 50 trips on time','green','Good','',`<div class="kv"><span>Trips on time</span><b>46 of 50</b></div><div class="kv"><span>Late trips</span><b>4</b></div><div class="kv"><span>Average delay when late</span><b>5 min</b></div>`)}${metricCard('feedback','complaint','Customer feedback','14 responses · 12 positive','green','Good','Passenger feedback helps you understand what riders value and where the experience can improve.',`<div class="complaintItem"><b>12 Sep · Smooth driving</b><p>Marol → BKC · Bus MH01 EV 1245</p></div><div class="complaintItem"><b>03 Sep · Stop was missed</b><p>BKC → Thane · Bus MH01 EV 1245</p></div><button class="disputeBtn">View feedback details</button>`) }`;$$('[data-metric]').forEach(b=>b.onclick=()=>{app.performanceOpen=app.performanceOpen===b.dataset.metric?null:b.dataset.metric;persist();renderPerformance()});$('#scoreHow').onclick=openScoreSheet;applyLanguageToRoot($('#performanceRoot'))}
@@ -357,88 +447,68 @@ function openLicence(state){app.licenceState=state;persist();let body='';if(stat
  $('#subRoot').innerHTML=body;showScreen('subScreen');hydrateIcons();applyLanguageToRoot($('#subRoot'));$('#licBack').onclick=()=>setTab('more');if(state==='add'){let backAdded=false;$('#backPhoto').onclick=()=>{backAdded=true;$('#backPhoto').classList.add('added');$('#backPhoto').innerHTML='<span class="check">✓</span>Back added';$('#licContinue').disabled=false};$('#licContinue').onclick=()=>openLicence('details')}if(state==='details')$('#licSubmit').onclick=()=>{app.licenceState='verification';persist();openLicence('verification')};if(state==='rejected')$('#licAgain').onclick=()=>openLicence('add')}
 
 const HI_TEXT={
-  'Duty':'ड्यूटी','Report':'रिपोर्ट','Performance':'प्रदर्शन','More':'अन्य',
-  'Response needed':'जवाब दें','Confirmed':'पुष्टि हुई','Declined':'मना किया','Running late':'देरी होगी','No response':'जवाब नहीं','On duty':'ड्यूटी पर',
-  'Report at':'रिपोर्टिंग समय','Depot':'डिपो','Bus':'बस','Buses':'बसें','Trips':'ट्रिप्स',
-  'Charging halt':'चार्जिंग हॉल्ट','Night halt':'नाइट हॉल्ट',
-  'Can you do this duty?':'क्या आप यह ड्यूटी कर सकते हैं?','I can do this duty':'मैं यह ड्यूटी कर सकता हूँ','I can’t do this duty':'मैं यह ड्यूटी नहीं कर सकता',
-  'You’re confirmed':'आपकी ड्यूटी कन्फर्म है','You’re confirmed for today':'आज की ड्यूटी कन्फर्म है','Change response':'जवाब बदलें',
-  'You have declined this duty':'आपने यह ड्यूटी मना की है','Call duty manager':'ड्यूटी मैनेजर को कॉल करें',
-  'Can you do the updated duty?':'क्या आप बदली हुई ड्यूटी कर सकते हैं?','Response time is over':'जवाब देने का समय खत्म हो गया',
-  'Your duty has changed':'आपकी ड्यूटी बदल गई है','No duty for today':'आज कोई ड्यूटी नहीं है','Refresh':'रिफ्रेश',
-  'Reaching by':'पहुंचने का समय','Change delay':'देरी बदलें','I’m on time now':'अब मैं समय पर हूँ',
-  'Why can’t you do this duty?':'आप यह ड्यूटी क्यों नहीं कर सकते?','Leave':'छुट्टी','Unwell':'तबीयत खराब','Family emergency':'पारिवारिक आपातस्थिति','Other':'अन्य','Submit':'सबमिट करें','Cancel':'रद्द करें',
-  'How late will you be?':'आप कितनी देर से पहुंचेंगे?','Delay in minutes':'देरी (मिनट में)','Enter minutes':'मिनट दर्ज करें',
-  'Breakdown or accident?':'ब्रेकडाउन या दुर्घटना?','Stop safely, then call Control Room right away.':'सुरक्षित जगह पर बस रोकें और तुरंत कंट्रोल रूम को कॉल करें।','Call control room':'कंट्रोल रूम को कॉल करें',
-  'What do you want to report?':'आप क्या रिपोर्ट करना चाहते हैं?','Bus issue':'बस की समस्या','AC, tyre, brakes, breakdown':'AC, टायर, ब्रेक, ब्रेकडाउन',
-  'Route issue':'रूट की समस्या','Road closed, diversion, stop skipped':'सड़क बंद, डायवर्जन, स्टॉप छूटा','Duty issue':'ड्यूटी की समस्या','Long duty, no break, roster mismatch':'लंबी ड्यूटी, ब्रेक नहीं, रोस्टर गलत',
-  'ETIM issue':'ETIM की समस्या','Login, ticketing, printer':'लॉगिन, टिकटिंग, प्रिंटर','My recent reports':'मेरी हाल की रिपोर्ट','See all':'सभी देखें',
-  'What’s the issue?':'समस्या क्या है?','Choose an issue to continue':'आगे बढ़ने के लिए समस्या चुनें','Add supporting media':'सहायक मीडिया जोड़ें','Optional for most issues. You can add a photo/video or voice note.':'अधिकांश समस्याओं के लिए वैकल्पिक। आप फोटो/वीडियो या वॉइस नोट जोड़ सकते हैं।','For Other, add at least one photo/video or voice note.':'अन्य के लिए कम से कम एक फोटो/वीडियो या वॉइस नोट जोड़ें।','Gallery':'गैलरी','Camera':'कैमरा','Voice note':'वॉइस नोट','Stop recording':'रिकॉर्डिंग रोकें','No media attached':'कोई मीडिया नहीं जोड़ा','Voice note recorded':'वॉइस नोट रिकॉर्ड हुआ','Add a photo/video or voice note for Other':'अन्य के लिए फोटो/वीडियो या वॉइस नोट जोड़ें','AC not working':'AC काम नहीं कर रहा','Tyre':'टायर','Brakes':'ब्रेक','Breakdown':'ब्रेकडाउन','Doors or windows':'दरवाज़े या खिड़कियां',
-  'Road closed':'सड़क बंद','Heavy traffic':'भारी ट्रैफिक','Diversion':'डायवर्जन','Stop skipped':'स्टॉप छूट गया','Running early':'समय से पहले चल रही बस',
-  'Duty too long':'ड्यूटी बहुत लंबी है','No break given':'ब्रेक नहीं मिला','Roster doesn’t match':'रोस्टर मेल नहीं खाता',
-  'Can’t log in':'लॉगिन नहीं हो रहा','Ticket not printing':'टिकट प्रिंट नहीं हो रहा','Out of paper':'पेपर खत्म','Device won’t start':'डिवाइस चालू नहीं हो रहा','Submit report':'रिपोर्ट भेजें',
-  'Report sent':'रिपोर्ट भेज दी गई','What happens next':'आगे क्या होगा','You get an update':'आपको अपडेट मिलेगा','Done':'हो गया','View report':'रिपोर्ट देखें','In progress':'काम जारी है',
-  'Last 30 days':'पिछले 30 दिन','Good':'अच्छा','Needs attention':'ध्यान देने की जरूरत','How is this calculated?':'यह कैसे निकाला गया है?',
-  'Driving feedback':'ड्राइविंग फीडबैक','Punctuality':'समयपालन','Customer feedback':'ग्राहक फीडबैक','Keep improving':'बेहतर करते रहें',
-  'A few opportunities to make rides smoother':'राइड को और स्मूद बनाने के कुछ अवसर','Hard braking events':'तेज़ ब्रेकिंग की घटनाएं','Sudden acceleration events':'अचानक तेज़ एक्सेलरेशन की घटनाएं','Avoidable idling':'अनावश्यक आइडलिंग','Compared with similar-route drivers':'समान रूट के ड्राइवरों की तुलना में','Trips on time':'समय पर ट्रिप','Late trips':'लेट ट्रिप','Average delay when late':'लेट होने पर औसत देरी',
-  'Smooth driving':'स्मूद ड्राइविंग','Stop was missed':'स्टॉप छूट गया','View feedback details':'फीडबैक विवरण देखें',
-  'How your score works':'आपका स्कोर कैसे बनता है','Driving feedback':'ड्राइविंग फीडबैक','Idling':'आइडलिंग','Starting trips on time':'ट्रिप समय पर शुरू करना','Smooth braking and acceleration':'स्मूद ब्रेकिंग और एक्सेलरेशन','Avoidable idling compared with similar routes':'समान रूट की तुलना में अनावश्यक आइडलिंग','Passenger feedback about the ride experience':'राइड अनुभव पर यात्रियों का फीडबैक','Got it':'समझ गया',
-  'Emergency contacts':'आपातकालीन संपर्क','Control Room':'कंट्रोल रूम','Duty Manager':'ड्यूटी मैनेजर','Settings':'सेटिंग्स','Duty alerts':'ड्यूटी अलर्ट','On':'चालू','Off':'बंद',
-  'Driving licence':'ड्राइविंग लाइसेंस','App version':'ऐप वर्ज़न','Log out':'लॉग आउट','Upload now ›':'अभी अपलोड करें ›',
-  'Log out?':'लॉग आउट करें?','Cancel':'रद्द करें',
-  'Trip details':'ट्रिप विवरण','Stops':'स्टॉप',
-  'Photos of both sides':'दोनों तरफ की फोटो','Front added':'फ्रंट जोड़ा गया','Add back':'बैक जोड़ें','Retake front':'फ्रंट फोटो फिर लें','Continue':'आगे बढ़ें',
-  'Check your details':'अपनी जानकारी जांचें','Licence number':'लाइसेंस नंबर','Valid till':'मान्य तारीख','Tap to pick a date':'तारीख चुनने के लिए टैप करें','Submit for verification':'वेरिफिकेशन के लिए भेजें',
-  'Under verification':'वेरिफिकेशन जारी','We’re checking your licence':'हम आपका लाइसेंस जांच रहे हैं','Submitted':'सबमिट किया',
-  'Not approved':'मंजूर नहीं हुआ','Your licence couldn’t be verified':'आपका लाइसेंस वेरिफाई नहीं हो सका','Photo is blurry':'फोटो धुंधली है','Upload again':'फिर से अपलोड करें'
+ 'Duty':'ड्यूटी','Report':'रिपोर्ट','Report issue':'समस्या रिपोर्ट करें','DM':'डीएम','Find my bus':'मेरी बस खोजें','Navigate':'नेविगेट',
+ 'Your duty will appear here once it is allocated.':'ड्यूटी अलॉट होते ही यहां दिखाई देगी।','Review the updated trips and confirm again.':'बदली हुई ट्रिप देखें और फिर से पुष्टि करें।','Please confirm after reviewing all trips.':'सभी ट्रिप देखने के बाद पुष्टि करें।',
+ 'Running late?':'देर से पहुंचेंगे?','Tell us by voice or choose the delay.':'आवाज़ से बताएं या देरी चुनें।','Tell by voice':'आवाज़ से बताएं','Choose delay':'देरी चुनें','Update by voice':'आवाज़ से अपडेट करें','Expected arrival':'पहुंचने का समय','min delay shared with DM team':'मिनट की देरी डीएम टीम को बताई गई','We will notify you if your duty changes.':'ड्यूटी बदलने पर हम आपको बताएंगे।',
+ 'The DM team has been informed.':'डीएम टीम को बता दिया गया है।','Call DM team':'डीएम टीम को कॉल करें','Call the DM team to confirm your availability.':'अपनी उपलब्धता की पुष्टि के लिए डीएम टीम को कॉल करें।','Duty refreshed':'ड्यूटी रिफ्रेश हुई',
+ 'Tell us how late you will be':'बताएं आप कितनी देर से पहुंचेंगे','Example: I will be 20 minutes late.':'उदाहरण: मैं 20 मिनट देर से पहुंचूंगा।','Tap the microphone and speak':'माइक पर टैप करके बोलें','Listening… tap again to stop':'सुन रहे हैं… रोकने के लिए फिर टैप करें','Voice captured':'आवाज़ रिकॉर्ड हुई','You said':'आपने कहा','Expected delay':'अपेक्षित देरी','Confirm delay':'देरी कन्फर्म करें','Choose delay instead':'देरी चुनकर बताएं','Microphone access is needed':'माइक की अनुमति जरूरी है',
+ 'Report a bus issue':'बस की समस्या रिपोर्ट करें','Speak naturally. We will identify the issue category for you.':'सामान्य तरीके से बोलें। हम समस्या की श्रेणी पहचान लेंगे।','Describe issue by voice':'आवाज़ से समस्या बताएं','Or choose the issue':'या समस्या चुनें','Use this if you prefer tapping.':'अगर टैप करना आसान लगे तो इसका उपयोग करें।',
+ 'Add photo':'फोटो जोड़ें','Optional. Add a useful photo from gallery or camera.':'वैकल्पिक। गैलरी या कैमरे से उपयोगी फोटो जोड़ें।','Gallery':'गैलरी','Camera':'कैमरा','No photo attached':'कोई फोटो नहीं जोड़ी','photo attached':'फोटो जोड़ी','Submit issue':'समस्या भेजें','Recent bus issues':'हाल की बस समस्याएं','Being looked into':'जांच जारी है','Resolved':'हल हो गया',
+ 'Stop recording':'रिकॉर्डिंग रोकें','Heard':'सुना गया','Categorized as':'श्रेणी','Issue submitted':'समस्या भेज दी गई','A Sevak ticket has been created and the DM team has been notified.':'Sevak टिकट बन गया है और डीएम टीम को सूचना दे दी गई है।','What happens next':'आगे क्या होगा','DM team reviews the ticket':'डीएम टीम टिकट देखती है','They can assign it to the maintenance team.':'वे इसे मेंटेनेंस टीम को असाइन कर सकते हैं।','Maintenance updates the status':'मेंटेनेंस टीम स्टेटस अपडेट करती है','Diagnosis, expected completion time and resolution are tracked in Sevak.':'जांच, अपेक्षित समय और समाधान Sevak में ट्रैक होते हैं।','Done':'हो गया','Bus issue':'बस की समस्या','Maintenance update':'मेंटेनेंस अपडेट','Issue diagnosed. Expected completion by 4:30 PM.':'समस्या की जांच हो गई है। 4:30 PM तक पूरा होने की उम्मीद है।',
+ 'Bus location is unavailable':'बस की लोकेशन उपलब्ध नहीं है','Bus location is old':'बस की लोकेशन पुरानी है','The last GPS update is too old to navigate reliably. Call the DM team for help.':'आखिरी GPS अपडेट बहुत पुराना है। मदद के लिए डीएम टीम को कॉल करें।','Location access is off. HERE will ask for your location.':'लोकेशन एक्सेस बंद है। HERE आपसे लोकेशन की अनुमति मांगेगा।','Cancel':'रद्द करें','Choose the language you want to use.':'ऐप की भाषा चुनें।'
 };
-function hindiText(s){
-  if(HI_TEXT[s])return HI_TEXT[s];
-  let x=s;
-  x=x.replace(/^Bus /,'बस ').replace(/ · till /g,' · तक ').replace(/Home depot:/g,'होम डिपो:').replace(/^Expires /,'समाप्ति ');
-  x=x.replace(/(\d+) trips · (\d+) buses?/g,'$1 ट्रिप · $2 बस').replace(/(\d+) trips?/g,'$1 ट्रिप').replace(/(\d+) stops/g,'$1 स्टॉप');
-  x=x.replace(/ min delay shared with Duty Manager/g,' मिनट की देरी ड्यूटी मैनेजर को बताई गई');
-  return x;
-}
+const MR_TEXT={
+ 'Duty':'ड्युटी','Report':'रिपोर्ट','Report issue':'समस्या रिपोर्ट करा','DM':'डीएम','Find my bus':'माझी बस शोधा','Navigate':'नेव्हिगेट',
+ 'Your duty will appear here once it is allocated.':'ड्युटी अलॉट झाल्यावर ती इथे दिसेल.','Review the updated trips and confirm again.':'अपडेट केलेल्या ट्रिप पाहून पुन्हा पुष्टी करा.','Please confirm after reviewing all trips.':'सर्व ट्रिप पाहिल्यानंतर पुष्टी करा.',
+ 'Running late?':'उशीर होणार आहे?','Tell us by voice or choose the delay.':'आवाजाने सांगा किंवा उशीर निवडा.','Tell by voice':'आवाजाने सांगा','Choose delay':'उशीर निवडा','Update by voice':'आवाजाने अपडेट करा','Expected arrival':'अपेक्षित पोहोचण्याची वेळ','min delay shared with DM team':'मिनिटांचा उशीर डीएम टीमला कळवला','We will notify you if your duty changes.':'ड्युटी बदलल्यास आम्ही कळवू.',
+ 'The DM team has been informed.':'डीएम टीमला कळवले आहे.','Call DM team':'डीएम टीमला कॉल करा','Call the DM team to confirm your availability.':'उपलब्धता पुष्टी करण्यासाठी डीएम टीमला कॉल करा.','Duty refreshed':'ड्युटी रिफ्रेश झाली',
+ 'Tell us how late you will be':'तुम्हाला किती उशीर होईल ते सांगा','Example: I will be 20 minutes late.':'उदाहरण: मी 20 मिनिटे उशिरा पोहोचेन.','Tap the microphone and speak':'माइकवर टॅप करून बोला','Listening… tap again to stop':'ऐकत आहोत… थांबवण्यासाठी पुन्हा टॅप करा','Voice captured':'आवाज रेकॉर्ड झाला','You said':'तुम्ही म्हणालात','Expected delay':'अपेक्षित उशीर','Confirm delay':'उशीर पुष्टी करा','Choose delay instead':'उशीर निवडा','Microphone access is needed':'माइकची परवानगी आवश्यक आहे',
+ 'Report a bus issue':'बसची समस्या रिपोर्ट करा','Speak naturally. We will identify the issue category for you.':'नैसर्गिकपणे बोला. आम्ही समस्येची श्रेणी ओळखू.','Describe issue by voice':'आवाजाने समस्या सांगा','Or choose the issue':'किंवा समस्या निवडा','Use this if you prefer tapping.':'टॅप करणे सोपे वाटत असेल तर वापरा.',
+ 'Add photo':'फोटो जोडा','Optional. Add a useful photo from gallery or camera.':'वैकल्पिक. गॅलरी किंवा कॅमेरातून उपयुक्त फोटो जोडा.','Gallery':'गॅलरी','Camera':'कॅमेरा','No photo attached':'फोटो जोडलेला नाही','photo attached':'फोटो जोडला','Submit issue':'समस्या पाठवा','Recent bus issues':'अलीकडील बस समस्या','Being looked into':'तपास सुरू आहे','Resolved':'सोडवले',
+ 'Stop recording':'रेकॉर्डिंग थांबवा','Heard':'ऐकले','Categorized as':'श्रेणी','Issue submitted':'समस्या पाठवली','A Sevak ticket has been created and the DM team has been notified.':'Sevak टिकट तयार झाले आहे आणि डीएम टीमला कळवले आहे.','What happens next':'पुढे काय होईल','DM team reviews the ticket':'डीएम टीम टिकट पाहते','They can assign it to the maintenance team.':'ते मेंटेनन्स टीमला असाइन करू शकतात.','Maintenance updates the status':'मेंटेनन्स टीम स्टेटस अपडेट करते','Diagnosis, expected completion time and resolution are tracked in Sevak.':'निदान, अपेक्षित पूर्ण वेळ आणि निराकरण Sevak मध्ये ट्रॅक होते.','Done':'झाले','Bus issue':'बसची समस्या','Maintenance update':'मेंटेनन्स अपडेट','Issue diagnosed. Expected completion by 4:30 PM.':'समस्येचे निदान झाले आहे. 4:30 PM पर्यंत पूर्ण होण्याची अपेक्षा आहे.',
+ 'Bus location is unavailable':'बसची लोकेशन उपलब्ध नाही','Bus location is old':'बसची लोकेशन जुनी आहे','The last GPS update is too old to navigate reliably. Call the DM team for help.':'शेवटचा GPS अपडेट खूप जुना आहे. मदतीसाठी डीएम टीमला कॉल करा.','Location access is off. HERE will ask for your location.':'लोकेशन परवानगी बंद आहे. HERE लोकेशन परवानगी विचारेल.','Cancel':'रद्द करा','Choose the language you want to use.':'अॅपची भाषा निवडा.'
+};
+function tUI(s){if(app.lang==='hi')return HI_TEXT[s]||s;if(app.lang==='mr')return MR_TEXT[s]||s;return s}
+function localizedText(s){return tUI(s)}
 function applyLanguageToRoot(root){
-  if(!root||app.lang!=='hi')return;
-  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
-  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
-  nodes.forEach(n=>{const raw=n.nodeValue,key=raw.trim();if(!key)return;const tr=hindiText(key);if(tr!==key)n.nodeValue=raw.replace(key,tr)});
+ if(!root||app.lang==='en')return;
+ const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+ nodes.forEach(n=>{const raw=n.nodeValue,key=raw.trim();if(!key)return;const tr=localizedText(key);if(tr!==key)n.nodeValue=raw.replace(key,tr)})
 }
 function syncLanguageUI(){
- const titles={duty:app.lang==='hi'?'ड्यूटी':'Duty',report:app.lang==='hi'?'रिपोर्ट':'Report',performance:app.lang==='hi'?'प्रदर्शन':'Performance',more:app.lang==='hi'?'अन्य':'More'};
- const screens={dutyScreen:'duty',reportScreen:'report',performanceScreen:'performance',moreScreen:'more'};
+ const titles={duty:app.lang==='hi'?'ड्यूटी':app.lang==='mr'?'ड्युटी':'Duty',report:app.lang==='hi'?'रिपोर्ट':app.lang==='mr'?'रिपोर्ट':'Report'};
+ const screens={dutyScreen:'duty',reportScreen:'report'};
  Object.entries(screens).forEach(([id,key])=>{const el=$('#'+id+' .pageTitle');if(el)el.textContent=titles[key]});
- const navLabels={duty:titles.duty,report:titles.report,performance:titles.performance,more:titles.more};
+ const navLabels={duty:titles.duty,report:app.lang==='hi'?'समस्या':app.lang==='mr'?'समस्या':'Report issue'};
  $$('#nav button').forEach(b=>{const span=b.querySelector('span:last-child');if(span)span.textContent=navLabels[b.dataset.nav]});
- $$('[data-lang]').forEach(b=>b.textContent=app.lang==='hi'?'文 हिन्दी':'文 EN');
- ['dutyRoot','reportRoot','performanceRoot','moreRoot','subRoot','sheetContent','dialogContent'].forEach(id=>applyLanguageToRoot($('#'+id)));
+ $$('[data-lang]').forEach(b=>b.textContent=app.lang==='hi'?'हिं':app.lang==='mr'?'मरा':'EN');
+ $$('[data-call-dm] span:last-child').forEach(s=>s.textContent='DM');
+ ['dutyRoot','reportRoot','subRoot','sheetContent','dialogContent'].forEach(id=>applyLanguageToRoot($('#'+id)))
 }
-function openLanguageSheet(){openSheet(`<h2>${app.lang==='hi'?'भाषा':'Language'}</h2><p>${app.lang==='hi'?'ऐप की भाषा चुनें।':'Choose the language you want to use.'}</p><label class="sheetChoice"><input type="radio" name="langChoice" value="en" ${app.lang==='en'?'checked':''}> English</label><label class="sheetChoice"><input type="radio" name="langChoice" value="hi" ${app.lang==='hi'?'checked':''}> हिन्दी</label><button class="btn primary full" id="saveLang">${app.lang==='hi'?'सेव करें':'Save'}</button>`);$('#saveLang').onclick=()=>{const choice=$('input[name=langChoice]:checked');if(choice)app.lang=choice.value;persist();closeSheet();syncLanguageUI();setTab(app.tab||'duty');toast(app.lang==='en'?'English selected':'हिन्दी चुनी गई')}}
+function openLanguageSheet(){
+ openSheet(`<h2>${app.lang==='hi'?'भाषा':app.lang==='mr'?'भाषा':'Language'}</h2><p>${tUI('Choose the language you want to use.')}</p><label class="sheetChoice"><input type="radio" name="langChoice" value="en" ${app.lang==='en'?'checked':''}> English</label><label class="sheetChoice"><input type="radio" name="langChoice" value="hi" ${app.lang==='hi'?'checked':''}> हिन्दी</label><label class="sheetChoice"><input type="radio" name="langChoice" value="mr" ${app.lang==='mr'?'checked':''}> मराठी</label><button class="btn primary full" id="saveLang">${app.lang==='hi'?'सेव करें':app.lang==='mr'?'सेव्ह करा':'Save'}</button>`);
+ $('#saveLang').onclick=()=>{const choice=$('input[name=langChoice]:checked');if(choice)app.lang=choice.value;persist();closeSheet();setTab(app.tab||'duty');toast(app.lang==='hi'?'हिन्दी चुनी गई':app.lang==='mr'?'मराठी निवडली':'English selected')}
+}
 $$('[data-lang]').forEach(b=>b.onclick=openLanguageSheet);
 function urlBase64ToUint8Array(base64String){const padding='='.repeat((4-base64String.length%4)%4);const base64=(base64String+padding).replace(/-/g,'+').replace(/_/g,'/');const raw=atob(base64);return Uint8Array.from([...raw].map(c=>c.charCodeAt(0)))}
 async function enablePush(){try{if(!('serviceWorker'in navigator)||!('PushManager'in window)||!('Notification'in window)){toast('Push not supported on this device');return false}const permission=await Notification.requestPermission();if(permission!=='granted'){toast('Notifications not enabled');return false}const reg=await navigator.serviceWorker.ready;const keyRes=await fetch('/api/vapid-public-key',{cache:'no-store'});if(keyRes.ok){const {publicKey}=await keyRes.json();let sub=await reg.pushManager.getSubscription();if(!sub)await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlBase64ToUint8Array(publicKey)})}toast('Duty alerts turned on');return true}catch(e){console.error(e);toast('Alerts enabled where supported');return false}}
 // Basic route to preview all key design states: ?demo=1 then use More > Prototype states.
 function boot(){
-  hydrateIcons();syncLanguageUI();
-  const q=new URLSearchParams(location.search),preview=q.get('preview');
-  if(preview){
-    if(preview==='login'){showScreen('loginPhoneScreen');return}
-    if(preview==='otp'){showScreen('loginOtpScreen');return}
-    if(preview==='notify'){showScreen('notifyScreen');hydrateIcons();return}
-    app.authed=true;app.notifySeen=true;
-    if(q.get('day'))app.day=q.get('day');
-    if(q.get('state'))setDutyState(q.get('state'),app.day);
-    if(preview==='duty'){setTab('duty');return}
-    if(preview==='report'){app.reportMode=q.get('mode')||'home';renderReport();showScreen('reportScreen');hydrateIcons();return}
-    if(preview==='performance'){app.performanceOpen=q.get('open')||null;renderPerformance();showScreen('performanceScreen');hydrateIcons();return}
-    if(preview==='more'){renderMore();showScreen('moreScreen');hydrateIcons();return}
-    if(preview.startsWith('licence-')){openLicence(preview.replace('licence-',''));return}
-  }
-  if(!app.authed){showScreen('loginPhoneScreen');return}
-  if(!app.notifySeen){showScreen('notifyScreen');hydrateIcons();return}
-  setTab(app.tab||'duty')
+ hydrateIcons();syncLanguageUI();bindCommonActions();
+ const q=new URLSearchParams(location.search),preview=q.get('preview');
+ if(preview){
+  if(preview==='login'){showScreen('loginPhoneScreen');return}
+  if(preview==='otp'){showScreen('loginOtpScreen');return}
+  if(preview==='notify'){showScreen('notifyScreen');hydrateIcons();return}
+  app.authed=true;app.notifySeen=true;
+  if(q.get('day'))app.day=q.get('day');
+  if(q.get('state'))setDutyState(q.get('state'),app.day);
+  if(preview==='report'){setTab('report');return}
+  setTab('duty');return
+ }
+ if(!app.authed){showScreen('loginPhoneScreen');return}
+ if(!app.notifySeen){showScreen('notifyScreen');hydrateIcons();return}
+ setTab(app.tab||'duty')
 }
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 boot();
