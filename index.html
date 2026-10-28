@@ -33,6 +33,8 @@ button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}.a
 .voiceLateBox{margin-top:10px;padding-top:10px;border-top:1px solid #eee9e4}.voiceLateBox b{font-size:13px}.voiceLateBox p{font-size:11px;margin:3px 0 9px}.voicePrimary{display:flex;align-items:center;justify-content:center;gap:7px}.voicePrimary svg{width:18px;height:18px}.voiceCapture{text-align:center;padding:8px 4px}.voiceOrb{width:68px;height:68px;border-radius:50%;border:0;background:var(--orange);color:#fff;margin:12px auto;display:flex;align-items:center;justify-content:center;font-size:25px}.voiceOrb.recording{background:#d94d4d;box-shadow:0 0 0 7px #fde6e6}.voiceResult{padding:10px;border-radius:8px;background:#f7f5f2;text-align:left;margin:9px 0}.voiceResult b{font-size:12px}.voiceResult p{font-size:11px;margin:4px 0 0;color:#6f6862;line-height:1.4}
 .voiceHero{padding:16px;margin-bottom:11px;text-align:center}.voiceHero .micCircle{width:58px;height:58px;border-radius:50%;background:#fff1df;color:var(--orange);margin:0 auto 9px;display:flex;align-items:center;justify-content:center}.voiceHero h3{font-size:16px;margin:0 0 4px}.voiceHero p{font-size:12px;color:#7b736d;margin:0 0 11px;line-height:1.4}.voiceHero .btn{height:48px;font-size:14px}.voiceTranscript{margin-top:10px;text-align:left;background:#f7f5f2;border-radius:8px;padding:10px}.voiceTranscript .tag{display:inline-block;background:#e5f4e9;color:#3b9252;border-radius:12px;padding:4px 7px;font-size:10px;font-weight:800;margin-top:6px}
 .issuePicker{padding:14px;margin-bottom:11px}.issuePicker h3,.mediaCard h3,.recentCard h3{font-size:14px;margin:0 0 5px}.issuePicker .helperText,.mediaCard .helperText{font-size:11px;color:#817973;line-height:1.4;margin-bottom:7px}.issueGrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.issueChip{min-height:42px;border:1px solid #ded8d2;background:#fff;border-radius:8px;font-size:12px;font-weight:700;padding:7px}.issueChip.on{border-color:var(--orange);background:#fff8ee;color:#a85a08}.mediaCard{padding:14px;margin-bottom:11px}.mediaActions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mediaBtn{height:44px;border:1px solid #ded8d2;background:#fff;border-radius:8px;font-size:12px;font-weight:800}.ticketStatus{display:inline-block;border-radius:12px;padding:4px 7px;font-size:10px;font-weight:800}.ticketStatus.submitted{background:#fff1dd;color:#b56c12}.ticketStatus.progress{background:#e9f3ff;color:#3b7cbc}.ticketStatus.resolved{background:#e4f5e9;color:#3b9e57}
+.conversationCard{padding:14px;margin-bottom:11px}.conversationBubble{background:#f7f5f2;border-radius:10px;padding:11px 12px;font-size:12px;line-height:1.45;margin-top:9px}.conversationBubble strong{display:block;font-size:13px;margin-bottom:4px}.confirmActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.photoStep{padding:14px;margin-bottom:11px;border:1px solid #f0c991;background:#fffaf3}.photoStep.optional{border-color:#eee9e3;background:#fff}.photoStep h3{font-size:14px;margin:0 0 5px}.photoStep p{font-size:11px;color:#7a736d;line-height:1.4;margin:0 0 10px}.voiceStatus{font-size:11px;color:#7b736d;margin-top:7px}.issueSummaryTags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.issueSummaryTags .tag{display:inline-block;background:#e5f4e9;color:#3b9252;border-radius:12px;padding:5px 8px;font-size:10px;font-weight:800}
+
 
 /* login */
 .loginWrap{min-height:100vh;min-height:100dvh;background:#fff;display:flex;flex-direction:column;padding:24px 16px calc(18px + env(safe-area-inset-bottom))}.loginTop{height:34px;display:flex;align-items:center}.loginHeading{font-size:20px;font-weight:800;line-height:1.35;margin:18px 0 18px;max-width:320px}.phoneRow{display:grid;grid-template-columns:62px 1fr;gap:8px}.country{height:48px;border:1px solid #dfd9d3;border-radius:7px;background:#fff;font-size:14px}.textInput{height:48px;border:1px solid #dfd9d3;border-radius:7px;background:#fff;padding:0 12px;outline:none;font-size:16px}.textInput:focus{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange)}.loginBottom{position:static;width:100%;padding:18px 0 0;background:#fff}.loginBottom .btn{height:50px;font-size:15px;border-radius:8px}#loginOtpScreen .loginBottom{margin-top:24px}.otpBoxes{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;width:100%;max-width:100%}.otpBox{width:100%;min-width:0;height:46px;border:1px solid #d7d0ca;border-radius:6px;text-align:center;font-size:19px;outline:none;padding:0}.otpBox:focus{border-color:var(--orange)}.resend{font-size:12px;color:#6f6862;margin-top:12px}.resend b{color:var(--orange)}
@@ -350,7 +352,7 @@ function dutySummary(day,state){
  let status=['pending','changed'].includes(state)?['Response needed','orange']:state==='confirmed'?['Confirmed','green']:state==='declined'?['Declined','red']:state==='delay'?['Running late','yellow']:state==='over'?['No response','red']:state==='progress'?['On duty','blue']:['Confirmed','green'];
  let report=day==='tomorrow'?'06:15 AM':'06:30 AM';
  const buses=dutyBuses(day);
- return `<div class="card dutySummary"><span class="status ${status[1]}">${tDuty(status[0])}</span><div class="summaryGrid"><div><div class="label">${tDuty('Report at')}</div><div class="summaryValue">${report}</div></div><div><div class="label">${tDuty(buses.length>1?'Buses':'Bus')}</div><div class="summaryValue">${buses.join('<br>')}</div></div></div><div class="dutyTool"><button class="toolBtn" id="locateBusBtn">${svg('bus',18)}<span>${tUI('Find my bus')}</span></button></div></div>`}
+ return `<div class="card dutySummary"><span class="status ${status[1]}">${tDuty(status[0])}</span><div class="summaryGrid"><div><div class="label">${tDuty('Report at')}</div><div class="summaryValue">${report}</div></div><div><div class="label">${tDuty(buses.length>1?'Buses':'Bus')}</div><div class="summaryValue">${buses.join('<br>')}</div></div></div>${day==='today'?`<div class="dutyTool"><button class="toolBtn" id="locateBusBtn">${svg('bus',18)}<span>${tUI('Find my bus')}</span></button></div>`:''}</div>`}
 function tripList(day){
  const list=trips[day],tripCount=list.filter(x=>!x.kind).length,buses=dutyBuses(day);
  return `<div class="card tripCard"><div class="tripHeader"><b>${tDuty('Trips')}</b><span>${tripCount} ${app.lang==='hi'?'ट्रिप':'trips'} · ${buses.length} ${app.lang==='hi'?'बस':(buses.length===1?'bus':'buses')}</span></div>${list.map((x,i)=>{
@@ -415,211 +417,190 @@ function openDelaySheet(){
 function openTripDetails(day,index){const t=trips[day][index];$('#subRoot').innerHTML=`<div class="backRow"><button class="backBtn" id="subBack">‹</button><div class="backTitle">Trip details</div></div><div class="pagePad"><div class="card cardPad"><div class="sectionLabel">${t.route}</div><div class="small" style="margin-top:6px">◷ ${t.detail||'06:40 → 07:55 AM · 1h 15m'}</div><div class="small" style="margin-top:4px">▣ ${t.bus.split('·')[0].trim()}</div></div><div class="card cardPad" style="margin-top:10px"><div class="row between"><b class="sectionLabel">Stops</b><span class="tiny muted">8 stops · 24 km</span></div>${[['Taloja Depot','06:40'],['Kharghar Sec 12','06:52'],['Belapur CBD','07:02'],['Vashi Plaza','07:18'],['Sanpada','07:24'],['Chembur','07:38'],['Kurla West','07:46'],['BKC','07:55']].map((s,i)=>`<div class="recentRow"><div class="row" style="gap:8px"><span class="tiny" style="color:${i===0||i===7?'var(--orange)':'#999'}">${i+1}</span><b>${s[0]}</b></div><span>${s[1]}</span></div>`).join('')}</div></div>`;showScreen('subScreen');applyLanguageToRoot($('#subRoot'));$('#subBack').onclick=()=>setTab('duty')}
 
 const BUS_ISSUES=['AC','Door','Brakes','Tyre','Steering','Water leakage','Cleanliness / cabin'];
+const PHOTO_RECOMMENDED_ISSUES=new Set(['Door','Tyre','Steering','Water leakage','Cleanliness / cabin']);
 
 const ISSUE_PATTERNS={
- 'AC':[
-  /\bac\b/gi,/a\.?c\.?/gi,/air\s*condition/gi,/cooling/gi,/cold air/gi,/एसी/gi,/ए\.सी/gi,/ठंड[ाी]/gi,/कूलिंग/gi,/एअर\s*कंडिश/gi,/थंड\s*हवा/gi,/कूलिंग/gi
- ],
- 'Door':[
-  /door/gi,/doors/gi,/gate/gi,/दरवाज[ाे]/gi,/गेट/gi,/दार/gi,/दरवाजा/gi
- ],
- 'Brakes':[
-  /brake/gi,/brakes/gi,/braking/gi,/ब्रेक/gi
- ],
- 'Tyre':[
-  /tyre/gi,/tire/gi,/puncture/gi,/flat\s*tyre/gi,/टायर/gi,/पंक्चर/gi,/टायर/gi
- ],
- 'Steering':[
-  /steer/gi,/steering/gi,/wheel.*turn/gi,/स्टीयर/gi,/स्टेयरिंग/gi
- ],
- 'Water leakage':[
-  /water\s*leak/gi,/leakage/gi,/leaking/gi,/water.*inside/gi,/पानी.*लीक/gi,/पानी.*टपक/gi,/लीकेज/gi,/पाणी.*गळ/gi,/पाणी.*लीक/gi,/गळती/gi
- ],
- 'Cleanliness / cabin':[
-  /dirty/gi,/clean/gi,/cleanliness/gi,/cabin/gi,/garbage/gi,/smell/gi,/bad\s*smell/gi,/साफ/gi,/गंद/gi,/कचरा/gi,/बदबू/gi,/केबिन/gi,/स्वच्छ/gi,/घाण/gi,/वास/gi,/कॅबिन/gi
- ]
+ 'AC':[/\bac\b/gi,/a\.?c\.?/gi,/air\s*condition/gi,/cooling/gi,/cold air/gi,/एसी/gi,/ए\.सी/gi,/ठंड[ाी]/gi,/कूलिंग/gi,/एअर\s*कंडिश/gi,/थंड\s*हवा/gi,/कूलिंग/gi],
+ 'Door':[/door/gi,/doors/gi,/gate/gi,/दरवाज[ाे]/gi,/गेट/gi,/दार/gi,/दरवाजा/gi],
+ 'Brakes':[/brake/gi,/brakes/gi,/braking/gi,/ब्रेक/gi],
+ 'Tyre':[/tyre/gi,/tire/gi,/puncture/gi,/flat\s*tyre/gi,/टायर/gi,/पंक्चर/gi],
+ 'Steering':[/steer/gi,/steering/gi,/wheel.*turn/gi,/स्टीयर/gi,/स्टेयरिंग/gi],
+ 'Water leakage':[/water\s*leak/gi,/leakage/gi,/leaking/gi,/water.*inside/gi,/पानी.*लीक/gi,/पानी.*टपक/gi,/लीकेज/gi,/पाणी.*गळ/gi,/पाणी.*लीक/gi,/गळती/gi],
+ 'Cleanliness / cabin':[/dirty/gi,/clean/gi,/cleanliness/gi,/cabin/gi,/garbage/gi,/smell/gi,/bad\s*smell/gi,/साफ/gi,/गंद/gi,/कचरा/gi,/बदबू/gi,/केबिन/gi,/स्वच्छ/gi,/घाण/gi,/वास/gi,/कॅबिन/gi]
 };
 
-function issueLanguageCode(){
- if(app.lang==='hi')return 'hi-IN';
- if(app.lang==='mr')return 'mr-IN';
- return 'en-IN';
+function issueLanguageCode(){if(app.lang==='hi')return 'hi-IN';if(app.lang==='mr')return 'mr-IN';return 'en-IN'}
+function issueSpokenName(issue){
+ const names={
+  hi:{'AC':'एसी','Door':'दरवाज़ा','Brakes':'ब्रेक','Tyre':'टायर','Steering':'स्टीयरिंग','Water leakage':'पानी का रिसाव','Cleanliness / cabin':'सफाई या केबिन'},
+  mr:{'AC':'एसी','Door':'दरवाजा','Brakes':'ब्रेक','Tyre':'टायर','Steering':'स्टीयरिंग','Water leakage':'पाण्याची गळती','Cleanliness / cabin':'स्वच्छता किंवा केबिन'}
+ };
+ return names[app.lang]?.[issue]||issue;
 }
 function splitIssueClauses(text){
- return (text||'')
-   .split(/(?:,|;|\band\b|\balso\b|\bplus\b|\baur\b|और|तथा|साथ ही|आणि|तसेच|पण)/i)
-   .map(x=>x.trim()).filter(Boolean);
+ return (text||'').split(/(?:,|;|\band\b|\balso\b|\bplus\b|\baur\b|और|तथा|साथ ही|आणि|तसेच|पण)/i).map(x=>x.trim()).filter(Boolean)
 }
 function classifyBusIssues(text){
- const full=(text||'').trim();
- if(!full)return [];
- const clauses=splitIssueClauses(full);
- const byIssue=new Map();
-
+ const full=(text||'').trim();if(!full)return [];
+ const clauses=splitIssueClauses(full),byIssue=new Map();
  const add=(issue,phrase)=>{
   if(!byIssue.has(issue))byIssue.set(issue,[]);
-  const arr=byIssue.get(issue);
-  const clean=(phrase||full).trim();
-  if(clean&&!arr.some(x=>x.toLowerCase()===clean.toLowerCase()))arr.push(clean);
+  const arr=byIssue.get(issue),clean=(phrase||full).trim();
+  if(clean&&!arr.some(x=>x.toLowerCase()===clean.toLowerCase()))arr.push(clean)
  };
-
- const inspect=(phrase)=>{
-  for(const issue of BUS_ISSUES){
-   const patterns=ISSUE_PATTERNS[issue]||[];
-   if(patterns.some(re=>{re.lastIndex=0;return re.test(phrase)}))add(issue,phrase);
-  }
- };
-
- clauses.forEach(inspect);
- if(!byIssue.size)inspect(full);
-
- return [...byIssue.entries()].map(([issue,mentions])=>({issue,mentions}));
+ const inspect=phrase=>{for(const issue of BUS_ISSUES){const patterns=ISSUE_PATTERNS[issue]||[];if(patterns.some(re=>{re.lastIndex=0;return re.test(phrase)}))add(issue,phrase)}};
+ clauses.forEach(inspect);if(!byIssue.size)inspect(full);
+ return [...byIssue.entries()].map(([issue,mentions])=>({issue,mentions}))
 }
 function classifyBusIssue(text){return classifyBusIssues(text)[0]?.issue||null}
-
+function isAffirmative(text){
+ const s=(text||'').toLowerCase().trim();
+ return /^(yes|yeah|yep|correct|right|okay|ok|haan|han|ha|sahi|theek|ठीक|हाँ|हां|सही|हो|होय|बरोबर|हो बरोबर)/i.test(s)
+}
+function isNegative(text){
+ const s=(text||'').toLowerCase().trim();
+ return /^(no|nope|wrong|incorrect|nahi|nahin|galat|नहीं|नही|गलत|नाही|चूक|चुकीचे|नको)/i.test(s)
+}
+function reportConfirmationSentence(issues){
+ const names=issues.map(issueSpokenName);
+ const joined=names.length===1?names[0]:names.slice(0,-1).join(', ')+' '+(app.lang==='hi'?'और':app.lang==='mr'?'आणि':'and')+' '+names[names.length-1];
+ if(app.lang==='hi')return `मैंने ${joined} समस्या समझी है। क्या यह सही है? हाँ या नहीं बोलें।`;
+ if(app.lang==='mr')return `मी ${joined} ही समस्या समजली आहे. हे बरोबर आहे का? हो किंवा नाही म्हणा.`;
+ return `I understood ${joined}. Is that correct? Say yes or no.`;
+}
+function speakReport(text,onEnd){
+ if(!('speechSynthesis'in window)){if(onEnd)onEnd();return}
+ try{
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);u.lang=issueLanguageCode();u.rate=.95;
+  if(onEnd)u.onend=onEnd;
+  speechSynthesis.speak(u)
+ }catch(e){if(onEnd)onEnd()}
+}
 function renderReport(){if(app.reportMode==='sent')renderReportSent();else if(app.reportMode==='detail')renderReportDetail();else renderReportHome();applyLanguageToRoot($('#reportRoot'));hydrateIcons();bindCommonActions()}
 
 function renderReportHome(){
- let selectedIssues=new Set(),issueMentions={},attachments=[],recognition=null,voiceTranscriptText='';
- $('#reportRoot').innerHTML=`<div class="card voiceHero"><div class="micCircle">${svg('mic',25)}</div><h3>${tUI('Report a bus issue')}</h3><p>${tUI('Speak naturally. You can report more than one issue together.')}</p><button class="btn primary full voicePrimary" id="reportVoiceBtn">${svg('mic',18)}<span>${tUI('Describe issue by voice')}</span></button><div id="voiceTranscript" class="voiceTranscript" style="display:none"></div></div>
- <div class="card issuePicker"><h3>${tUI('Or choose the issues')}</h3><div class="helperText">${tUI('Select one or more issues if you prefer tapping.')}</div><div class="issueGrid">${BUS_ISSUES.map(x=>`<button class="issueChip" data-issue="${x}">${x}</button>`).join('')}</div><div class="helperText" id="selectedIssueCount" style="margin-top:8px"></div></div>
- <div class="card mediaCard"><h3>${tUI('Add photo')}</h3><div class="helperText">${tUI('Optional. Add a useful photo from gallery or camera.')}</div><div class="mediaActions"><button class="mediaBtn" id="galleryBtn">▧ ${tUI('Gallery')}</button><button class="mediaBtn" id="cameraBtn">▣ ${tUI('Camera')}</button></div><input id="galleryInput" type="file" accept="image/*" multiple hidden><input id="cameraInput" type="file" accept="image/*" capture="environment" hidden><div class="attachStatus" id="attachStatus">${tUI('No photo attached')}</div></div>
- <button class="btn primary full" style="height:48px;font-size:14px" id="submitBusIssue" disabled>${tUI('Submit issue')}</button>
+ let selectedIssues=new Set(),issueMentions={},attachments=[],recognition=null,voiceTranscriptText='',voiceConfirmed=false,stage='capture';
+ $('#reportRoot').innerHTML=`
+ <div class="card voiceHero" id="voiceIssueCard"><div class="micCircle">${svg('mic',25)}</div><h3>${tUI('Report a bus issue')}</h3><p>${tUI('Tell us what is wrong. You can mention more than one issue.')}</p><button class="btn primary full voicePrimary" id="reportVoiceBtn">${svg('mic',18)}<span>${tUI('Describe issue by voice')}</span></button><div id="voiceTranscript" class="voiceTranscript" style="display:none"></div><div id="voiceConfirmArea"></div></div>
+ <div class="card issuePicker" id="tapIssueCard"><h3>${tUI('Or choose the issues')}</h3><div class="helperText">${tUI('Select one or more issues if you prefer tapping.')}</div><div class="issueGrid">${BUS_ISSUES.map(x=>`<button class="issueChip" data-issue="${x}">${x}</button>`).join('')}</div><div class="helperText" id="selectedIssueCount" style="margin-top:8px"></div><button class="btn secondary full" id="confirmTapIssues" style="margin-top:8px" disabled>${tUI('Continue')}</button></div>
+ <div id="photoStepWrap"></div>
  <div class="card recentCard" style="margin-top:11px"><div class="recentHead"><b>${tUI('Recent bus issues')}</b></div>
   <div class="recentRow" data-recent><div><b>SVK-4821 · AC</b><span>MH01 EV 1402 · 10:42 AM</span></div><span class="ticketStatus progress">${tUI('Being looked into')}</span></div>
   <div class="recentRow"><div><b>SVK-4794 · Door</b><span>MH01 EV 1245 · Yesterday</span></div><span class="ticketStatus resolved">${tUI('Resolved')}</span></div>
  </div>`;
 
- const submit=$('#submitBusIssue'),transcript=$('#voiceTranscript'),voiceBtn=$('#reportVoiceBtn'),count=$('#selectedIssueCount');
+ const transcript=$('#voiceTranscript'),voiceBtn=$('#reportVoiceBtn'),count=$('#selectedIssueCount'),tapContinue=$('#confirmTapIssues'),confirmArea=$('#voiceConfirmArea'),photoWrap=$('#photoStepWrap');
 
  const renderSelection=()=>{
   $$('[data-issue]').forEach(b=>b.classList.toggle('on',selectedIssues.has(b.dataset.issue)));
   const n=selectedIssues.size;
-  submit.disabled=n===0;
-  submit.textContent=n>1?`${tUI('Submit')} ${n} ${tUI('issues')}`:tUI('Submit issue');
   count.textContent=n?`${n} ${n===1?tUI('issue selected'):tUI('issues selected')}`:'';
+  tapContinue.disabled=n===0;
  };
-
  const setVoiceIssues=classified=>{
-  selectedIssues=new Set(classified.map(x=>x.issue));
-  issueMentions={};
-  classified.forEach(x=>issueMentions[x.issue]=x.mentions);
-  renderSelection();
+  selectedIssues=new Set(classified.map(x=>x.issue));issueMentions={};classified.forEach(x=>issueMentions[x.issue]=x.mentions);renderSelection()
  };
+ const issueTags=()=>[...selectedIssues].map(x=>`<span class="tag">${x}</span>`).join('');
 
  $$('[data-issue]').forEach(b=>b.onclick=()=>{
   const issue=b.dataset.issue;
-  if(selectedIssues.has(issue)){selectedIssues.delete(issue);delete issueMentions[issue]}
-  else{selectedIssues.add(issue);issueMentions[issue]=issueMentions[issue]||[]}
-  renderSelection();
+  if(selectedIssues.has(issue)){selectedIssues.delete(issue);delete issueMentions[issue]}else{selectedIssues.add(issue);issueMentions[issue]=issueMentions[issue]||[]}
+  voiceConfirmed=false;stage='tap';renderSelection()
  });
 
- const renderVoiceResult=(text,classified)=>{
+ function renderPhotoStep(){
+  stage='photo';
+  const issues=[...selectedIssues],photoNeeded=issues.some(x=>PHOTO_RECOMMENDED_ISSUES.has(x));
+  const useful=issues.filter(x=>PHOTO_RECOMMENDED_ISSUES.has(x));
+  photoWrap.innerHTML=`<div class="card photoStep ${photoNeeded?'':'optional'}"><h3>${photoNeeded?tUI('Add a photo to help maintenance'):tUI('Add photo if useful')}</h3><p>${photoNeeded?`${tUI('A photo will help the team assess')}: ${useful.join(', ')}.`:tUI('A photo is optional for this issue. Add one only if it helps explain the problem.')}</p><div class="mediaActions"><button class="mediaBtn" id="galleryBtn">▧ ${tUI('Gallery')}</button><button class="mediaBtn" id="cameraBtn">▣ ${tUI('Camera')}</button></div><input id="galleryInput" type="file" accept="image/*" multiple hidden><input id="cameraInput" type="file" accept="image/*" capture="environment" hidden><div class="attachStatus" id="attachStatus">${tUI('No photo attached')}</div><button class="btn primary full" style="margin-top:10px;height:46px" id="submitBusIssue">${issues.length>1?`${tUI('Submit')} ${issues.length} ${tUI('issues')}`:tUI('Submit issue')}</button></div>`;
+  let localAttachments=attachments;
+  const renderFiles=()=>{$('#attachStatus').textContent=localAttachments.length?localAttachments.length+' '+tUI('photo attached')+(localAttachments.length>1?'s':''):tUI('No photo attached')};
+  $('#galleryBtn').onclick=()=>$('#galleryInput').click();$('#cameraBtn').onclick=()=>$('#cameraInput').click();
+  $('#galleryInput').onchange=e=>{localAttachments.push(...Array.from(e.target.files||[]));renderFiles()};
+  $('#cameraInput').onchange=e=>{localAttachments.push(...Array.from(e.target.files||[]));renderFiles()};
+  $('#submitBusIssue').onclick=()=>{
+   const issues=[...selectedIssues];if(!issues.length)return;
+   app.lastReportIssues=issues;app.lastReportIssue=issues[0];app.lastReportTranscript=voiceTranscriptText;app.lastReportMentions=issueMentions;app.lastReportVoiceConfirmed=voiceConfirmed;app.reportMode='sent';persist();renderReport()
+  };
+  setTimeout(()=>photoWrap.scrollIntoView({behavior:'smooth',block:'center'}),100)
+ }
+
+ function showUnderstood(text,classified){
   transcript.style.display='block';
-  if(!classified.length){
-   transcript.innerHTML=`<b>${tUI('Heard')}</b><div style="font-size:12px;margin-top:4px">${escapeHtml(text)}</div><div class="errorText" style="display:block;margin-top:8px">${tUI('We could not identify a bus issue. Please select the issue below.')}</div>`;
-   return;
-  }
-  const tags=classified.map(x=>{
-    const count=x.mentions.length;
-    return `<span class="tag">${x.issue}${count>1?` · ${count} ${tUI('mentions')}`:''}</span>`;
-  }).join(' ');
-  transcript.innerHTML=`<b>${tUI('Heard')}</b><div style="font-size:12px;margin-top:4px">${escapeHtml(text)}</div><div style="margin-top:7px"><b>${tUI('Identified issues')}</b><div style="margin-top:4px">${tags}</div></div>`;
- };
+  const tags=classified.map(x=>`<span class="tag">${x.issue}${x.mentions.length>1?` · ${x.mentions.length} ${tUI('mentions')}`:''}</span>`).join(' ');
+  transcript.innerHTML=`<b>${tUI('You said')}</b><div style="font-size:12px;margin-top:4px">${escapeHtml(text)}</div><div style="margin-top:8px"><b>${tUI('I understood')}</b><div class="issueSummaryTags">${tags}</div></div>`;
+  confirmArea.innerHTML=`<div class="conversationBubble"><strong>${tUI('Is this correct?')}</strong>${tUI('Reply by voice. Say yes if correct, or no to tell us again.')}</div><button class="btn primary full voicePrimary" id="voiceConfirmBtn" style="margin-top:9px">${svg('mic',18)}<span>${tUI('Reply by voice')}</span></button><div class="confirmActions"><button class="btn secondary" id="confirmYes">${tUI('Yes, correct')}</button><button class="btn secondary" id="confirmNo">${tUI('No, say again')}</button></div><div class="voiceStatus" id="confirmVoiceStatus"></div>`;
+  $('#confirmYes').onclick=confirmUnderstanding;$('#confirmNo').onclick=restartConversation;$('#voiceConfirmBtn').onclick=startConfirmationRecognition;
+ }
 
- const stopRecognition=()=>{
-  try{if(recognition)recognition.stop()}catch(e){}
- };
+ function confirmUnderstanding(){
+  voiceConfirmed=true;stage='photo';
+  confirmArea.innerHTML=`<div class="conversationBubble"><strong>✓ ${tUI('Confirmed')}</strong><div class="issueSummaryTags">${issueTags()}</div></div>`;
+  speakReport(app.lang==='hi'?'ठीक है। अब जरूरत हो तो फोटो जोड़ें।':app.lang==='mr'?'ठीक आहे. आता गरज असल्यास फोटो जोडा.':'Got it. Add a photo if it will help maintenance.');
+  renderPhotoStep()
+ }
+ function restartConversation(){
+  voiceConfirmed=false;selectedIssues.clear();issueMentions={};renderSelection();photoWrap.innerHTML='';confirmArea.innerHTML='';
+  transcript.innerHTML=`<div class="conversationBubble">${tUI('Okay. Tell me the bus issues again.')}</div>`;stage='capture';
+  speakReport(app.lang==='hi'?'ठीक है। बस की समस्या फिर से बताएं।':app.lang==='mr'?'ठीक आहे. बसची समस्या पुन्हा सांगा.':'Okay. Tell me the bus issues again.')
+ }
 
- voiceBtn.onclick=()=>{
-  if(recognition){stopRecognition();return}
+ function startDescriptionRecognition(){
   const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SpeechRecognition){
-   transcript.style.display='block';
-   transcript.innerHTML=`<div class="errorText" style="display:block">${tUI('Voice recognition is not supported in this browser. Please use issue selection below.')}</div>`;
-   return;
-  }
-
-  recognition=new SpeechRecognition();
-  recognition.lang=issueLanguageCode();
-  recognition.interimResults=true;
-  recognition.continuous=false;
-  recognition.maxAlternatives=1;
-
+  if(!SpeechRecognition){transcript.style.display='block';transcript.innerHTML=`<div class="errorText" style="display:block">${tUI('Voice recognition is not supported in this browser. Please use issue selection below.')}</div>`;return}
+  if(recognition){try{recognition.stop()}catch(e){};return}
+  stage='capture';recognition=new SpeechRecognition();recognition.lang=issueLanguageCode();recognition.interimResults=true;recognition.continuous=false;recognition.maxAlternatives=1;
   let finalText='',interimText='';
-  voiceBtn.classList.add('recording');
-  voiceBtn.innerHTML=`■ <span>${tUI('Stop recording')}</span>`;
-  transcript.style.display='block';
-  transcript.innerHTML=`<b>${tUI('Listening')}</b><div style="font-size:12px;margin-top:4px">${tUI('Speak about all bus issues in one sentence.')}</div>`;
-
+  voiceBtn.classList.add('recording');voiceBtn.innerHTML=`■ <span>${tUI('Stop recording')}</span>`;transcript.style.display='block';transcript.innerHTML=`<b>${tUI('Listening')}</b><div style="font-size:12px;margin-top:4px">${tUI('Tell me everything that is wrong with the bus.')}</div>`;confirmArea.innerHTML='';photoWrap.innerHTML='';
   recognition.onresult=e=>{
-   interimText='';
-   for(let i=e.resultIndex;i<e.results.length;i++){
-    const phrase=e.results[i][0].transcript;
-    if(e.results[i].isFinal)finalText+=(finalText?' ':'')+phrase;
-    else interimText+=phrase;
-   }
-   const heard=(finalText||interimText).trim();
-   if(heard){
-    const classified=classifyBusIssues(heard);
-    renderVoiceResult(heard,classified);
-   }
+   interimText='';for(let i=e.resultIndex;i<e.results.length;i++){const phrase=e.results[i][0].transcript;if(e.results[i].isFinal)finalText+=(finalText?' ':'')+phrase;else interimText+=phrase}
+   const heard=(finalText||interimText).trim();if(heard){transcript.innerHTML=`<b>${tUI('Listening')}</b><div style="font-size:12px;margin-top:4px">${escapeHtml(heard)}</div>`}
   };
-
-  recognition.onerror=e=>{
-   const msg=e.error==='not-allowed'?tUI('Microphone permission was denied. Please select the issue below.'):
-             e.error==='no-speech'?tUI('No speech was detected. Please try again or select the issue below.'):
-             tUI('Voice recognition failed. Please try again or select the issue below.');
-   transcript.style.display='block';transcript.innerHTML=`<div class="errorText" style="display:block">${msg}</div>`;
-  };
-
+  recognition.onerror=e=>{const msg=e.error==='not-allowed'?tUI('Microphone permission was denied. Please select the issue below.'):e.error==='no-speech'?tUI('No speech was detected. Please try again or select the issue below.'):tUI('Voice recognition failed. Please try again or select the issue below.');transcript.innerHTML=`<div class="errorText" style="display:block">${msg}</div>`};
   recognition.onend=()=>{
-   const text=(finalText||interimText).trim();
-   recognition=null;
-   voiceBtn.classList.remove('recording');
-   voiceBtn.innerHTML=`${svg('mic',18)}<span>${tUI('Describe issue by voice')}</span>`;
-   if(text){
-    voiceTranscriptText=text;
-    const classified=classifyBusIssues(text);
-    setVoiceIssues(classified);
-    renderVoiceResult(text,classified);
-   }
+   const text=(finalText||interimText).trim();recognition=null;voiceBtn.classList.remove('recording');voiceBtn.innerHTML=`${svg('mic',18)}<span>${tUI('Describe issue by voice')}</span>`;
+   if(!text)return;
+   voiceTranscriptText=text;const classified=classifyBusIssues(text);
+   if(!classified.length){selectedIssues.clear();renderSelection();transcript.innerHTML=`<b>${tUI('You said')}</b><div style="font-size:12px;margin-top:4px">${escapeHtml(text)}</div><div class="conversationBubble"><strong>${tUI('I did not understand the issue')}</strong>${tUI('Please tell me again, or choose an issue below.')}</div>`;speakReport(app.lang==='hi'?'मुझे समस्या समझ नहीं आई। कृपया फिर से बताएं।':app.lang==='mr'?'मला समस्या समजली नाही. कृपया पुन्हा सांगा.':'I did not understand the issue. Please tell me again.');return}
+   setVoiceIssues(classified);stage='confirm';showUnderstood(text,classified);speakReport(reportConfirmationSentence(classified.map(x=>x.issue)))
   };
-
   try{recognition.start()}catch(e){recognition=null;voiceBtn.classList.remove('recording');toast(tUI('Microphone access is needed'))}
- };
+ }
 
- const renderFiles=()=>{$('#attachStatus').textContent=attachments.length?attachments.length+' '+tUI('photo attached')+(attachments.length>1?'s':''):tUI('No photo attached')};
- $('#galleryBtn').onclick=()=>$('#galleryInput').click();$('#cameraBtn').onclick=()=>$('#cameraInput').click();
- $('#galleryInput').onchange=e=>{attachments.push(...Array.from(e.target.files||[]));renderFiles()};
- $('#cameraInput').onchange=e=>{attachments.push(...Array.from(e.target.files||[]));renderFiles()};
+ function startConfirmationRecognition(){
+  const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition,status=$('#confirmVoiceStatus'),btn=$('#voiceConfirmBtn');
+  if(!SpeechRecognition){status.textContent=tUI('Voice confirmation is not supported here. Use Yes or No below.');return}
+  if(recognition){try{recognition.stop()}catch(e){};return}
+  recognition=new SpeechRecognition();recognition.lang=issueLanguageCode();recognition.interimResults=false;recognition.continuous=false;recognition.maxAlternatives=1;
+  if(btn)btn.innerHTML=`■ <span>${tUI('Listening')}</span>`;if(status)status.textContent=tUI('Say yes or no');
+  recognition.onresult=e=>{
+   const reply=e.results[0][0].transcript.trim();if(status)status.textContent=`${tUI('Heard')}: ${reply}`;
+   if(isAffirmative(reply))setTimeout(confirmUnderstanding,150);
+   else if(isNegative(reply))setTimeout(restartConversation,150);
+   else{if(status)status.textContent=tUI('I did not catch yes or no. Please try again.');speakReport(app.lang==='hi'?'कृपया हाँ या नहीं बोलें।':app.lang==='mr'?'कृपया हो किंवा नाही म्हणा.':'Please say yes or no.')}
+  };
+  recognition.onerror=()=>{if(status)status.textContent=tUI('Voice confirmation failed. Use Yes or No below.')};
+  recognition.onend=()=>{recognition=null;const b=$('#voiceConfirmBtn');if(b)b.innerHTML=`${svg('mic',18)}<span>${tUI('Reply by voice')}</span>`};
+  try{recognition.start()}catch(e){recognition=null;if(status)status.textContent=tUI('Voice confirmation failed. Use Yes or No below.')}
+ }
 
- submit.onclick=()=>{
-  const issues=[...selectedIssues];
-  if(!issues.length)return;
-  app.lastReportIssues=issues;
-  app.lastReportIssue=issues[0];
-  app.lastReportTranscript=voiceTranscriptText;
-  app.lastReportMentions=issueMentions;
-  app.reportMode='sent';
-  persist();renderReport()
- };
+ voiceBtn.onclick=startDescriptionRecognition;
+ tapContinue.onclick=()=>{voiceConfirmed=false;voiceTranscriptText='';confirmArea.innerHTML=`<div class="conversationBubble"><strong>✓ ${tUI('Issues selected')}</strong><div class="issueSummaryTags">${issueTags()}</div></div>`;renderPhotoStep()};
  $$('[data-recent]').forEach(r=>r.onclick=()=>{app.reportMode='detail';renderReport()});
  applyLanguageToRoot($('#reportRoot'));renderSelection()
 }
 
 function renderReportSent(){
  const issues=Array.isArray(app.lastReportIssues)&&app.lastReportIssues.length?app.lastReportIssues:[app.lastReportIssue||'AC'];
- const many=issues.length>1;
- const tickets=issues.map((issue,i)=>({id:'SVK-'+(4827+i),issue}));
- $('#reportRoot').innerHTML=`<div class="card reportSent"><div class="sentIllustration">✓</div><h2>${many?tUI('Issues submitted'):tUI('Issue submitted')}</h2><p>${many?tUI('Separate Sevak tickets have been created for each issue on the same bus.'):tUI('A Sevak ticket has been created and the DM team has been notified.')}</p><div style="margin-top:10px">${tickets.map(t=>`<span class="reference" style="margin:3px">${t.id} · ${t.issue}</span>`).join('')}</div></div><div class="card nextCard"><h3>${tUI('What happens next')}</h3><div class="nextStep"><div class="stepNo">1</div><div><b>${tUI('DM team reviews the ticket')}</b><p>${tUI('They can assign it to the maintenance team.')}</p></div></div><div class="nextStep"><div class="stepNo">2</div><div><b>${tUI('Maintenance updates the status')}</b><p>${tUI('Each issue can be diagnosed and resolved independently in Sevak.')}</p></div></div></div><button class="btn primary full" style="margin-top:11px;height:46px" id="reportDone">${tUI('Done')}</button>`;
+ const many=issues.length>1,tickets=issues.map((issue,i)=>({id:'SVK-'+(4827+i),issue}));
+ $('#reportRoot').innerHTML=`<div class="card reportSent"><div class="sentIllustration">✓</div><h2>${many?tUI('Issues submitted'):tUI('Issue submitted')}</h2><p>${many?tUI('Repeated mentions of the same issue are kept together. Different issue types create separate Sevak tickets for the same bus.'):tUI('A Sevak ticket has been created and the DM team has been notified.')}</p><div style="margin-top:10px">${tickets.map(t=>`<span class="reference" style="margin:3px">${t.id} · ${t.issue}</span>`).join('')}</div></div><div class="card nextCard"><h3>${tUI('What happens next')}</h3><div class="nextStep"><div class="stepNo">1</div><div><b>${tUI('DM team reviews the ticket')}</b><p>${tUI('They can assign it to the maintenance team.')}</p></div></div><div class="nextStep"><div class="stepNo">2</div><div><b>${tUI('Maintenance updates the status')}</b><p>${tUI('Each issue can be diagnosed and resolved independently in Sevak.')}</p></div></div></div><button class="btn primary full" style="margin-top:11px;height:46px" id="reportDone">${tUI('Done')}</button>`;
  $('#reportDone').onclick=()=>{app.reportMode='home';renderReport()}
 }
 function renderReportDetail(){
  $('#reportRoot').innerHTML=`<div class="backRow" style="padding:0 0 8px"><button class="backBtn" id="reportDetailBack">‹</button><div class="backTitle">SVK-4821</div></div><div class="card reportDetailCard"><div class="row between"><span class="tiny muted">${tUI('Bus issue')}</span><span class="ticketStatus progress">${tUI('Being looked into')}</span></div><div class="reportDetailTitle">AC</div><div class="reportMeta">MH01 EV 1402 · 10:42 AM</div><div class="voiceResult" style="margin-top:12px"><b>${tUI('Maintenance update')}</b><p>${tUI('Issue diagnosed. Expected completion by 4:30 PM.')}</p></div></div>`;
  $('#reportDetailBack').onclick=()=>{app.reportMode='home';renderReport()}
 }
-
 function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]))}
 
 function metricCard(id,icon,title,summary,statusClass,statusText,note,detail){return `<div class="card metricCard ${app.performanceOpen===id?'open':''}" data-metric-card="${id}"><button class="metricHead" data-metric="${id}"><div class="iconCircle">${svg(icon,17)}</div><div><b>${title}</b><span class="status ${statusClass}">${statusText}</span></div><span></span><span class="arrow">⌄</span></button><div class="metricDetail">${note?`<div class="metricNote">${note}</div>`:''}${detail}</div></div>`}
