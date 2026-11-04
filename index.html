@@ -199,8 +199,8 @@ function getDutyState(day=app.day){return app.dutyStates[day]||(day==='today'?'c
 function setDutyState(state,day=app.day){app.dutyStates={...app.dutyStates,[day]:state};persist()}
 function showScreen(id){$$('.screen').forEach(x=>x.classList.remove('on'));const target=$('#'+id);if(target)target.classList.add('on');$('#nav').style.display=['dutyScreen','reportScreen'].includes(id)?'grid':'none';window.scrollTo(0,0)}
 function toast(msg){const x=$('#toast');x.textContent=msg;x.classList.add('on');clearTimeout(window.__t);window.__t=setTimeout(()=>x.classList.remove('on'),1800)}
-function setTab(tab){if(!['duty','report'].includes(tab))tab='duty';app.tab=tab;persist();$document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav===tab));if(tab==='duty'){renderDuty();showScreen('dutyScreen')}if(tab==='report'){app.reportMode='home';renderReport();showScreen('reportScreen')}hydrateIcons();syncLanguageUI();bindCommonActions()}
-$document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>setTab(b.dataset.nav));
+function setTab(tab){if(!['duty','report'].includes(tab))tab='duty';app.tab=tab;persist();document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav===tab));if(tab==='duty'){renderDuty();showScreen('dutyScreen')}if(tab==='report'){app.reportMode='home';renderReport();showScreen('reportScreen')}hydrateIcons();syncLanguageUI();bindCommonActions()}
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>setTab(b.dataset.nav));
 function openSheet(html){$('#sheetContent').innerHTML=html;$('#sheetOverlay').classList.add('on');hydrateIcons();applyLanguageToRoot($('#sheetContent'))}
 function closeSheet(){$('#sheetOverlay').classList.remove('on')}
 $('#sheetOverlay').onclick=e=>{if(e.target===$('#sheetOverlay'))closeSheet()}
