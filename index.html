@@ -199,8 +199,8 @@ function getDutyState(day=app.day){return app.dutyStates[day]||(day==='today'?'c
 function setDutyState(state,day=app.day){app.dutyStates={...app.dutyStates,[day]:state};persist()}
 function showScreen(id){$$('.screen').forEach(x=>x.classList.remove('on'));const target=$('#'+id);if(target)target.classList.add('on');$('#nav').style.display=['dutyScreen','reportScreen'].includes(id)?'grid':'none';window.scrollTo(0,0)}
 function toast(msg){const x=$('#toast');x.textContent=msg;x.classList.add('on');clearTimeout(window.__t);window.__t=setTimeout(()=>x.classList.remove('on'),1800)}
-function setTab(tab){if(!['duty','report'].includes(tab))tab='duty';app.tab=tab;persist();$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav===tab));if(tab==='duty'){renderDuty();showScreen('dutyScreen')}if(tab==='report'){app.reportMode='home';renderReport();showScreen('reportScreen')}hydrateIcons();syncLanguageUI();bindCommonActions()}
-$$('#nav button').forEach(b=>b.onclick=()=>setTab(b.dataset.nav));
+function setTab(tab){if(!['duty','report'].includes(tab))tab='duty';app.tab=tab;persist();$document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav===tab));if(tab==='duty'){renderDuty();showScreen('dutyScreen')}if(tab==='report'){app.reportMode='home';renderReport();showScreen('reportScreen')}hydrateIcons();syncLanguageUI();bindCommonActions()}
+$document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>setTab(b.dataset.nav));
 function openSheet(html){$('#sheetContent').innerHTML=html;$('#sheetOverlay').classList.add('on');hydrateIcons();applyLanguageToRoot($('#sheetContent'))}
 function closeSheet(){$('#sheetOverlay').classList.remove('on')}
 $('#sheetOverlay').onclick=e=>{if(e.target===$('#sheetOverlay'))closeSheet()}
@@ -216,7 +216,7 @@ function completeOnboarding(){
   app.notifySeen=true;app.tab='duty';persist();
   try{renderDuty()}catch(e){console.error('Duty render failed',e)}
   showScreen('dutyScreen');
-  $('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav==='duty'));
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav==='duty'));
   hydrateIcons();
   try{syncLanguageUI()}catch(e){console.error('Language sync failed',e)}
   bindCommonActions();
@@ -389,7 +389,7 @@ function renderDuty(){
  html+=tripList(day);$('#dutyRoot').innerHTML=html;applyLanguageToRoot($('#dutyRoot'));hydrateIcons();bindDuty();bindCommonActions()
 }
 function bindDuty(){
- $('[data-day]').forEach(b=>b.onclick=()=>{app.day=b.dataset.day;persist();renderDuty()});
+ document.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>{app.day=b.dataset.day;persist();renderDuty()});
  const a=$('#acceptDuty');if(a)a.onclick=()=>{setDutyState('confirmed');renderDuty()};
  const d=$('#declineDuty');if(d)d.onclick=openDeclineSheet;
  const cant=$('#cantDoDutyNow');if(cant)cant.onclick=openDeclineSheet;
@@ -399,7 +399,7 @@ function bindDuty(){
  const cd=$('#changeDelay');if(cd)cd.onclick=openDelaySheet;
  const ot=$('#onTimeNow');if(ot)ot.onclick=()=>{setDutyState('confirmed');renderDuty()};
  const lb=$('#locateBusBtn');if(lb)lb.onclick=openBusLocation;
- $('[data-open-route]').forEach(b=>b.onclick=e=>{e.stopPropagation();const row=b.closest('[data-trip]');const i=Number(row?.dataset.trip);const trip=trips[app.day][i];if(trip&&!trip.kind)openTripNavigation(trip.route)});
+ document.querySelectorAll('[data-open-route]').forEach(b=>b.onclick=e=>{e.stopPropagation();const row=b.closest('[data-trip]');const i=Number(row?.dataset.trip);const trip=trips[app.day][i];if(trip&&!trip.kind)openTripNavigation(trip.route)});
  const rf=$('#refreshDuty');if(rf)rf.onclick=()=>toast(tUI('Duty refreshed'))
 }
 function parseDelayMinutes(text){
@@ -724,7 +724,7 @@ function syncLanguageUI(){
  const screens={dutyScreen:'duty',reportScreen:'report'};
  Object.entries(screens).forEach(([id,key])=>{const el=$('#'+id+' .pageTitle');if(el)el.textContent=titles[key]});
  const navLabels={duty:titles.duty,report:app.lang==='hi'?'समस्या':app.lang==='mr'?'समस्या':'Report issue'};
- $('#nav button').forEach(b=>{const span=b.querySelector('span:last-child');if(span)span.textContent=navLabels[b.dataset.nav]});
+ document.querySelectorAll('#nav button').forEach(b=>{const span=b.querySelector('span:last-child');if(span)span.textContent=navLabels[b.dataset.nav]});
  $$('[data-lang]').forEach(b=>b.textContent=app.lang==='hi'?'हिं':app.lang==='mr'?'मरा':'EN');
  $$('[data-call-dm] span:last-child').forEach(s=>s.textContent=tUI('Call DM'));
  ['dutyRoot','reportRoot','subRoot','sheetContent','dialogContent'].forEach(id=>applyLanguageToRoot($('#'+id)))
