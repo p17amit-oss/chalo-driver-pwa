@@ -216,7 +216,7 @@ function completeOnboarding(){
   app.notifySeen=true;app.tab='duty';persist();
   try{renderDuty()}catch(e){console.error('Duty render failed',e)}
   showScreen('dutyScreen');
-  $$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav==='duty'));
+  $('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.nav==='duty'));
   hydrateIcons();
   try{syncLanguageUI()}catch(e){console.error('Language sync failed',e)}
   bindCommonActions();
@@ -724,7 +724,7 @@ function syncLanguageUI(){
  const screens={dutyScreen:'duty',reportScreen:'report'};
  Object.entries(screens).forEach(([id,key])=>{const el=$('#'+id+' .pageTitle');if(el)el.textContent=titles[key]});
  const navLabels={duty:titles.duty,report:app.lang==='hi'?'समस्या':app.lang==='mr'?'समस्या':'Report issue'};
- $$$('#nav button').forEach(b=>{const span=b.querySelector('span:last-child');if(span)span.textContent=navLabels[b.dataset.nav]});
+ $('#nav button').forEach(b=>{const span=b.querySelector('span:last-child');if(span)span.textContent=navLabels[b.dataset.nav]});
  $$('[data-lang]').forEach(b=>b.textContent=app.lang==='hi'?'हिं':app.lang==='mr'?'मरा':'EN');
  $$('[data-call-dm] span:last-child').forEach(s=>s.textContent=tUI('Call DM'));
  ['dutyRoot','reportRoot','subRoot','sheetContent','dialogContent'].forEach(id=>applyLanguageToRoot($('#'+id)))
