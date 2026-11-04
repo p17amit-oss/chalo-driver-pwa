@@ -402,7 +402,6 @@ function bindDuty(){
  $('[data-open-route]').forEach(b=>b.onclick=e=>{e.stopPropagation();const row=b.closest('[data-trip]');const i=Number(row?.dataset.trip);const trip=trips[app.day][i];if(trip&&!trip.kind)openTripNavigation(trip.route)});
  const rf=$('#refreshDuty');if(rf)rf.onclick=()=>toast(tUI('Duty refreshed'))
 }
-function expectedArrival(delay){const base=390,total=base+Number(delay||0),h=Math.floor(total/60)%24,m=total%60;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+' AM'}
 function parseDelayMinutes(text){
  const s=(text||'').toLowerCase().trim();
  const digit=s.match(/(\d{1,3})\s*(?:min|mins|minute|minutes|मिनट|मिनिट)/i);
@@ -433,8 +432,7 @@ function openVoiceLateSheet(){
   capturedDelay=null;voiceConfirmed=false;heardText='';result.style.display='none';voiceArea.innerHTML='';visualArea.innerHTML='';state.textContent=tUI('Tap the microphone and speak');mic.classList.remove('recording')
  };
  const renderVisualConfirm=()=>{
-  const arrival=expectedArrival(capturedDelay);
-  visualArea.innerHTML=`<div class="delayConfirmCard"><b>${tUI('Please confirm before submitting')}</b><p>${tUI('Delay')}: ${capturedDelay} min</p><p>${tUI('Expected arrival')}: ${arrival}</p></div><button class="btn primary full" id="finalDelaySubmit">${tUI('Confirm & submit')}</button>`;
+  visualArea.innerHTML=`<div class="delayConfirmCard"><b>${tUI('Please confirm before submitting')}</b><p>${tUI('Delay')}: ${capturedDelay} min</p></div><button class="btn primary full" id="finalDelaySubmit">${tUI('Confirm & submit')}</button>`;
   $('#finalDelaySubmit').onclick=()=>{if(!voiceConfirmed||!capturedDelay)return;app.delay=capturedDelay;persist();setDutyState('delay');closeSheet();renderDuty()}
  };
  const confirmByVoice=()=>{
@@ -481,7 +479,6 @@ function openDeclineSheet(){openSheet(`<h2>Tell Chalo you can’t do this duty?<
 function openDelaySheet(){
  const opts=[10,20,30,45],isChanging=getDutyState()==='delay';
  let selected=isChanging?app.delay:null,otherSelected=isChanging&&!opts.includes(app.delay);
- const arrival=n=>expectedArrival(n);
  openSheet(`<h2>How late will you be?</h2><div class="delayGrid">${opts.map(n=>`<button class="delayOpt ${selected===n?'on':''}" data-delay="${n}">+${n} min</button>`).join('')}<button class="delayOpt ${otherSelected?'on':''}" id="otherDelay">Other<span>Enter minutes</span></button></div><div id="customDelayWrap" style="display:${otherSelected?'block':'none'};margin:8px 0 10px"><div class="formLabel">Delay in minutes</div><input class="fieldBox" id="customDelayInput" type="number" inputmode="numeric" min="1" max="180" placeholder="${app.lang==='hi'?'मिनट दर्ज करें':'Enter minutes'}" value="${otherSelected?app.delay:''}"><div class="errorText" id="delayError" style="display:none"></div></div><button class="btn primary full" id="submitDelay" ${selected===null?'disabled':''}>Submit</button><button class="btn secondary full" style="margin-top:7px" id="cancelDelay">Cancel</button>`);
  const submit=$('#submitDelay'),wrap=$('#customDelayWrap'),input=$('#customDelayInput'),err=$('#delayError');
  const clearSelection=()=>$$('.delayOpt').forEach(x=>x.classList.remove('on'));
